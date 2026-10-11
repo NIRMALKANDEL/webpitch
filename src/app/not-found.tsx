@@ -14,7 +14,7 @@ export default function NotFound() {
         </h1>
         <p className="mt-4 text-lg text-ink-2">The link may be old or mistyped. Here are some good places to go instead.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-2">
-          <Link href="/demos" className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 font-semibold text-white">
+          <Link href="/demos" className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 font-semibold text-paper">
             Explore Demos
           </Link>
           <Link href="/industries" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 bg-white px-6 font-semibold">

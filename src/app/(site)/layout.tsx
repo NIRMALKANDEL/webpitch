@@ -11,7 +11,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <div className={`${display.variable} ${sans.variable} matte flex min-h-screen flex-col bg-paper font-sans text-ink`}>
       <a
         href="#main"
-        className="sr-only z-[100] rounded-full bg-ink px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        className="sr-only z-[100] rounded-full bg-ink px-4 py-2 text-paper focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
       >
         Skip to content
       </a>

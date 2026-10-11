@@ -29,7 +29,7 @@ export default function IndustriesPage() {
           <p className="mt-1 text-ink-2">I build for all kinds of businesses. Tell me what you do.</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link href="/contact" className="inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-white">
+          <Link href="/contact" className="inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper">
             Discuss Your Project
           </Link>
           <a

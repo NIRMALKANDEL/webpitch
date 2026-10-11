@@ -466,7 +466,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
         <button
           type="submit"
           disabled={status.kind === "sending"}
-          className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-7 font-semibold text-white transition hover:bg-ink/85 disabled:opacity-60"
+          className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-7 font-semibold text-paper transition hover:bg-ink/85 disabled:opacity-60"
         >
           {status.kind === "sending" ? (
             <>

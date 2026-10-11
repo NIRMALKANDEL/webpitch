@@ -26,7 +26,7 @@ export function FeatureGallery() {
             aria-pressed={cat === c.id}
             onClick={() => setCat(c.id)}
             className={`min-h-10 shrink-0 rounded-full border px-4 text-sm transition ${
-              cat === c.id ? "border-ink bg-ink text-white" : "border-muted bg-surface text-ink-2 hover:border-ink/30"
+              cat === c.id ? "border-ink bg-ink text-paper" : "border-muted bg-surface text-ink-2 hover:border-ink/30"
             }`}
           >
             {c.label}
@@ -65,7 +65,7 @@ export function FeatureGallery() {
                   <div className="mt-auto flex flex-wrap gap-2 pt-5">
                     <Link
                       href={`/demos/${f.demo}${f.anchor ? `#${f.anchor}` : ""}`}
-                      className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-sm font-semibold text-white"
+                      className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-sm font-semibold text-paper"
                     >
                       Try it live <ArrowUpRight className="size-4" aria-hidden />
                     </Link>
@@ -94,7 +94,7 @@ export function FeatureGallery() {
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 80, opacity: 0 }}
-            className="fixed inset-x-3 bottom-20 z-40 mx-auto flex max-w-xl items-center justify-between gap-3 rounded-full bg-ink py-2 pr-2 pl-5 text-white shadow-2xl sm:bottom-6"
+            className="fixed inset-x-3 bottom-20 z-40 mx-auto flex max-w-xl items-center justify-between gap-3 rounded-full bg-night py-2 pr-2 pl-5 text-white ring-1 ring-white/10 shadow-2xl sm:bottom-6"
             role="status"
           >
             <p className="text-sm">

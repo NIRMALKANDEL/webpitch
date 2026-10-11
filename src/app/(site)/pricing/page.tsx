@@ -114,7 +114,7 @@ export default function PricingPage() {
             <Price prices={redesign.prices} className="font-display text-3xl font-semibold" />
           </p>
           <p className="mt-1 text-xs text-ink-3">{redesign.timeline}</p>
-          <Link href="/contact?package=redesign" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-white">
+          <Link href="/contact?package=redesign" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper">
             Discuss a Redesign
           </Link>
         </div>

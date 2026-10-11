@@ -101,7 +101,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
                     Designed with {d.fonts}
                   </div>
                   <div className="mt-7 flex flex-wrap gap-2">
-                    <Link href={`/demos/${d.slug}`} className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-sm font-semibold text-white">
+                    <Link href={`/demos/${d.slug}`} className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-sm font-semibold text-paper">
                       View Live Website <ArrowUpRight className="size-4" aria-hidden />
                     </Link>
                     <Link href={`/contact?industry=${industry.slug}&demo=${d.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-ink/15 px-5 text-sm font-semibold">
@@ -153,7 +153,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
       </section>
 
       <section className="container-x">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-[20px] bg-ink p-8 text-white sm:p-12 lg:flex-row lg:items-center">
+        <div className="flex flex-col items-start justify-between gap-6 rounded-[20px] bg-night ring-1 ring-white/10 p-8 text-white sm:p-12 lg:flex-row lg:items-center">
           <div>
             <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Want this for your {industry.short.toLowerCase()} business?</h2>
             <p className="mt-2 text-white/70">Free 20-minute call, fixed quote, launch in one to three weeks.</p>

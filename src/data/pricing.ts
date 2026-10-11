@@ -1,8 +1,18 @@
 import type { PriceTable } from "@/lib/currency";
 
 /**
- * Every price on the site comes from this file. Prices are hand-set per currency
- * (not converted at runtime) from the market research in docs/SITE-SPEC.md §7.
+ * ═══════════════════════════════ EDIT PRICES HERE ═══════════════════════════════
+ * Every price on the site comes from this file. Change a number, save, redeploy.
+ *
+ *   packages   → the 4 main package cards (homepage, /pricing, industry pages)
+ *   redesign   → "Website redesign" price on /pricing
+ *   carePlans  → monthly care plans (also used by the "Build + care plan" toggle)
+ *   addOns     → add-on table on /pricing
+ *
+ * Each `prices` line has one number per currency: { INR, USD, GBP, EUR, AUD, CAD, NZD }.
+ * Prices are hand-set per currency (not converted at runtime), so update every
+ * currency you care about. Visitors see the one matching their country.
+ * ════════════════════════════════════════════════════════════════════════════════
  */
 
 export type Package = {
@@ -18,6 +28,7 @@ export type Package = {
   featured?: boolean;
 };
 
+// ▼ PACKAGE PRICES: edit the `prices` line inside each package below.
 export const packages: Package[] = [
   {
     id: "starter",

@@ -6,7 +6,7 @@ import { CurrencySwitcher } from "./CurrencySwitcher";
 
 export function Footer() {
   return (
-    <footer className="mt-24 bg-ink text-paper">
+    <footer className="mt-24 border-t border-white/10 bg-night text-white">
       <div className="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-xl font-bold">{site.brandName}</p>

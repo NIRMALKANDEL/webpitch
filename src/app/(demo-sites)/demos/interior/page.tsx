@@ -2,6 +2,7 @@ import Image from "next/image";
 import { DemoDisclaimer } from "@/components/shared/DemoShell";
 import { unsplash } from "@/lib/media";
 import { Consultation, ParallaxHero, Projects } from "./_parts/Parts";
+import { RoomPlanner } from "./_parts/RoomPlanner";
 
 const services = [
   ["Interior design", "Spatial planning, finishes, furniture and lighting for homes and workplaces."],
@@ -33,7 +34,7 @@ export default function InteriorDemo() {
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 md:h-20 md:px-10">
           <a href="#top" className="font-dd text-sm tracking-[0.35em]">STUDIO NEEM</a>
           <nav aria-label="Studio" className="hidden gap-10 font-dd text-xs tracking-[0.2em] md:flex">
-            {[["#projects", "PROJECTS"], ["#services", "SERVICES"], ["#process", "PROCESS"], ["#consult", "CONTACT"]].map(([h, l]) => (
+            {[["#design-3d", "3D STUDIO"], ["#projects", "PROJECTS"], ["#services", "SERVICES"], ["#process", "PROCESS"], ["#consult", "CONTACT"]].map(([h, l]) => (
               <a key={h} href={h} className="hover:text-[#5B6B3A]">{l}</a>
             ))}
           </nav>
@@ -58,6 +59,16 @@ export default function InteriorDemo() {
         </section>
 
         <ParallaxHero />
+
+        <section id="design-3d" className="mx-auto max-w-[1400px] scroll-mt-20 px-5 py-24 md:px-10 md:py-36" aria-labelledby="sn-3d">
+          <div className="mb-12 grid gap-4 md:grid-cols-[1fr_2fr]">
+            <h2 id="sn-3d" className="font-dd text-sm tracking-[0.3em]">DESIGN IT IN 3D</h2>
+            <p className="max-w-xl font-dd text-3xl leading-tight font-extralight md:text-5xl">
+              Walk through your room before a single nail goes in.
+            </p>
+          </div>
+          <RoomPlanner />
+        </section>
 
         <section id="projects" className="mx-auto max-w-[1400px] scroll-mt-20 px-5 py-24 md:px-10 md:py-40" aria-labelledby="sn-p">
           <div className="mb-10 grid gap-4 md:grid-cols-[1fr_2fr]">

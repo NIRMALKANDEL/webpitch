@@ -24,7 +24,7 @@ function Frame({ url, offset }: { url: string; offset: number }) {
   return (
     <group ref={g} position={[offset * 2.1, 0, -Math.abs(offset) * 1.8]}>
       <RoundedBox args={[W + 0.14, H + 0.36, 0.05]} radius={0.06} smoothness={4} position={[0, 0.11, -0.03]}>
-        <meshStandardMaterial color="#f6f5f1" roughness={0.5} />
+        <meshStandardMaterial color="#1c1b24" roughness={0.4} metalness={0.2} />
       </RoundedBox>
       {[0, 1, 2].map((i) => (
         <mesh key={i} position={[-W / 2 + 0.15 + i * 0.13, H / 2 + 0.16, 0.001]}>
@@ -84,7 +84,7 @@ export default function HeroScene({
     >
       <ambientLight intensity={1.4} />
       <directionalLight position={[3, 5, 6]} intensity={1.2} />
-      <Sparkles count={60} scale={[14, 6, 10]} size={2.5} speed={0.35} opacity={0.6} color="#2b3fd6" />
+      <Sparkles count={60} scale={[14, 6, 10]} size={2.5} speed={0.35} opacity={0.6} color="#9686ff" />
       <Suspense fallback={null}>
         <Carousel images={images} active={active} onReady={onReady} />
       </Suspense>

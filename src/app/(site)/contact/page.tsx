@@ -35,7 +35,7 @@ export default function ContactPage() {
           </Suspense>
         </div>
         <aside className="space-y-6" aria-label="Other ways to reach me">
-          <div className="rounded-[20px] bg-ink p-6 text-white sm:p-8">
+          <div className="rounded-[20px] bg-night ring-1 ring-white/10 p-6 text-white sm:p-8">
             <h2 className="font-display text-2xl font-semibold">Rather talk?</h2>
             <p className="mt-2 text-white/70">WhatsApp is the fastest way to reach me.</p>
             <a

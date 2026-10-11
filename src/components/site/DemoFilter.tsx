@@ -28,7 +28,7 @@ export function DemoFilter() {
             aria-pressed={active === i.slug}
             onClick={() => choose(i.slug)}
             className={`min-h-10 shrink-0 rounded-full border px-4 text-sm transition ${
-              active === i.slug ? "border-ink bg-ink text-white" : "border-muted bg-surface text-ink-2 hover:border-ink/30"
+              active === i.slug ? "border-ink bg-ink text-paper" : "border-muted bg-surface text-ink-2 hover:border-ink/30"
             }`}
           >
             {i.short}

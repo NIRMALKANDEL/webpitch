@@ -1,16 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Main site tokens */
-  --color-paper: #eceae5;
-  --color-surface: #f6f5f1;
-  --color-alt: #e4e1da;
-  --color-ink: #161513;
-  --color-ink-2: #3f3c37;
-  --color-ink-3: #6b665e;
-  --color-muted: #d9d5cc;
-  --color-accent: #2b3fd6;
-  --color-accent-soft: #dfe2f6;
+  /* Main site tokens: values live in :root / [data-theme="dark"] below so the theme can switch. */
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-alt: var(--alt);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-night: var(--night);
+  --color-volt: #c6f432;
   --color-whatsapp: #0f7a3f;
   --color-danger: #dc2626;
 
@@ -23,6 +27,38 @@
   --font-dm: var(--d-mono), ui-monospace, monospace;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light: warm matte paper. Dark (default): deep ink with violet + lime accents. */
+:root {
+  --paper: #eceae5;
+  --surface: #f6f5f1;
+  --alt: #e4e1da;
+  --ink: #161513;
+  --ink-2: #3f3c37;
+  --ink-3: #66615a;
+  --muted: #d9d5cc;
+  --accent: #5b3df5;
+  --accent-2: #d946ef;
+  --accent-soft: #e6e1fd;
+  --on-accent: #ffffff;
+  --night: #121118;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --paper: #0b0b0f;
+  --surface: #14141b;
+  --alt: #101016;
+  --ink: #f3f2ee;
+  --ink-2: #c3c1bb;
+  --ink-3: #9a978f;
+  --muted: #2a2a34;
+  --accent: #9686ff;
+  --accent-2: #f472d0;
+  --accent-soft: #221d45;
+  --on-accent: #0b0b0f;
+  --night: #16151f;
+  color-scheme: dark;
 }
 
 @layer base {
@@ -78,6 +114,7 @@
     z-index: 0;
     pointer-events: none;
     opacity: 0.05;
+    mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   & > * {
@@ -140,4 +177,20 @@
     transform: translateY(-110vh) translateX(20px);
     opacity: 0;
   }
+}
+
+@keyframes gradient-pan {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Animated violet-to-pink gradient text used for highlighted words. */
+@utility text-shine {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), #f59e0b, var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
 }

@@ -2,7 +2,7 @@ import { ArrowRight, Gauge, Globe2, Inbox, KeyRound, MapPin, MessageCircle, Smar
 import Link from "next/link";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { AboutMe } from "@/components/site/AboutMe";
-import { DemoCard, IndustryCard, SectionHeading } from "@/components/site/Cards";
+import { IndustryCard, SectionHeading } from "@/components/site/Cards";
 import { EnquiryForm } from "@/components/site/EnquiryForm";
 import { FAQ } from "@/components/site/FAQ";
 import { FeatureTeaser } from "@/components/site/FeatureTeaser";
@@ -10,7 +10,6 @@ import { Hero } from "@/components/site/Hero";
 import { PricingCards } from "@/components/site/PricingCards";
 import { Process } from "@/components/site/Process";
 import { CurrencySwitcher } from "@/components/site/CurrencySwitcher";
-import { demoBySlug } from "@/data/demos";
 import { homeFaq } from "@/data/faq";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
@@ -25,48 +24,54 @@ const deliverables = [
   { icon: KeyRound, title: "You own everything", text: "Domain, hosting and content in your name. No lock-in." },
 ];
 
-const featured = ["restaurant", "real-estate", "salon", "furniture"].map((s) => demoBySlug(s)!);
-
 export default function HomePage() {
   return (
     <>
       <Hero />
 
-      <section className="container-x py-16 sm:py-24" aria-labelledby="industries-title">
+      <div className="overflow-hidden border-y border-muted bg-alt py-4" aria-hidden>
+        <div className="flex w-max animate-[marquee_40s_linear_infinite] gap-8 font-display text-2xl font-semibold tracking-tight text-ink-3 motion-reduce:animate-none sm:text-3xl">
+          {[...industries, ...industries].map((i, n) => (
+            <span key={n} className="flex items-center gap-8">
+              {i.short}
+              <span className="text-accent">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <section id="demos" className="container-x scroll-mt-20 py-16 sm:py-24" aria-labelledby="demos-title">
         <SectionHeading
-          id="industries-title"
-          title="Built for your kind of business"
-          intro="Every industry has its own live demo, designed around what those customers actually look for."
+          id="demos-title"
+          title="Pick your industry. Open the real website."
+          intro="Every card is a working website, not a picture. Hover to scroll it, click to open it and play."
           action={
-            <Link href="/industries" className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline">
-              All industries <ArrowRight className="size-4" aria-hidden />
+            <Link href="/demos" className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline">
+              All demos <ArrowRight className="size-4" aria-hidden />
             </Link>
           }
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((i) => (
-            <IndustryCard key={i.slug} industry={i} compact />
+            <IndustryCard key={i.slug} industry={i} />
           ))}
-        </div>
-      </section>
-
-      <section className="border-y border-muted bg-alt py-16 sm:py-24" aria-labelledby="featured-title">
-        <div className="container-x">
-          <SectionHeading
-            id="featured-title"
-            title="Open a demo. Click around. It's a real website."
-            intro="These aren't screenshots. Each demo is a working site with its own brand, menus, forms and interactions."
-            action={
-              <Link href="/demos" className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline">
-                See all 13 demos <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            }
-          />
-          <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
-            {featured.map((d) => (
-              <DemoCard key={d.slug} demo={d} large />
-            ))}
-          </div>
+          <Link
+            href="/contact"
+            className="group relative flex min-h-64 flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-accent to-accent-2 p-7 text-on-accent lg:col-span-2"
+          >
+            <span aria-hidden className="absolute -right-10 -bottom-16 font-display text-[220px] leading-none font-bold opacity-15 transition duration-700 group-hover:-translate-y-3 group-hover:rotate-6">
+              ✦
+            </span>
+            <p className="text-sm font-semibold tracking-wide uppercase opacity-80">Don&apos;t see yours?</p>
+            <div>
+              <p className="max-w-md font-display text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
+                Your business could be demo number {industries.length + 1}.
+              </p>
+              <span className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#0b0b0f] px-5 text-sm font-semibold text-white">
+                Tell me about it <ArrowRight className="size-4 transition group-hover:translate-x-1" aria-hidden />
+              </span>
+            </div>
+          </Link>
         </div>
       </section>
 
@@ -109,7 +114,7 @@ export default function HomePage() {
         <div className="container-x">
           <SectionHeading
             id="pricing-title"
-            title="Simple, upfront pricing"
+            title="Pick a plan. Know the price upfront."
             intro="Starting prices in your currency. You get a fixed quote after a free 20-minute call."
             action={<CurrencySwitcher />}
           />
@@ -141,7 +146,7 @@ export default function HomePage() {
       </section>
 
       <section className="container-x" aria-labelledby="contact-title">
-        <div className="grid gap-10 rounded-[20px] bg-ink p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:p-14">
+        <div className="grid gap-10 rounded-[20px] bg-night ring-1 ring-white/10 p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:p-14">
           <div>
             <h2 id="contact-title" className="font-display text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl">
               Tell me about your business.

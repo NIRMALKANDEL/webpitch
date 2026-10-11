@@ -9,6 +9,7 @@ import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
 import { waLink, waMessages } from "@/lib/whatsapp";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/demos", label: "Demos" },
@@ -70,7 +71,7 @@ export function Nav() {
     >
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-2.5" aria-label={`${site.brandName}, home`}>
-          <span className="grid size-8 place-items-center rounded-lg bg-accent font-display text-[13px] font-extrabold tracking-tight text-white">
+          <span className="grid size-8 place-items-center rounded-lg bg-accent font-display text-[13px] font-extrabold tracking-tight text-on-accent">
             NK
           </span>
           <span className="leading-tight">
@@ -94,7 +95,8 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
+          <ThemeToggle />
           <a
             href={waLink(waMessages.general)}
             target="_blank"
@@ -106,7 +108,7 @@ export function Nav() {
           </a>
           <Link
             href="/contact"
-            className="hidden min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-sm font-semibold text-white transition hover:bg-ink/85 sm:inline-flex"
+            className="hidden min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-sm font-semibold text-paper transition hover:bg-ink/85 sm:inline-flex"
           >
             Discuss Your Project <ArrowUpRight className="size-4" aria-hidden />
           </Link>
@@ -178,7 +180,7 @@ export function Nav() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="flex min-h-12 items-center justify-center rounded-full bg-ink font-semibold text-white"
+                  className="flex min-h-12 items-center justify-center rounded-full bg-ink font-semibold text-paper"
                 >
                   Discuss Your Project
                 </Link>
