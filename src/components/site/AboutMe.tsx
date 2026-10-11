@@ -1,25 +1,157 @@
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/data/site";
 
+const orbit = ["React", "Next.js", "Node.js", "Three.js", "MongoDB", "Tailwind", "TypeScript", "AI"];
+const ease = [0.22, 1, 0.36, 1] as const;
+
+/** "Hi, I'm Nirmal": spinning avatar ring with orbiting skills, letter-by-letter headline, and a live portfolio preview. */
 export function AboutMe() {
+  const first = site.ownerName.split(" ")[0];
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const rx = useSpring(useTransform(my, [0, 1], [8, -8]), { stiffness: 150, damping: 18 });
+  const ry = useSpring(useTransform(mx, [0, 1], [-10, 10]), { stiffness: 150, damping: 18 });
+  const glare = useTransform([mx, my], ([x, y]: number[]) => `radial-gradient(500px circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.18), transparent 50%)`);
+
   return (
-    <div className="grid items-center gap-10 rounded-[20px] border border-muted bg-surface p-6 sm:p-10 md:grid-cols-[220px_1fr] lg:gap-14">
-      <div className="relative mx-auto aspect-square w-44 overflow-hidden rounded-full md:w-full">
-        <Image src={site.photo} alt={`Illustrated portrait of ${site.ownerName}`} fill sizes="220px" className="object-cover" unoptimized />
-      </div>
-      <div>
-        <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Hi, I&apos;m {site.ownerName.split(" ")[0]}.</h2>
-        <div className="mt-4 max-w-2xl space-y-4 text-lg leading-relaxed text-ink-2">
-          <p>
-            I design and build websites for small businesses: restaurants, salons, studios, shops and local services.
-            I&apos;m based in {site.basedIn} and work with clients in India and English-speaking countries around the world.
-          </p>
-          <p>
-            You talk directly to the person who builds your site. No account managers, no hand-offs, and no
-            surprise invoices. I&apos;d rather show you what your website could look like than tell you, which is
-            why every industry on this site has a live demo you can try.
-          </p>
+    <div className="relative overflow-hidden rounded-[28px] bg-surface p-6 ring-1 ring-ink/10 sm:p-10 lg:p-14">
+      <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 size-96 rounded-full bg-accent/20 blur-[100px]" />
+      <div aria-hidden className="pointer-events-none absolute -right-24 -bottom-32 size-96 rounded-full bg-accent-2/15 blur-[100px]" />
+
+      <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div>
+          <div className="flex flex-col items-center gap-12 text-center sm:flex-row sm:gap-16 sm:text-left sm:items-center">
+            {/* avatar with a spinning gradient ring and orbiting skills */}
+            <div className="relative grid size-44 shrink-0 place-items-center sm:size-48">
+              <div aria-hidden className="absolute inset-0 animate-[spin_8s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,var(--accent),var(--accent-2),#f59e0b,var(--color-volt),var(--accent))] motion-reduce:animate-none" />
+              <div className="relative size-[92%] overflow-hidden rounded-full bg-paper">
+                <Image src={site.photo} alt={`Illustrated portrait of ${site.ownerName}`} fill sizes="200px" className="object-cover" unoptimized />
+              </div>
+              <ul aria-hidden className="absolute -inset-10 animate-[spin_30s_linear_infinite] motion-reduce:animate-none">
+                {orbit.map((s, i) => {
+                  const a = (i / orbit.length) * Math.PI * 2;
+                  return (
+                    <li key={s} className="absolute top-1/2 left-1/2" style={{ transform: `translate(-50%,-50%) translate(${Math.cos(a) * 128}px, ${Math.sin(a) * 128}px)` }}>
+                      <span className="block animate-[spin_30s_linear_infinite_reverse] rounded-full bg-paper/90 px-2 py-0.5 text-[10px] font-semibold whitespace-nowrap text-ink-2 ring-1 ring-ink/10 backdrop-blur motion-reduce:animate-none">
+                        {s}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <h2 className="font-display text-5xl leading-[0.95] font-semibold tracking-tight xl:text-6xl" aria-label={`Hi, I'm ${first}.`}>
+              <span aria-hidden className="block">
+                Hi
+                <span className="ml-2 inline-block origin-[70%_70%] animate-[wave_2.4s_ease-in-out_infinite] motion-reduce:animate-none">👋</span>
+              </span>
+              <span aria-hidden className="block whitespace-nowrap">
+                I&apos;m{" "}
+                {[...first].map((c, i) => (
+                  <motion.span
+                    key={i}
+                    className="text-shine inline-block"
+                    initial={{ y: "0.6em", opacity: 0, rotate: 12 }}
+                    whileInView={{ y: 0, opacity: 1, rotate: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ type: "spring", stiffness: 380, damping: 14, delay: 0.15 + i * 0.06 }}
+                  >
+                    {c}
+                  </motion.span>
+                ))}
+                .
+              </span>
+            </h2>
+          </div>
+
+          <motion.div
+            className="mt-10 max-w-xl space-y-4 text-lg leading-relaxed text-ink-2"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <p>
+              I&apos;m a full-stack developer from {site.basedIn}. I build with React, Next.js, Node.js and Three.js, and I design and
+              build every one of these sites myself.
+            </p>
+            <p>
+              You talk directly to the person writing your code. No account managers, no hand-offs, no surprise invoices. I&apos;d
+              rather <strong className="font-semibold text-ink">show</strong> you your website than describe it, which is why every
+              industry here has a live demo.
+            </p>
+          </motion.div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={site.portfolioUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 font-semibold text-paper transition hover:bg-ink/85"
+            >
+              See my portfolio <ArrowUpRight className="size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+            </a>
+            <Link href="/contact" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 px-6 font-semibold transition hover:border-ink/40">
+              Work with me
+            </Link>
+          </div>
         </div>
+
+        {/* live portfolio preview: auto-scrolling screenshot in a tilting browser window */}
+        <motion.a
+          href={site.portfolioUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Nirmal's developer portfolio in a new tab"
+          style={{ rotateX: rx, rotateY: ry, transformPerspective: 1100 }}
+          onPointerMove={(e) => {
+            const r = e.currentTarget.getBoundingClientRect();
+            mx.set((e.clientX - r.left) / r.width);
+            my.set((e.clientY - r.top) / r.height);
+          }}
+          onPointerLeave={() => {
+            mx.set(0.5);
+            my.set(0.5);
+          }}
+          initial={{ opacity: 0, y: 40, rotate: -2 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease }}
+          className="group relative block"
+        >
+          <div aria-hidden className="absolute -inset-3 rounded-[26px] bg-gradient-to-br from-accent via-accent-2 to-volt opacity-40 blur-2xl transition duration-500 group-hover:opacity-70" />
+          <div className="relative overflow-hidden rounded-[18px] bg-[#0b0f0d] ring-1 ring-white/10 shadow-2xl">
+            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+              <span className="flex gap-1.5" aria-hidden>
+                <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+                <span className="size-2.5 rounded-full bg-[#febc2e]" />
+                <span className="size-2.5 rounded-full bg-[#28c840]" />
+              </span>
+              <span className="mx-auto truncate rounded-md bg-white/5 px-3 py-0.5 text-[11px] text-white/60">
+                {site.portfolioUrl.replace("https://", "")}
+              </span>
+            </div>
+            <div className="relative aspect-[16/11]">
+              <Image
+                src="/previews/tall/nirmal-portfolio.jpg"
+                alt="Screenshot of Nirmal's developer portfolio: projects, skills and timeline"
+                fill
+                sizes="(min-width:1024px) 45vw, 92vw"
+                className="object-cover object-top transition-[object-position] duration-[6000ms] ease-in-out group-hover:object-bottom motion-reduce:transition-none"
+              />
+              <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: glare }} />
+            </div>
+          </div>
+          <span className="absolute -right-3 -bottom-4 flex items-center gap-1.5 rounded-full bg-volt px-4 py-2 text-sm font-bold text-[#0b0b0f] shadow-xl transition group-hover:scale-105 sm:-right-5">
+            My portfolio <ArrowUpRight className="size-4" aria-hidden />
+          </span>
+        </motion.a>
       </div>
     </div>
   );

@@ -194,3 +194,21 @@
   color: transparent;
   animation: gradient-pan 6s linear infinite;
 }
+
+/* Slowly pans a tall screenshot from top to bottom and back. */
+@keyframes pan-y {
+  0%,
+  8% {
+    object-position: 50% 0%;
+  }
+  92%,
+  100% {
+    object-position: 50% 100%;
+  }
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(16deg); }
+  20%, 40% { transform: rotate(-8deg); }
+}

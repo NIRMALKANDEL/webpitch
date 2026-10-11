@@ -75,8 +75,8 @@ export function Nav() {
             NK
           </span>
           <span className="leading-tight">
-            <span className="block font-display text-[15px] font-bold tracking-tight">{site.brandName}</span>
-            <span className="hidden text-[11px] text-ink-2 sm:block">{site.descriptor}</span>
+            <span className="block font-display text-[15px] font-bold tracking-tight whitespace-nowrap">{site.brandName}</span>
+            <span className="hidden text-[11px] whitespace-nowrap text-ink-2 sm:block lg:hidden xl:block">{site.descriptor}</span>
           </span>
         </Link>
 
@@ -86,7 +86,7 @@ export function Nav() {
               key={l.href}
               href={l.href}
               aria-current={isActive(l.href) ? "page" : undefined}
-              className={`rounded-full px-3.5 py-2 text-sm transition hover:bg-ink/5 ${
+              className={`rounded-full px-2.5 py-2 text-sm whitespace-nowrap transition xl:px-3.5 hover:bg-ink/5 ${
                 isActive(l.href) ? "font-semibold text-ink" : "text-ink-2"
               }`}
             >
@@ -108,7 +108,7 @@ export function Nav() {
           </a>
           <Link
             href="/contact"
-            className="hidden min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-sm font-semibold text-paper transition hover:bg-ink/85 sm:inline-flex"
+            className="hidden min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 whitespace-nowrap text-sm font-semibold text-paper transition hover:bg-ink/85 sm:inline-flex"
           >
             Discuss Your Project <ArrowUpRight className="size-4" aria-hidden />
           </Link>
