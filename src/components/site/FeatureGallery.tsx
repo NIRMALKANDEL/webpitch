@@ -34,7 +34,7 @@ export function FeatureGallery() {
         ))}
       </div>
 
-      <motion.ul layout className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.ul layout className="mt-6 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {list.map((f) => {
             const demo = demoBySlug(f.demo)!;
@@ -47,25 +47,25 @@ export function FeatureGallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.25 }}
-                className={`flex flex-col overflow-hidden rounded-[14px] border bg-surface transition ${on ? "border-accent ring-2 ring-accent/20" : "border-muted"}`}
+                className={`grid grid-cols-[36%_1fr] overflow-hidden rounded-[14px] border bg-surface transition sm:flex sm:flex-col ${on ? "border-accent ring-2 ring-accent/20" : "border-muted"}`}
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
+                <div className="relative h-full min-h-32 overflow-hidden bg-ink/5 sm:aspect-[16/10] sm:h-auto">
                   <FeatureMedia feature={f} alt={f.title} />
                   {f.media.kind === "live3d" ? (
-                    <span className="absolute top-3 left-3 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-semibold">Live 3D</span>
+                    <span className="absolute top-2 left-2 rounded-full bg-surface/90 px-2 py-0.5 text-[10px] font-semibold sm:top-3 sm:left-3 sm:px-2.5 sm:py-1 sm:text-[11px]">Live 3D</span>
                   ) : null}
                 </div>
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-1 flex-col p-3 sm:p-5">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-display text-lg leading-snug font-semibold">{f.title}</h3>
-                    <span className="shrink-0 rounded-full bg-ink/5 px-2.5 py-1 text-[11px] text-ink-2">{f.pkg}</span>
+                    <h3 className="font-display text-[15px] leading-snug font-semibold sm:text-lg">{f.title}</h3>
+                    <span className="hidden shrink-0 rounded-full bg-ink/5 px-2.5 py-1 text-[11px] text-ink-2 sm:inline">{f.pkg}</span>
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-2">{f.benefit}</p>
-                  <p className="mt-2 text-xs text-ink-3">In the {demo.brand} demo</p>
-                  <div className="mt-auto flex flex-wrap gap-2 pt-5">
+                  <p className="mt-1 text-[13px] leading-snug text-ink-2 sm:mt-2 sm:text-sm sm:leading-relaxed">{f.benefit}</p>
+                  <p className="mt-2 hidden text-xs text-ink-3 sm:block">In the {demo.brand} demo</p>
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-3 sm:gap-2 sm:pt-5">
                     <Link
                       href={`/demos/${f.demo}${f.anchor ? `#${f.anchor}` : ""}`}
-                      className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-ink px-4 text-sm font-semibold text-paper"
+                      className="inline-flex min-h-9 items-center gap-1 rounded-full bg-ink px-3 text-xs font-semibold text-paper sm:min-h-10 sm:gap-1.5 sm:px-4 sm:text-sm"
                     >
                       Try it live <ArrowUpRight className="size-4" aria-hidden />
                     </Link>
@@ -73,7 +73,7 @@ export function FeatureGallery() {
                       type="button"
                       aria-pressed={on}
                       onClick={() => toggle(f.id)}
-                      className={`inline-flex min-h-10 items-center gap-1.5 rounded-full border px-4 text-sm font-semibold transition ${
+                      className={`inline-flex min-h-9 items-center gap-1 rounded-full border px-3 text-xs font-semibold transition sm:min-h-10 sm:gap-1.5 sm:px-4 sm:text-sm ${
                         on ? "border-accent bg-accent-soft text-accent" : "border-ink/15 hover:border-ink/40"
                       }`}
                     >

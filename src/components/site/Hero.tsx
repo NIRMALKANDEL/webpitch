@@ -54,7 +54,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_oklab,var(--ink)_7%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklab,var(--ink)_7%,transparent)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_at_top,#000_20%,transparent_70%)]" />
       </div>
 
-      <div className="container-x relative grid items-center gap-10 pt-12 pb-16 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-6 lg:pt-20 lg:pb-24">
+      <div className="container-x relative grid items-center gap-10 pt-8 pb-10 sm:pt-16 sm:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-6 lg:pt-20 lg:pb-24">
         <div>
           <motion.p
             className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-surface/70 px-3 py-1.5 text-sm text-ink-2 backdrop-blur"
@@ -90,8 +90,30 @@ export function Hero() {
             </span>
           </motion.h1>
 
+          {/* Phones/tablets: show a live demo right under the headline (the 3D carousel is desktop-only). */}
+          <Link
+            href={`/demos/${demo.slug}`}
+            className="group relative mt-6 block overflow-hidden rounded-2xl ring-1 ring-ink/10 lg:hidden"
+            aria-label={`Open the ${demo.brand} live demo`}
+          >
+            <div className="relative aspect-[16/10] bg-muted">
+              <AnimatePresence initial={false}>
+                <motion.div key={demo.slug} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+                  <Image src={demoPreview(demo.slug)} alt="" fill priority={active === 0} sizes="(min-width:640px) 80vw, 92vw" className="object-cover object-top" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <span className="absolute inset-x-2 bottom-2 flex items-center gap-2 rounded-full bg-black/70 py-1.5 pr-1.5 pl-3.5 text-sm text-white backdrop-blur">
+              <span className="text-white/70">Live demo</span>
+              <span className="min-w-0 flex-1 truncate font-semibold">{demo.brand}</span>
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-volt text-[#0b0b0f]">
+                <ArrowUpRight className="size-4" aria-hidden />
+              </span>
+            </span>
+          </Link>
+
           <motion.p
-            className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2"
+            className="mt-6 max-w-xl text-base leading-relaxed text-ink-2 sm:text-lg"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease }}
@@ -101,7 +123,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            className="mt-8 flex flex-wrap gap-3"
+            className="mt-6 flex flex-wrap gap-3 sm:mt-8"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.18, ease }}
@@ -120,7 +142,7 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-2">
+          <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-2 sm:mt-8">
             <li className="flex items-center gap-1.5"><Check className="size-4 text-accent" aria-hidden /> {demos.length} live demos</li>
             <li className="flex items-center gap-1.5">
               <Check className="size-4 text-accent" aria-hidden /> Fixed price from <Price prices={starter.prices} className="font-semibold text-ink" />
@@ -130,6 +152,7 @@ export function Hero() {
         </div>
 
         <motion.div
+          className="hidden lg:block"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2, ease }}

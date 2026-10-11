@@ -29,8 +29,8 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <div className="overflow-hidden border-y border-muted bg-alt py-4" aria-hidden>
-        <div className="flex w-max animate-[marquee_40s_linear_infinite] gap-8 font-display text-2xl font-semibold tracking-tight text-ink-3 motion-reduce:animate-none sm:text-3xl">
+      <div className="overflow-hidden border-y border-muted bg-alt py-3 sm:py-4" aria-hidden>
+        <div className="flex w-max animate-[marquee_40s_linear_infinite] gap-8 font-display text-xl font-semibold tracking-tight text-ink-3 motion-reduce:animate-none sm:text-3xl">
           {[...industries, ...industries].map((i, n) => (
             <span key={n} className="flex items-center gap-8">
               {i.short}
@@ -40,7 +40,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <section id="demos" className="container-x scroll-mt-20 py-16 sm:py-24" aria-labelledby="demos-title">
+      <section id="demos" className="container-x scroll-mt-20 py-12 sm:py-24" aria-labelledby="demos-title">
         <SectionHeading
           id="demos-title"
           title="Pick your industry. Open the real website."
@@ -51,13 +51,15 @@ export default function HomePage() {
             </Link>
           }
         />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
           {industries.map((i) => (
-            <IndustryCard key={i.slug} industry={i} />
+            <div key={i.slug} className="w-[80%] shrink-0 snap-center sm:w-auto">
+              <IndustryCard industry={i} />
+            </div>
           ))}
           <Link
             href="/contact"
-            className="group relative flex min-h-64 flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-accent to-accent-2 p-7 text-on-accent lg:col-span-2"
+            className="group relative flex w-[80%] shrink-0 snap-center flex-col justify-between overflow-hidden rounded-[22px] bg-gradient-to-br from-accent to-accent-2 p-6 text-on-accent sm:min-h-64 sm:w-auto sm:p-7 lg:col-span-2"
           >
             <span aria-hidden className="absolute -right-10 -bottom-16 font-display text-[220px] leading-none font-bold opacity-15 transition duration-700 group-hover:-translate-y-3 group-hover:rotate-6">
               ✦
@@ -75,7 +77,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container-x py-16 sm:py-24" aria-labelledby="possible-title">
+      <section className="container-x hidden py-12 sm:py-24 md:block" aria-labelledby="possible-title">
         <SectionHeading
           id="possible-title"
           title="Your website can do more than you think"
@@ -89,15 +91,15 @@ export default function HomePage() {
         <FeatureTeaser />
       </section>
 
-      <section className="container-x pb-16 sm:pb-24">
+      <section className="container-x pb-12 sm:pb-24">
         <AboutMe />
       </section>
 
-      <section className="container-x pb-16 sm:pb-24" aria-labelledby="deliver-title">
+      <section className="container-x pb-12 sm:pb-24" aria-labelledby="deliver-title">
         <SectionHeading id="deliver-title" title="What every website includes" />
-        <ul className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
           {deliverables.map(({ icon: Icon, title, text }) => (
-            <li key={title} className="flex gap-4">
+            <li key={title} className="flex w-[72%] shrink-0 snap-start gap-4 rounded-2xl bg-surface p-4 ring-1 ring-ink/10 sm:w-auto sm:bg-transparent sm:p-0 sm:ring-0">
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent">
                 <Icon className="size-5" aria-hidden />
               </span>
@@ -110,7 +112,7 @@ export default function HomePage() {
         </ul>
       </section>
 
-      <section className="border-y border-muted bg-alt py-16 sm:py-24" aria-labelledby="pricing-title">
+      <section className="border-y border-muted bg-alt py-12 sm:py-24" aria-labelledby="pricing-title">
         <div className="container-x">
           <SectionHeading
             id="pricing-title"
@@ -128,7 +130,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="process" className="container-x scroll-mt-20 py-16 sm:py-24" aria-labelledby="process-title">
+      <section id="process" className="container-x scroll-mt-20 py-12 sm:py-24" aria-labelledby="process-title">
         <SectionHeading
           id="process-title"
           title="How I work"
@@ -140,9 +142,27 @@ export default function HomePage() {
         </p>
       </section>
 
-      <section className="container-x pb-16 sm:pb-24" aria-labelledby="faq-title">
-        <SectionHeading id="faq-title" title="Questions people ask" />
-        <FAQ items={homeFaq} />
+      <section className="container-x pb-12 sm:pb-24" aria-labelledby="faq-title">
+        <div className="grid gap-6 lg:grid-cols-[0.8fr_1.4fr] lg:gap-14">
+          <div className="lg:sticky lg:top-24 lg:self-start">
+            <SectionHeading id="faq-title" title="Questions people ask" intro="Straight answers about price, timelines and what you own." />
+            <a
+              href={waLink(waMessages.general)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="-mt-4 hidden items-center gap-3 rounded-2xl bg-surface p-5 ring-1 ring-ink/10 transition hover:ring-ink/25 lg:flex"
+            >
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-whatsapp text-white">
+                <WhatsAppIcon className="size-5" />
+              </span>
+              <span>
+                <span className="block font-semibold">Still have a question?</span>
+                <span className="text-sm text-ink-2">Ask me on WhatsApp. I reply within 12 hours.</span>
+              </span>
+            </a>
+          </div>
+          <FAQ items={homeFaq} variant="cards" />
+        </div>
       </section>
 
       <section className="container-x" aria-labelledby="contact-title">

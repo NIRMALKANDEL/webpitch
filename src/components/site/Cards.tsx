@@ -50,12 +50,12 @@ export function SectionHeading({
   id?: string;
 }) {
   return (
-    <div className="mb-10 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
+    <div className="mb-6 flex flex-col gap-3 sm:mb-12 sm:gap-4 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl">
-        <h2 id={id} className="font-display text-3xl leading-[1.08] font-semibold tracking-tight text-balance sm:text-[40px]">
+        <h2 id={id} className="font-display text-[28px] leading-[1.08] font-semibold tracking-tight text-balance sm:text-[40px]">
           {title}
         </h2>
-        {intro ? <p className="mt-3 text-base leading-relaxed text-ink-2 sm:text-lg">{intro}</p> : null}
+        {intro ? <p className="mt-2 text-[15px] leading-relaxed text-ink-2 sm:mt-3 sm:text-lg">{intro}</p> : null}
       </div>
       {action}
     </div>

@@ -84,10 +84,10 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
-          {/* Mobile: stacked cards, no horizontal scrolling */}
-          <div className="grid gap-4 md:hidden">
+          {/* Mobile: swipe between package cards */}
+          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 md:hidden">
             {packages.map((p, pi) => (
-              <div key={p.id} className="rounded-[14px] border border-muted p-5">
+              <div key={p.id} className="w-[84%] shrink-0 snap-center rounded-[14px] border border-muted bg-surface p-4">
                 <p className="font-display text-lg font-semibold">
                   {p.name} <span className="text-sm font-normal text-ink-3">from <Price prices={p.prices} /></span>
                 </p>
@@ -169,7 +169,7 @@ export default function PricingPage() {
 
       <section className="container-x" aria-labelledby="pfaq-title">
         <SectionHeading id="pfaq-title" title="Pricing questions" />
-        <FAQ items={pricingFaq} />
+        <FAQ items={pricingFaq} variant="cards" />
       </section>
     </>
   );

@@ -19,20 +19,20 @@ export function AboutMe() {
   const glare = useTransform([mx, my], ([x, y]: number[]) => `radial-gradient(500px circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.18), transparent 50%)`);
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] bg-surface p-6 ring-1 ring-ink/10 sm:p-10 lg:p-14">
+    <div className="relative overflow-hidden rounded-[28px] bg-surface p-5 ring-1 ring-ink/10 sm:p-10 lg:p-14">
       <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 size-96 rounded-full bg-accent/20 blur-[100px]" />
       <div aria-hidden className="pointer-events-none absolute -right-24 -bottom-32 size-96 rounded-full bg-accent-2/15 blur-[100px]" />
 
-      <div className="relative grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      <div className="relative grid items-center gap-8 sm:gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div>
-          <div className="flex flex-col items-center gap-12 text-center sm:flex-row sm:gap-16 sm:text-left sm:items-center">
+          <div className="flex items-center gap-5 sm:gap-16 sm:text-left sm:items-center">
             {/* avatar with a spinning gradient ring and orbiting skills */}
-            <div className="relative grid size-44 shrink-0 place-items-center sm:size-48">
+            <div className="relative grid size-24 shrink-0 place-items-center sm:size-48">
               <div aria-hidden className="absolute inset-0 animate-[spin_8s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,var(--accent),var(--accent-2),#f59e0b,var(--color-volt),var(--accent))] motion-reduce:animate-none" />
               <div className="relative size-[92%] overflow-hidden rounded-full bg-paper">
                 <Image src={site.photo} alt={`Illustrated portrait of ${site.ownerName}`} fill sizes="200px" className="object-cover" unoptimized />
               </div>
-              <ul aria-hidden className="absolute -inset-10 animate-[spin_30s_linear_infinite] motion-reduce:animate-none">
+              <ul aria-hidden className="absolute -inset-10 hidden animate-[spin_30s_linear_infinite] motion-reduce:animate-none sm:block">
                 {orbit.map((s, i) => {
                   const a = (i / orbit.length) * Math.PI * 2;
                   return (
@@ -46,7 +46,7 @@ export function AboutMe() {
               </ul>
             </div>
 
-            <h2 className="font-display text-5xl leading-[0.95] font-semibold tracking-tight xl:text-6xl" aria-label={`Hi, I'm ${first}.`}>
+            <h2 className="font-display text-4xl leading-[0.95] font-semibold tracking-tight sm:text-5xl xl:text-6xl" aria-label={`Hi, I'm ${first}.`}>
               <span aria-hidden className="block">
                 Hi
                 <span className="ml-2 inline-block origin-[70%_70%] animate-[wave_2.4s_ease-in-out_infinite] motion-reduce:animate-none">👋</span>
@@ -71,24 +71,25 @@ export function AboutMe() {
           </div>
 
           <motion.div
-            className="mt-10 max-w-xl space-y-4 text-lg leading-relaxed text-ink-2"
+            className="mt-6 max-w-xl space-y-4 text-base leading-relaxed text-ink-2 sm:mt-10 sm:text-lg"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease }}
           >
             <p>
-              I&apos;m a full-stack developer from {site.basedIn}. I build with React, Next.js, Node.js and Three.js, and I design and
-              build every one of these sites myself.
+              I&apos;m a full-stack developer from {site.basedIn}.{" "}
+              <span className="hidden sm:inline">I build with React, Next.js, Node.js and Three.js, and </span>
+              <span className="sm:hidden">I </span>design and build every one of these sites myself. <span className="sm:hidden">You talk directly to me, no middlemen.</span>
             </p>
-            <p>
+            <p className="hidden sm:block">
               You talk directly to the person writing your code. No account managers, no hand-offs, no surprise invoices. I&apos;d
               rather <strong className="font-semibold text-ink">show</strong> you your website than describe it, which is why every
               industry here has a live demo.
             </p>
           </motion.div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
             <a
               href={site.portfolioUrl}
               target="_blank"

@@ -18,7 +18,7 @@ export default function IndustriesPage() {
         Each industry has a live demo website designed around what its customers look for. Open one, click around,
         then ask for one made for your business.
       </p>
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-3">
         {industries.map((i) => (
           <IndustryCard key={i.slug} industry={i} />
         ))}

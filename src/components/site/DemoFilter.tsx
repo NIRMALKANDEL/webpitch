@@ -38,7 +38,7 @@ export function DemoFilter() {
       <p className="sr-only" aria-live="polite">
         Showing {list.length} demo{list.length === 1 ? "" : "s"}
       </p>
-      <motion.div layout className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="mt-6 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {list.map((d) => (
             <motion.div

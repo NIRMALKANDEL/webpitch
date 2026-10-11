@@ -30,7 +30,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
 
   return (
     <div>
-      <div className="mb-8 flex flex-wrap items-center gap-3">
+      <div className="mb-6 flex flex-wrap items-center gap-3 sm:mb-8">
         <div role="radiogroup" aria-label="Pricing option" className="inline-flex rounded-full bg-surface p-1 ring-1 ring-ink/10">
           {[
             [false, "One-time build"],
@@ -57,18 +57,18 @@ export function PricingCards({ highlight }: { highlight?: string }) {
         </p>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:py-0 xl:grid-cols-4">
         {packages.map((p) => {
           const featured = highlight ? p.id === highlight : p.featured;
           return (
             <div
               key={p.id}
               id={p.id}
-              className={`group relative flex flex-col rounded-[22px] p-px transition duration-300 hover:-translate-y-1.5 ${
+              className={`group relative flex w-[84%] shrink-0 snap-center flex-col rounded-[22px] p-px transition duration-300 sm:w-auto sm:hover:-translate-y-1.5 ${
                 featured ? "bg-gradient-to-b from-accent via-accent-2 to-transparent shadow-[0_30px_80px_-30px_var(--color-accent)] xl:-my-3" : "bg-ink/10"
               }`}
             >
-              <div className="relative flex h-full flex-col overflow-hidden rounded-[21px] bg-surface p-6">
+              <div className="relative flex h-full flex-col overflow-hidden rounded-[21px] bg-surface p-5 sm:p-6">
                 <div aria-hidden className={`pointer-events-none absolute -top-24 -right-16 size-48 rounded-full bg-gradient-to-br opacity-25 blur-3xl transition duration-500 group-hover:opacity-50 ${accents[p.id]}`} />
                 {featured ? (
                   <span className="absolute top-5 right-5 inline-flex items-center gap-1 rounded-full bg-volt px-2.5 py-1 text-[11px] font-bold text-[#0b0b0f]">
@@ -95,7 +95,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
                   </p>
                 </div>
 
-                <ul className="mt-6 space-y-2.5 border-t border-ink/10 pt-6 text-sm">
+                <ul className="mt-5 space-y-2 border-t border-ink/10 pt-5 text-sm sm:mt-6 sm:space-y-2.5 sm:pt-6">
                   {(care ? [...p.includes.slice(0, 5), ...plan.includes] : p.includes).map((inc) => (
                     <li key={inc} className="flex gap-2.5">
                       <Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
@@ -104,7 +104,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
                   ))}
                 </ul>
 
-                <div className="mt-auto grid gap-2 pt-7">
+                <div className="mt-auto grid gap-1 pt-5 sm:gap-2 sm:pt-7">
                   <Link
                     href={`/contact?package=${p.id}`}
                     className={`flex min-h-11 items-center justify-center rounded-full text-sm font-semibold transition ${

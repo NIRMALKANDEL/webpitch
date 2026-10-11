@@ -43,7 +43,7 @@ export function ShowcaseCard({ demo, label, priority = false, wide = false }: { 
         onPointerMove={onMove}
         onPointerLeave={onLeave}
         aria-label={`Open the ${demo.brand} live demo (${label ?? industry.short})`}
-        className="group relative flex h-full flex-col overflow-hidden rounded-[22px] bg-surface p-2 ring-1 ring-ink/10 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_color-mix(in_oklab,var(--accent)_55%,transparent)]"
+        className="group relative flex h-full flex-col overflow-hidden rounded-[18px] bg-surface p-1.5 ring-1 sm:rounded-[22px] sm:p-2 ring-ink/10 transition-shadow duration-500 hover:shadow-[0_30px_80px_-30px_color-mix(in_oklab,var(--accent)_55%,transparent)]"
       >
         {/* cursor spotlight + glowing edge */}
         <span
@@ -59,7 +59,7 @@ export function ShowcaseCard({ demo, label, priority = false, wide = false }: { 
           style={{ background: "radial-gradient(260px circle at var(--sx,50%) var(--sy,50%), var(--accent), var(--accent-2) 40%, transparent 70%)" }}
         />
 
-        <div className={`relative overflow-hidden rounded-[16px] bg-muted ${wide ? "aspect-[16/9]" : "aspect-[4/3]"}`}>
+        <div className={`relative overflow-hidden rounded-[13px] bg-muted sm:rounded-[16px] ${wide ? "aspect-[16/9]" : "aspect-[4/3]"}`}>
           <Image
             src={demoTall(demo.slug)}
             alt={`${demo.brand}, a live ${industry.short.toLowerCase()} demo website`}
@@ -68,7 +68,7 @@ export function ShowcaseCard({ demo, label, priority = false, wide = false }: { 
             sizes={wide ? "(min-width:1024px) 62vw, 92vw" : "(min-width:1024px) 31vw, (min-width:640px) 46vw, 92vw"}
             className="object-cover object-top transition-[object-position] duration-[4000ms] ease-in-out group-hover:object-bottom motion-reduce:transition-none"
           />
-          <span className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-black/65 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur">
+          <span className="absolute top-2 left-2 flex items-center gap-1.5 rounded-full bg-black/65 px-2 py-0.5 text-[10px] sm:top-3 sm:left-3 sm:px-2.5 sm:py-1 sm:text-[11px] font-semibold text-white backdrop-blur">
             <span className="relative flex size-1.5">
               <span className="absolute inset-0 animate-ping rounded-full bg-volt" />
               <span className="relative size-1.5 rounded-full bg-volt" />
@@ -80,12 +80,12 @@ export function ShowcaseCard({ demo, label, priority = false, wide = false }: { 
           </span>
         </div>
 
-        <div className="flex items-end justify-between gap-3 px-3 pt-4 pb-3">
+        <div className="flex items-end justify-between gap-3 px-2 pt-2.5 pb-1.5 sm:px-3 sm:pt-4 sm:pb-3">
           <div className="min-w-0">
-            <p className="text-xs font-semibold tracking-wide text-accent uppercase">{label ?? industry.short}</p>
-            <h3 className="mt-1 truncate font-display text-xl font-semibold tracking-tight">{demo.brand}</h3>
+            <p className="truncate text-[10px] font-semibold tracking-wide text-accent uppercase sm:text-xs">{label ?? industry.short}</p>
+            <h3 className="mt-0.5 truncate font-display text-sm font-semibold tracking-tight sm:mt-1 sm:text-xl">{demo.brand}</h3>
           </div>
-          <span className="shrink-0 text-xs text-ink-3">{demo.city}</span>
+          <span className="hidden shrink-0 text-xs text-ink-3 sm:inline">{demo.city}</span>
         </div>
       </Link>
     </motion.div>

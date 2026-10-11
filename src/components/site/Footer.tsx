@@ -6,19 +6,19 @@ import { CurrencySwitcher } from "./CurrencySwitcher";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-white/10 bg-night text-white">
-      <div className="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
+    <footer className="mt-14 border-t border-white/10 bg-night text-white sm:mt-20">
+      <div className="container-x grid gap-8 py-7 sm:grid-cols-2 sm:py-10 lg:grid-cols-[1.3fr_1.4fr_0.8fr_1fr]">
+        <div className="hidden sm:block">
           <p className="font-display text-xl font-bold">{site.brandName}</p>
           <p className="mt-1 text-sm text-white/55">{site.descriptor}</p>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">{site.tagline}</p>
-          <div className="mt-6">
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">{site.tagline}</p>
+          <div className="mt-4">
             <CurrencySwitcher className="text-white/70" />
           </div>
         </div>
-        <div>
+        <div className="hidden sm:block">
           <p className="text-sm font-semibold">Industries</p>
-          <ul className="mt-3 space-y-2 text-sm text-white/70">
+          <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-white/70">
             {industries.map((i) => (
               <li key={i.slug}>
                 <Link href={`/industries/${i.slug}`} className="hover:text-white hover:underline">
@@ -28,9 +28,9 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div>
+        <div className="hidden sm:block">
           <p className="text-sm font-semibold">Pages</p>
-          <ul className="mt-3 space-y-2 text-sm text-white/70">
+          <ul className="mt-3 space-y-1.5 text-sm text-white/70">
             {[
               ["/demos", "Live demos"],
               ["/whats-possible", "What's possible"],
@@ -48,8 +48,10 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-sm font-semibold">Contact</p>
-          <ul className="mt-3 space-y-2 text-sm text-white/70">
+          <p className="text-sm font-semibold">
+            <span className="sm:hidden">{site.brandName} · </span>Contact
+          </p>
+          <ul className="mt-3 space-y-1.5 text-sm text-white/70">
             <li>
               <a href={waLink(waMessages.general)} target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline">
                 WhatsApp {site.phoneDisplay}
@@ -65,7 +67,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-x flex flex-col gap-2 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-x flex flex-col gap-1 py-4 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>All demo websites are concept designs for fictional businesses.</p>
           <p>© 2026 {site.brandName}</p>
         </div>
