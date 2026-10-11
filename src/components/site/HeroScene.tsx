@@ -1,68 +1,66 @@
 "use client";
 
-import { Image as DreiImage, RoundedBox } from "@react-three/drei";
+import { Image as DreiImage, RoundedBox, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useRef } from "react";
 import * as THREE from "three";
 
-const W = 3.2;
-const H = 2.0;
-const R = 5.2;
+const W = 3.6;
+const H = 2.25;
 
-function Frame({ url, angle, active }: { url: string; angle: number; active: boolean }) {
+/** Coverflow: the active frame sits front and centre, neighbours fan out behind it. */
+function Frame({ url, offset }: { url: string; offset: number }) {
+  const g = useRef<THREE.Group>(null);
+  useFrame((_, dt) => {
+    const el = g.current;
+    if (!el) return;
+    const k = 1 - Math.exp(-dt * 6);
+    const d = Math.max(-2.5, Math.min(2.5, offset));
+    el.position.x += (d * 2.1 - el.position.x) * k;
+    el.position.z += (-Math.abs(d) * 1.8 - el.position.z) * k;
+    el.rotation.y += (-d * 0.45 - el.rotation.y) * k;
+    el.visible = Math.abs(offset) <= 2.2;
+  });
   return (
-    <group position={[Math.sin(angle) * R, 0, Math.cos(angle) * R]} rotation={[0, angle, 0]}>
-      <RoundedBox args={[W + 0.12, H + 0.34, 0.06]} radius={0.06} smoothness={4} position={[0, 0.1, -0.035]}>
-        <meshStandardMaterial color="#ffffff" roughness={0.6} />
+    <group ref={g} position={[offset * 2.1, 0, -Math.abs(offset) * 1.8]}>
+      <RoundedBox args={[W + 0.14, H + 0.36, 0.05]} radius={0.06} smoothness={4} position={[0, 0.11, -0.03]}>
+        <meshStandardMaterial color="#f6f5f1" roughness={0.5} />
       </RoundedBox>
-      {/* window chrome dots */}
       {[0, 1, 2].map((i) => (
-        <mesh key={i} position={[-W / 2 + 0.14 + i * 0.13, H / 2 + 0.15, 0.001]}>
+        <mesh key={i} position={[-W / 2 + 0.15 + i * 0.13, H / 2 + 0.16, 0.001]}>
           <circleGeometry args={[0.04, 16]} />
           <meshBasicMaterial color={["#ff5f57", "#febc2e", "#28c840"][i]} />
         </mesh>
       ))}
-      <DreiImage url={url} scale={[W, H]} radius={0.04} grayscale={active ? 0 : 0.55} toneMapped={false} />
+      <DreiImage url={url} scale={[W, H]} radius={0.04} grayscale={offset === 0 ? 0 : 0.6} toneMapped={false} />
     </group>
   );
 }
 
 function Carousel({ images, active, onReady }: { images: string[]; active: number; onReady: () => void }) {
   const group = useRef<THREE.Group>(null);
-  const step = (Math.PI * 2) / images.length;
-  const target = useRef(-active * step);
-  const { pointer, invalidate } = useThree();
+  const { pointer } = useThree();
   const readyCalled = useRef(false);
-
-  useEffect(() => {
-    // Rotate the shortest way round to the chosen frame.
-    const cur = group.current?.rotation.y ?? 0;
-    let t = -active * step;
-    while (t - cur > Math.PI) t -= Math.PI * 2;
-    while (t - cur < -Math.PI) t += Math.PI * 2;
-    target.current = t;
-    invalidate();
-  }, [active, step, invalidate]);
-
-  useFrame((state, delta) => {
-    const g = group.current;
-    if (!g) return;
+  const n = images.length;
+  useFrame((state) => {
     if (!readyCalled.current) {
       readyCalled.current = true;
-      // Fade out the still fallback only after the first textured frame has rendered.
       requestAnimationFrame(onReady);
     }
-    const k = 1 - Math.exp(-delta * 4);
-    g.rotation.y += (target.current + pointer.x * 0.12 - g.rotation.y) * k;
-    g.rotation.x += (-pointer.y * 0.06 - g.rotation.x) * k;
-    g.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.06;
+    const g = group.current;
+    if (!g) return;
+    g.rotation.y += (pointer.x * 0.12 - g.rotation.y) * 0.05;
+    g.rotation.x += (-pointer.y * 0.06 - g.rotation.x) * 0.05;
+    g.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.05;
   });
-
   return (
     <group ref={group}>
-      {images.map((url, i) => (
-        <Frame key={url} url={url} angle={i * step} active={i === active} />
-      ))}
+      {images.map((url, i) => {
+        let d = i - active;
+        if (d > n / 2) d -= n;
+        if (d < -n / 2) d += n;
+        return <Frame key={url} url={url} offset={d} />;
+      })}
     </group>
   );
 }
@@ -79,13 +77,14 @@ export default function HeroScene({
   return (
     <Canvas
       dpr={[1, 1.75]}
-      camera={{ position: [0, 0.35, R + 5.4], fov: 32 }}
+      camera={{ position: [0, 0.2, 6.1], fov: 34 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       aria-label="3D carousel of demo website previews"
       role="img"
     >
       <ambientLight intensity={1.4} />
       <directionalLight position={[3, 5, 6]} intensity={1.2} />
+      <Sparkles count={60} scale={[14, 6, 10]} size={2.5} speed={0.35} opacity={0.6} color="#2b3fd6" />
       <Suspense fallback={null}>
         <Carousel images={images} active={active} onReady={onReady} />
       </Suspense>

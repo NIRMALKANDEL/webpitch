@@ -29,7 +29,7 @@ export default function ContactPage() {
         Tell me about your business and the website you have in mind. I&apos;ll reply with ideas, a timeline and a fixed price.
       </p>
       <div className="mt-12 grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:gap-14">
-        <div className="rounded-[20px] border border-muted bg-white p-5 sm:p-8">
+        <div className="rounded-[20px] border border-muted bg-surface p-5 sm:p-8">
           <Suspense fallback={<FormSkeleton />}>
             <ContactForm />
           </Suspense>
@@ -53,7 +53,7 @@ export default function ContactPage() {
               <Clock className="mt-0.5 size-4 shrink-0" aria-hidden /> {site.timezoneNote}
             </p>
           </div>
-          <div className="rounded-[20px] border border-muted bg-white p-6 sm:p-8">
+          <div className="rounded-[20px] border border-muted bg-surface p-6 sm:p-8">
             <h2 className="font-display text-xl font-semibold">What happens next</h2>
             <ol className="mt-4 space-y-4">
               {[

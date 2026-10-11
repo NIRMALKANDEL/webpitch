@@ -20,7 +20,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
             key={p.id}
             id={p.id}
             className={`relative flex flex-col rounded-[14px] border p-6 ${
-              featured ? "border-ink bg-ink text-white" : "border-muted bg-white"
+              featured ? "border-ink bg-ink text-white" : "border-muted bg-surface"
             }`}
           >
             {featured ? (
@@ -52,7 +52,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
               <Link
                 href={`/contact?package=${p.id}`}
                 className={`flex min-h-11 items-center justify-center rounded-full text-sm font-semibold transition ${
-                  featured ? "bg-white text-ink hover:bg-white/90" : "bg-ink text-white hover:bg-ink/85"
+                  featured ? "bg-surface text-ink hover:bg-surface/90" : "bg-ink text-white hover:bg-ink/85"
                 }`}
               >
                 Discuss This Package
@@ -62,7 +62,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex min-h-11 items-center justify-center gap-2 rounded-full text-sm font-semibold transition ${
-                  featured ? "text-white hover:bg-white/10" : "text-whatsapp hover:bg-whatsapp/10"
+                  featured ? "text-white hover:bg-surface/10" : "text-whatsapp hover:bg-whatsapp/10"
                 }`}
               >
                 <WhatsAppIcon className="size-4" /> Ask on WhatsApp

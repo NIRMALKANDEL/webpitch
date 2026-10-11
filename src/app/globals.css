@@ -2,13 +2,15 @@
 
 @theme inline {
   /* Main site tokens */
-  --color-paper: #fafaf9;
-  --color-ink: #0c0a09;
-  --color-ink-2: #44403c;
-  --color-ink-3: #78716c;
-  --color-muted: #e7e5e4;
-  --color-accent: #2f45e8;
-  --color-accent-soft: #e8ebfe;
+  --color-paper: #eceae5;
+  --color-surface: #f6f5f1;
+  --color-alt: #e4e1da;
+  --color-ink: #161513;
+  --color-ink-2: #3f3c37;
+  --color-ink-3: #6b665e;
+  --color-muted: #d9d5cc;
+  --color-accent: #2b3fd6;
+  --color-accent-soft: #dfe2f6;
   --color-whatsapp: #0f7a3f;
   --color-danger: #dc2626;
 
@@ -66,6 +68,24 @@
   }
 }
 
+/* Matte paper grain for the main site (barely visible, adds a premium tactile feel). */
+@utility matte {
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 @utility container-x {
   width: 100%;
   max-width: 1240px;
@@ -105,5 +125,19 @@
   }
   to {
     transform: translateY(-8px);
+  }
+}
+
+@keyframes fizz {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(20px);
+    opacity: 0;
   }
 }

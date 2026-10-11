@@ -11,7 +11,7 @@ export function IndustryCard({ industry, compact = false }: { industry: Industry
   return (
     <Link
       href={`/industries/${industry.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-[14px] border border-muted bg-white transition hover:border-ink/20 hover:shadow-[0_8px_30px_-12px_rgba(12,10,9,0.18)]"
+      className="group flex h-full flex-col overflow-hidden rounded-[14px] border border-muted bg-surface transition hover:border-ink/20 hover:shadow-[0_8px_30px_-12px_rgba(12,10,9,0.18)]"
     >
       <div className={`relative overflow-hidden bg-muted ${compact ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
         <Image
@@ -48,14 +48,14 @@ export function BrowserFrame({
   className?: string;
 }) {
   return (
-    <div className={`overflow-hidden rounded-xl border border-ink/10 bg-white shadow-[0_24px_60px_-28px_rgba(12,10,9,0.35)] ${className}`}>
+    <div className={`overflow-hidden rounded-xl border border-ink/10 bg-surface shadow-[0_24px_60px_-28px_rgba(12,10,9,0.35)] ${className}`}>
       <div className="flex items-center gap-2 border-b border-ink/5 bg-[#f4f4f3] px-3 py-2">
         <span className="flex gap-1.5" aria-hidden>
           <span className="size-2.5 rounded-full bg-[#ff5f57]" />
           <span className="size-2.5 rounded-full bg-[#febc2e]" />
           <span className="size-2.5 rounded-full bg-[#28c840]" />
         </span>
-        <span className="mx-auto truncate rounded-md bg-white px-3 py-0.5 text-[11px] text-ink-3">{url}</span>
+        <span className="mx-auto truncate rounded-md bg-surface px-3 py-0.5 text-[11px] text-ink-3">{url}</span>
       </div>
       {children}
     </div>
@@ -76,7 +76,7 @@ export function DemoCard({ demo, large = false }: { demo: Demo; large?: boolean 
               sizes={large ? "(min-width:1024px) 46vw, 92vw" : "(min-width:1024px) 30vw, (min-width:640px) 45vw, 92vw"}
               className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.02]"
             />
-            <span className="absolute top-3 right-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-ink">
+            <span className="absolute top-3 right-3 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-semibold text-ink">
               {demo.tier}
             </span>
           </div>

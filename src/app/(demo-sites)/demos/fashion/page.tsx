@@ -2,7 +2,7 @@ import Image from "next/image";
 import { BackgroundVideo } from "@/components/shared/BackgroundVideo";
 import { DemoDisclaimer } from "@/components/shared/DemoShell";
 import { unsplash, videos } from "@/lib/media";
-import { HeaderActions, Lookbook, NewArrivals, Newsletter, ShopProvider } from "./_parts/Parts";
+import { HeaderActions, Lookbook, LookbookRing, NewArrivals, Newsletter, ShopProvider } from "./_parts/Parts";
 
 const collections = [["Festive", "1617627143750-d86bc21e42bb"], ["Everyday Cotton", "1708534419572-6e6614a53ca1"], ["The Monsoon Edit", "1622049605334-72e1e4432346"], ["Occasion Sarees", "1679006831648-7c9ea12e5807"]];
 const marquee = ["Noor silk saree", "Jade Kanjeevaram", "Chikan kurta set", "Rose georgette", "Garnet zari", "Monsoon tunic"];
@@ -51,6 +51,14 @@ export default function FashionDemo() {
         </section>
 
         <Lookbook />
+
+        <section className="pt-20" aria-labelledby="ring-h">
+          <div className="mb-8 px-5 md:px-10">
+            <h2 id="ring-h" className="font-dd text-5xl md:text-7xl">Step into the collection</h2>
+            <p className="mt-3 text-sm tracking-wide text-black/60">Drag to turn. Tap a look to see sizes and add it to your bag.</p>
+          </div>
+          <LookbookRing />
+        </section>
 
         <section id="new" className="scroll-mt-16 px-5 py-20 md:px-10" aria-labelledby="ne-h">
           <h2 id="ne-h" className="mb-8 font-dd text-5xl md:text-7xl">New arrivals</h2>

@@ -13,7 +13,7 @@ export function FeatureTeaser() {
         <li key={f.id}>
           <Link
             href={`/demos/${f.demo}${f.anchor ? `#${f.anchor}` : ""}`}
-            className="group block overflow-hidden rounded-[14px] border border-muted bg-white transition hover:border-ink/20"
+            className="group block overflow-hidden rounded-[14px] border border-muted bg-surface transition hover:border-ink/20"
           >
             <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
               <FeatureMedia feature={f} alt={f.title} />

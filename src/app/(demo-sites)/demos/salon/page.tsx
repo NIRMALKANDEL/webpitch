@@ -2,7 +2,7 @@ import { Car, Clock, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import { DemoDisclaimer, SampleTag } from "@/components/shared/DemoShell";
 import { unsplash } from "@/lib/media";
-import { BookButton, BookingProvider, OfferBar, SalonGallery, ServiceTabs } from "./_parts/Parts";
+import { BookButton, BookingProvider, HeroBlobs, OfferBar, SalonGallery, ServiceTabs } from "./_parts/Parts";
 import { team } from "./_parts/data";
 
 const offers = [
@@ -41,8 +41,11 @@ export default function SalonDemo() {
               <a href="#services" className="inline-flex min-h-13 items-center rounded-full bg-white px-8 font-semibold">See prices</a>
             </div>
           </div>
-          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-t-full rounded-b-[40px] shadow-2xl shadow-[#831843]/20">
-            <Image src={unsplash("1634449571010-02389ed0f9b0")} alt="A stylist washing a client's hair" fill priority sizes="(min-width:768px) 40vw, 92vw" className="object-cover" />
+          <div className="relative mx-auto w-full max-w-md">
+            <HeroBlobs />
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-full rounded-b-[40px] shadow-2xl shadow-[#831843]/20">
+              <Image src={unsplash("1634449571010-02389ed0f9b0")} alt="A stylist washing a client's hair" fill priority sizes="(min-width:768px) 40vw, 92vw" className="object-cover" />
+            </div>
           </div>
         </section>
 

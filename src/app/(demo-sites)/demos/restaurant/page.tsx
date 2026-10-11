@@ -4,7 +4,7 @@ import { BackgroundVideo } from "@/components/shared/BackgroundVideo";
 import { DemoDisclaimer, SampleTag } from "@/components/shared/DemoShell";
 import { unsplash, videos } from "@/lib/media";
 import { CartProvider } from "./_parts/Cart";
-import { DishReveal, FoodGallery, MobileActions, OpenNow, Reservation, RestaurantNav, TodayHours } from "./_parts/Interactive";
+import { DishReveal, FoodGallery, MobileActions, OpenNow, Reservation, RestaurantNav, SpiceParticles, TodayHours } from "./_parts/Interactive";
 import { Menu } from "./_parts/Menu";
 import { reviews } from "./_parts/data";
 
@@ -26,7 +26,7 @@ export default function RestaurantDemo() {
             posterAlt="Bread baking in a clay tandoor oven"
             className="absolute inset-0"
             controlsClassName="bottom-28 right-4 md:bottom-8 md:right-8"
-            overlay={<div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/30" />}
+            overlay={<><div className="absolute inset-0 bg-gradient-to-t from-[#3a0d05]/90 via-[#7a2a0a]/35 to-black/25" /><div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(227,162,26,0.35),transparent_45%)]" /><SpiceParticles /></>}
           />
           <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-4 pb-36 md:px-8 md:pb-24">
             <OpenNow />
@@ -48,11 +48,12 @@ export default function RestaurantDemo() {
         </section>
 
         {/* Signature dishes */}
-        <section className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28" aria-labelledby="sig-dishes">
+        <section className="bg-gradient-to-b from-[#FFE7B3] to-[#FFF6E5]" aria-labelledby="sig-dishes">
+        <div className="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
           <h2 id="sig-dishes" className="font-dd text-4xl text-[#12372A] md:text-6xl">From the coals</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {signature.map((d) => (
-              <article key={d.name} className="group">
+              <article key={d.name} className="group rounded-3xl bg-white p-3 shadow-[0_20px_40px_-25px_rgba(179,38,30,0.5)] transition hover:-translate-y-1">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                   <Image src={unsplash(d.id)} alt={d.name} fill sizes="(min-width:768px) 30vw, 92vw" className="object-cover transition duration-700 group-hover:scale-105" />
                   <span className="absolute top-4 left-4 rounded-full bg-white px-3 py-1 text-sm font-bold text-[#12372A]">{d.note}</span>
@@ -64,10 +65,11 @@ export default function RestaurantDemo() {
               </article>
             ))}
           </div>
+        </div>
         </section>
 
         {/* Menu + cart */}
-        <section id="menu" className="scroll-mt-20 bg-[#f4f7f3] py-20 md:py-28" aria-labelledby="menu-t">
+        <section id="menu" className="scroll-mt-20 bg-[#FFF6E5] py-20 md:py-28" aria-labelledby="menu-t">
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <h2 id="menu-t" className="font-dd text-4xl text-[#12372A] md:text-6xl">The menu</h2>

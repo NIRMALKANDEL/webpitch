@@ -62,7 +62,7 @@ export function Hero() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex min-h-12 items-center rounded-full border border-ink/15 bg-white px-6 font-semibold transition hover:border-ink/40"
+              className="inline-flex min-h-12 items-center rounded-full border border-ink/15 bg-surface px-6 font-semibold transition hover:border-ink/40"
             >
               Discuss Your Project
             </Link>
@@ -75,7 +75,7 @@ export function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.25, ease }}
         >
-          <div role="group" aria-label="Choose an industry to preview" className="no-scrollbar -mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 lg:mx-0 lg:flex-wrap lg:px-0">
+          <div role="group" aria-label="Choose an industry to preview" className="no-scrollbar -mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 [mask-image:linear-gradient(to_right,#000_85%,transparent)] lg:mx-0 lg:px-0">
             {demos.map((d, i) => (
               <button
                 key={d.slug}
@@ -83,7 +83,7 @@ export function Hero() {
                 onClick={() => setActive(i)}
                 aria-pressed={i === active}
                 className={`min-h-9 shrink-0 rounded-full border px-3.5 text-sm transition ${
-                  i === active ? "border-ink bg-ink text-white" : "border-muted bg-white text-ink-2 hover:border-ink/30"
+                  i === active ? "border-ink bg-ink text-white" : "border-muted bg-surface text-ink-2 hover:border-ink/30"
                 }`}
               >
                 {industryBySlug(d.industry)!.short}

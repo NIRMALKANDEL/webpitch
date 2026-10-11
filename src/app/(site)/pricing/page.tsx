@@ -53,7 +53,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="border-y border-muted bg-white py-16 sm:py-20" aria-labelledby="compare-title">
+      <section className="border-y border-muted bg-alt py-16 sm:py-20" aria-labelledby="compare-title">
         <div className="container-x">
           <SectionHeading id="compare-title" title="Compare packages" />
           {/* Desktop table */}
@@ -106,7 +106,7 @@ export default function PricingPage() {
       </section>
 
       <section className="container-x grid gap-10 py-16 sm:py-20 lg:grid-cols-2">
-        <div id="redesign" className="rounded-[14px] border border-muted bg-white p-6 sm:p-8">
+        <div id="redesign" className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
           <h2 className="font-display text-2xl font-semibold">{redesign.name}</h2>
           <p className="mt-2 leading-relaxed text-ink-2">{redesign.description}</p>
           <p className="mt-5 flex items-baseline gap-1.5">
@@ -118,7 +118,7 @@ export default function PricingPage() {
             Discuss a Redesign
           </Link>
         </div>
-        <div id="care" className="rounded-[14px] border border-muted bg-white p-6 sm:p-8">
+        <div id="care" className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
           <h2 className="font-display text-2xl font-semibold">Care plans</h2>
           <p className="mt-2 leading-relaxed text-ink-2">Optional monthly support after launch, so your site stays updated, backed up and fresh.</p>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -139,7 +139,7 @@ export default function PricingPage() {
 
       <section className="container-x pb-16 sm:pb-20" aria-labelledby="addons-title">
         <SectionHeading id="addons-title" title="Add-ons" intro="Add any of these to a package. 3D viewers and video heroes are shown live on the What's possible page." />
-        <ul className="divide-y divide-muted rounded-[14px] border border-muted bg-white">
+        <ul className="divide-y divide-muted rounded-[14px] border border-muted bg-surface">
           {addOns.map((a) => (
             <li key={a.id} className="flex items-center justify-between gap-4 px-5 py-4">
               <span className="text-ink-2">{a.name}</span>
@@ -158,7 +158,7 @@ export default function PricingPage() {
             ["Paying from India", finePrint.paymentIndia],
             ["Paying from abroad", finePrint.paymentInternational],
           ].map(([t, d]) => (
-            <li key={t} className="rounded-[14px] border border-muted bg-white p-5">
+            <li key={t} className="rounded-[14px] border border-muted bg-surface p-5">
               <p className="font-semibold">{t}</p>
               <p className="mt-1 text-sm leading-relaxed text-ink-2">{d}</p>
             </li>

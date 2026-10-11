@@ -27,7 +27,7 @@ export default function WhatsPossiblePage() {
         <FeatureGallery />
       </section>
 
-      <section className="border-y border-muted bg-white py-16 sm:py-24" aria-labelledby="compare-title">
+      <section className="border-y border-muted bg-alt py-16 sm:py-24" aria-labelledby="compare-title">
         <div className="container-x">
           <h2 id="compare-title" className="max-w-3xl font-display text-3xl leading-[1.08] font-semibold tracking-tight sm:text-[40px]">
             Essential or Signature: the same craft, two speeds

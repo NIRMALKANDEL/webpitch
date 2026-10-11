@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 
 export function AboutMe() {
   return (
-    <div className="grid items-center gap-10 rounded-[20px] border border-muted bg-white p-6 sm:p-10 md:grid-cols-[220px_1fr] lg:gap-14">
+    <div className="grid items-center gap-10 rounded-[20px] border border-muted bg-surface p-6 sm:p-10 md:grid-cols-[220px_1fr] lg:gap-14">
       <div className="relative mx-auto aspect-square w-44 overflow-hidden rounded-full md:w-full">
         <Image src={site.photo} alt={`Illustrated portrait of ${site.ownerName}`} fill sizes="220px" className="object-cover" unoptimized />
       </div>

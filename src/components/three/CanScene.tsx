@@ -82,9 +82,17 @@ function Can({ flavour, spin }: { flavour: Flavour; spin?: React.RefObject<numbe
   );
 }
 
-function Bit({ shape, color, position, speed }: { shape: Flavour["bits"][number]["shape"]; color: string; position: [number, number, number]; speed: number }) {
+function Bit({ shape, color, position, speed, burst }: { shape: Flavour["bits"][number]["shape"]; color: string; position: [number, number, number]; speed: number; burst?: React.RefObject<number> }) {
+  const g = useRef<THREE.Group>(null);
+  // Ingredients fly outward as `burst` goes from 0 to 1 (driven by page scroll).
+  useFrame(() => {
+    if (!g.current) return;
+    const k = 1 + (burst?.current ?? 0) * 1.6;
+    g.current.position.set(position[0] * k, position[1] * k, position[2] + (burst?.current ?? 0) * 1.5);
+  });
   return (
-    <Float speed={speed} rotationIntensity={2.5} floatIntensity={2.2} position={position}>
+    <group ref={g} position={position}>
+    <Float speed={speed} rotationIntensity={2.5} floatIntensity={2.2}>
       {shape === "ice" ? (
         <RoundedBox args={[0.42, 0.42, 0.42]} radius={0.07}>
           <meshPhysicalMaterial color="#e0f7ff" transmission={0.9} roughness={0.05} thickness={0.5} transparent />
@@ -99,6 +107,7 @@ function Bit({ shape, color, position, speed }: { shape: Flavour["bits"][number]
         <mesh><sphereGeometry args={[0.16, 24, 24]} /><meshStandardMaterial color={color} roughness={0.25} /></mesh>
       )}
     </Float>
+    </group>
   );
 }
 
@@ -115,9 +124,9 @@ function Ready({ onReady }: { onReady?: () => void }) {
   return null;
 }
 
-export default function CanScene({ flavour, spin, interactive = true, onReady }: { flavour: Flavour; spin?: React.RefObject<number>; interactive?: boolean; onReady?: () => void }) {
+export default function CanScene({ flavour, spin, burst, distance = 6.2, interactive = true, onReady }: { flavour: Flavour; spin?: React.RefObject<number>; burst?: React.RefObject<number>; distance?: number; interactive?: boolean; onReady?: () => void }) {
   return (
-    <Canvas shadows dpr={[1, 1.75]} camera={{ position: [0, 0.3, 6.2], fov: 38 }} gl={{ antialias: true, alpha: true }} role="img" aria-label={`3D ${flavour.name} can surrounded by floating ingredients${interactive ? ". Drag to spin it." : ""}`} style={{ touchAction: "pan-y" }}>
+    <Canvas shadows dpr={[1, 1.75]} camera={{ position: [0, 0.3, distance], fov: 38 }} gl={{ antialias: true, alpha: true }} role="img" aria-label={`3D ${flavour.name} can surrounded by floating ingredients${interactive ? ". Drag to spin it." : ""}`} style={{ touchAction: "pan-y" }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 5, 4]} intensity={1.6} castShadow />
       <Environment resolution={256}>
@@ -128,7 +137,7 @@ export default function CanScene({ flavour, spin, interactive = true, onReady }:
       <Float speed={1.4} rotationIntensity={0.3} floatIntensity={0.6}>
         <Can flavour={flavour} spin={spin} />
       </Float>
-      {flavour.bits.flatMap((b, i) => [SPOTS[i * 2 % SPOTS.length], SPOTS[(i * 2 + 1) % SPOTS.length]].map((p, j) => <Bit key={`${flavour.id}${i}${j}`} shape={b.shape} color={b.color} position={p} speed={1.5 + i * 0.4 + j * 0.3} />))}
+      {flavour.bits.flatMap((b, i) => [SPOTS[i * 2 % SPOTS.length], SPOTS[(i * 2 + 1) % SPOTS.length]].map((p, j) => <Bit key={`${flavour.id}${i}${j}`} shape={b.shape} color={b.color} position={p} speed={1.5 + i * 0.4 + j * 0.3} burst={burst} />))}
       <ContactShadows position={[0, -1.9, 0]} opacity={0.35} scale={6} blur={2.6} far={2.5} />
       {interactive ? <OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 3} maxPolarAngle={Math.PI / 1.8} /> : null}
       <Ready onReady={onReady} />

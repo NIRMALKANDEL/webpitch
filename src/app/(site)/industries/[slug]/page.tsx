@@ -60,7 +60,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
           <p className="mt-6 text-sm text-ink-3">Who it&apos;s for</p>
           <ul className="mt-2 flex flex-wrap gap-2">
             {industry.subtypes.map((s) => (
-              <li key={s} className="rounded-full border border-muted bg-white px-3 py-1.5 text-sm text-ink-2">{s}</li>
+              <li key={s} className="rounded-full border border-muted bg-surface px-3 py-1.5 text-sm text-ink-2">{s}</li>
             ))}
           </ul>
         </div>
@@ -69,7 +69,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
         </div>
       </section>
 
-      <section className="border-y border-muted bg-white py-16 sm:py-20" aria-labelledby="demo-title">
+      <section className="border-y border-muted bg-alt py-16 sm:py-20" aria-labelledby="demo-title">
         <div className="container-x">
           <SectionHeading id="demo-title" title={`Live ${industry.short.toLowerCase()} demo`} intro="A working website, not a screenshot. Open it, try the menus and forms, then imagine your name on it." />
           <div className="grid gap-12">
@@ -132,7 +132,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
         </ul>
       </section>
 
-      <section className="border-y border-muted bg-white py-16 sm:py-20" aria-labelledby="pkg-title">
+      <section className="border-y border-muted bg-alt py-16 sm:py-20" aria-labelledby="pkg-title">
         <div className="container-x">
           <SectionHeading id="pkg-title" title="Packages" intro={`Most ${industry.short.toLowerCase()} businesses choose the highlighted package. Prices in your currency.`} />
           <PricingCards highlight={industry.recommended} />
@@ -159,7 +159,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
             <p className="mt-2 text-white/70">Free 20-minute call, fixed quote, launch in one to three weeks.</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link href={`/contact?industry=${industry.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-white px-6 font-semibold text-ink">
+            <Link href={`/contact?industry=${industry.slug}`} className="inline-flex min-h-12 items-center rounded-full bg-surface px-6 font-semibold text-ink">
               Discuss Your Project
             </Link>
             <a href={waLink(waMessages.industry(industry.short))} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-whatsapp px-6 font-semibold">

@@ -23,7 +23,7 @@ export default function IndustriesPage() {
           <IndustryCard key={i.slug} industry={i} />
         ))}
       </div>
-      <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-[20px] border border-muted bg-white p-8 sm:flex-row sm:items-center">
+      <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-[20px] border border-muted bg-surface p-8 sm:flex-row sm:items-center">
         <div>
           <h2 className="font-display text-2xl font-semibold">Don&apos;t see your industry?</h2>
           <p className="mt-1 text-ink-2">I build for all kinds of businesses. Tell me what you do.</p>

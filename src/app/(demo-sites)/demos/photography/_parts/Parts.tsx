@@ -2,11 +2,15 @@
 
 import { Play, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import { useEffect, useRef, useState } from "react";
 import { DemoResult, formatEnquiry } from "@/components/shared/DemoResult";
 import { Lightbox } from "@/components/shared/Lightbox";
-import { unsplash, videos } from "@/lib/media";
+import { unsplash, unsplashSized, videos } from "@/lib/media";
+
+const CurvedGallery = dynamic(() => import("@/components/three/CurvedGallery"), { ssr: false });
 import { type Errors, hasErrors, validate } from "@/lib/validate";
 
 export const portfolio = [
@@ -243,5 +247,21 @@ export function EnquiryForm() {
         Check our availability
       </button>
     </form>
+  );
+}
+
+/** Stand inside the album: a 3D ring of photographs you drag to look around. */
+export function GalleryWalk() {
+  const picks = portfolio.slice(0, 12);
+  const [idx, setIdx] = useState<number | null>(null);
+  return (
+    <>
+      <Scene3DGate
+        className="h-[70vh] min-h-[420px] w-full overflow-hidden"
+        render={(ready) => <CurvedGallery images={picks.map((p) => unsplashSized(p.id, 800))} background="#121212" onOpen={setIdx} onReady={ready} />}
+        fallback={<Image src={unsplash(picks[0].id)} alt={picks[0].alt} fill sizes="100vw" className="object-cover opacity-70" />}
+      />
+      <Lightbox items={picks.map((p) => ({ src: unsplash(p.id), alt: p.alt, caption: p.alt }))} index={idx} onClose={() => setIdx(null)} onIndex={setIdx} />
+    </>
   );
 }

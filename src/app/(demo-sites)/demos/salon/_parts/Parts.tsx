@@ -2,12 +2,16 @@
 
 import { ChevronLeft, Clock, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useClientValue } from "@/components/shared/useClientValue";
 import { DemoResult, formatEnquiry } from "@/components/shared/DemoResult";
 import { Lightbox } from "@/components/shared/Lightbox";
 import { unsplash } from "@/lib/media";
+
+const SoftBlobs = dynamic(() => import("@/components/three/SoftBlobs"), { ssr: false });
 
 import { all, inr, services, team } from "./data";
 
@@ -233,3 +237,14 @@ export function SalonGallery() {
   );
 }
 
+
+/** Soft pastel 3D shapes drifting behind the hero photo. */
+export function HeroBlobs() {
+  return (
+    <Scene3DGate
+      className="absolute -inset-10 md:-inset-20"
+      render={(ready) => <SoftBlobs colors={["#F9A8D4", "#C4B5FD", "#FBCFE8"]} onReady={ready} />}
+      fallback={<div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,#F9A8D4,transparent_45%),radial-gradient(circle_at_25%_75%,#C4B5FD,transparent_40%)] opacity-70" />}
+    />
+  );
+}

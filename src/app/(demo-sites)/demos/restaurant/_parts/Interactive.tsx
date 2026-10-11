@@ -2,6 +2,8 @@
 
 import { CalendarCheck, Menu as MenuIcon, Minus, Phone, Plus, ShoppingBag, X } from "lucide-react";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import dynamic from "next/dynamic";
+import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { DemoNoticeDialog } from "@/components/shared/DemoNoticeDialog";
@@ -11,7 +13,9 @@ import { Lightbox } from "@/components/shared/Lightbox";
 import { type Errors, hasErrors, validate } from "@/lib/validate";
 import { unsplash } from "@/lib/media";
 import { CartButton, useCart } from "./Cart";
-import { gallery, hours } from "./data";
+import { gallery, hours, thali } from "./data";
+
+const ThaliScene = dynamic(() => import("./ThaliScene"), { ssr: false });
 
 const links = [
   ["#menu", "Menu"],
@@ -176,13 +180,17 @@ export function DishReveal() {
   return (
     <section ref={ref} className="relative overflow-hidden bg-[#12372A] py-24 text-white md:py-36" aria-labelledby="sig-title">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 md:grid-cols-2 md:px-8">
-        <motion.div style={{ scale, rotate }} className="relative mx-auto aspect-square w-[min(80vw,520px)] overflow-hidden rounded-full shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)]">
-          <Image src={unsplash("1585937421612-70a008356fbe")} alt="Laal maas lamb curry, seen from above" fill sizes="(min-width:768px) 520px, 80vw" className="object-cover" />
+        <motion.div style={{ scale }} className="relative mx-auto aspect-square w-[min(88vw,600px)]">
+          <Scene3DGate
+            className="absolute inset-0"
+            render={(ready) => <ThaliScene bowls={thali} onReady={ready} />}
+            fallback={<motion.div style={{ rotate }} className="absolute inset-[8%] overflow-hidden rounded-full"><Image src={unsplash("1585937421612-70a008356fbe")} alt="Laal maas lamb curry, seen from above" fill sizes="(min-width:768px) 520px, 80vw" className="object-cover" /></motion.div>}
+          />
         </motion.div>
         <div>
           <p className="text-lg font-bold text-[#E3A21A]">The one to order</p>
           <h2 id="sig-title" className="mt-3 font-dd text-5xl leading-[1.02] md:text-7xl">Laal maas</h2>
-          <p className="mt-5 max-w-md text-lg text-white/75">
+          <p className="mt-5 max-w-md text-lg text-white/75">Served as a full thali. Drag the plate to spin it. 
             A Rajasthani hunters&apos; curry, made our way: fiery, smoky and worth the wait. £17.50, serves one generously.
           </p>
           <ul className="mt-8 space-y-3">
@@ -341,5 +349,30 @@ export function Reservation() {
         Request Booking
       </button>
     </form>
+  );
+}
+
+/** Floating spice particles over the hero: turmeric, chili and cardamom specks drifting upward. */
+export function SpiceParticles() {
+  const reduced = useClientValue(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  if (reduced !== false) return null;
+  const colors = ["#E3A21A", "#FF6B2C", "#B3261E", "#7FB069", "#FFD166"];
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
+      {Array.from({ length: 26 }, (_, i) => {
+        const left = (i * 37) % 100;
+        const size = 4 + ((i * 7) % 9);
+        return (
+          <motion.span
+            key={i}
+            className="absolute bottom-0 rounded-full blur-[0.5px]"
+            style={{ left: `${left}%`, width: size, height: size, background: colors[i % colors.length] }}
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: [-20, -700], x: [0, (i % 2 ? 1 : -1) * (20 + (i % 5) * 12)], opacity: [0, 0.9, 0] }}
+            transition={{ duration: 7 + (i % 6), repeat: Infinity, delay: (i * 0.37) % 6, ease: "easeOut" }}
+          />
+        );
+      })}
+    </div>
   );
 }

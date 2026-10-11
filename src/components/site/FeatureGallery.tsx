@@ -26,7 +26,7 @@ export function FeatureGallery() {
             aria-pressed={cat === c.id}
             onClick={() => setCat(c.id)}
             className={`min-h-10 shrink-0 rounded-full border px-4 text-sm transition ${
-              cat === c.id ? "border-ink bg-ink text-white" : "border-muted bg-white text-ink-2 hover:border-ink/30"
+              cat === c.id ? "border-ink bg-ink text-white" : "border-muted bg-surface text-ink-2 hover:border-ink/30"
             }`}
           >
             {c.label}
@@ -47,12 +47,12 @@ export function FeatureGallery() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.25 }}
-                className={`flex flex-col overflow-hidden rounded-[14px] border bg-white transition ${on ? "border-accent ring-2 ring-accent/20" : "border-muted"}`}
+                className={`flex flex-col overflow-hidden rounded-[14px] border bg-surface transition ${on ? "border-accent ring-2 ring-accent/20" : "border-muted"}`}
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
                   <FeatureMedia feature={f} alt={f.title} />
                   {f.media.kind === "live3d" ? (
-                    <span className="absolute top-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold">Live 3D</span>
+                    <span className="absolute top-3 left-3 rounded-full bg-surface/90 px-2.5 py-1 text-[11px] font-semibold">Live 3D</span>
                   ) : null}
                 </div>
                 <div className="flex flex-1 flex-col p-5">
@@ -100,7 +100,7 @@ export function FeatureGallery() {
             <p className="text-sm">
               {picked.length} feature{picked.length === 1 ? "" : "s"} picked
             </p>
-            <Link href={contactHref} className="inline-flex min-h-10 items-center rounded-full bg-white px-4 text-sm font-semibold text-ink">
+            <Link href={contactHref} className="inline-flex min-h-10 items-center rounded-full bg-surface px-4 text-sm font-semibold text-ink">
               Ask for these features
             </Link>
           </motion.div>

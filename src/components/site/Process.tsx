@@ -10,7 +10,7 @@ export function Process() {
   return (
     <ol className="grid gap-px overflow-hidden rounded-[14px] border border-muted bg-muted md:grid-cols-5">
       {steps.map((s, i) => (
-        <li key={s.title} className="flex flex-col bg-white p-6">
+        <li key={s.title} className="flex flex-col bg-surface p-6">
           <span className="font-display text-sm font-semibold text-accent">{String(i + 1).padStart(2, "0")}</span>
           <h3 className="mt-3 font-display text-lg leading-snug font-semibold">{s.title}</h3>
           <p className="mt-1 text-xs text-ink-3">{s.time}</p>

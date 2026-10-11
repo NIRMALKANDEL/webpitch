@@ -50,7 +50,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-muted bg-white py-16 sm:py-24" aria-labelledby="featured-title">
+      <section className="border-y border-muted bg-alt py-16 sm:py-24" aria-labelledby="featured-title">
         <div className="container-x">
           <SectionHeading
             id="featured-title"
@@ -105,7 +105,7 @@ export default function HomePage() {
         </ul>
       </section>
 
-      <section className="border-y border-muted bg-white py-16 sm:py-24" aria-labelledby="pricing-title">
+      <section className="border-y border-muted bg-alt py-16 sm:py-24" aria-labelledby="pricing-title">
         <div className="container-x">
           <SectionHeading
             id="pricing-title"

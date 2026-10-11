@@ -2,11 +2,15 @@
 
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { DemoResult, formatEnquiry } from "@/components/shared/DemoResult";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
-import { unsplash } from "@/lib/media";
+import { unsplash, unsplashSized } from "@/lib/media";
+
+const CurvedGallery = dynamic(() => import("@/components/three/CurvedGallery"), { ssr: false });
 import { waLink } from "@/lib/whatsapp";
 
 type Cur = "INR" | "USD" | "GBP";
@@ -218,5 +222,20 @@ export function Newsletter() {
       <button type="submit" className="min-h-12 bg-black px-6 text-xs tracking-[0.2em] text-white">SUBSCRIBE</button>
       {err ? <p id="mi-e" role="alert" className="text-sm text-[#BE185D] sm:absolute sm:mt-14">{err}</p> : null}
     </form>
+  );
+}
+
+/** 3D lookbook: stand inside a ring of looks, drag to browse, tap one to shop it. */
+export function LookbookRing() {
+  const [qv, setQv] = useState<P | null>(null);
+  return (
+    <>
+      <Scene3DGate
+        className="h-[75vh] min-h-[460px] w-full overflow-hidden"
+        render={(ready) => <CurvedGallery portrait images={products.map((p) => unsplashSized(p.img, 700))} background="#f4f1ec" onOpen={(i) => setQv(products[i])} onReady={ready} />}
+        fallback={<Image src={unsplash(products[0].img)} alt={products[0].name} fill sizes="100vw" className="object-cover" />}
+      />
+      <AnimatePresence>{qv ? <QuickView key={qv.id} p={qv} onClose={() => setQv(null)} /> : null}</AnimatePresence>
+    </>
   );
 }

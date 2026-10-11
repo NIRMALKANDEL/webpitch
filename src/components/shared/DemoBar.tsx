@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, ChevronLeft, ChevronRight, Home, LayoutGrid, Layers, Maximize2, Minimize2, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Home, Layers, LogOut, Maximize2, Minimize2, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -72,6 +72,25 @@ export function DemoBar({ slug }: { slug: string }) {
     };
   }, [menu]);
 
+  // In-page links (#menu, #gallery…) must not add browser-history steps, otherwise visitors have to press
+  // Back once per click to leave the demo. Scroll to the section and replace the URL hash instead.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as HTMLElement | null)?.closest?.("a");
+      const href = a?.getAttribute("href");
+      if (!a || !href || !href.startsWith("#")) return;
+      e.preventDefault();
+      const el = href.length > 1 ? document.getElementById(decodeURIComponent(href.slice(1))) : null;
+      const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (el) el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      else window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+      history.replaceState(history.state, "", href.length > 1 ? href : window.location.pathname);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   const contactHref = `/contact?industry=${industry.slug}&demo=${demo.slug}`;
   const idx = demos.findIndex((d) => d.slug === slug);
   const prev = demos[(idx - 1 + demos.length) % demos.length];
@@ -79,6 +98,7 @@ export function DemoBar({ slug }: { slug: string }) {
   const pill = "flex min-h-11 items-center gap-1.5 rounded-full px-3 text-sm text-white/85 hover:bg-white/10";
 
   return (
+    <>
     <nav
       aria-label="Demo navigation"
       className="pointer-events-none fixed inset-x-0 bottom-3 z-[90] flex justify-center px-3 font-sans text-white [padding-bottom:env(safe-area-inset-bottom)]"
@@ -91,7 +111,7 @@ export function DemoBar({ slug }: { slug: string }) {
             href="/demos"
             className="flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-neutral-950/80 px-4 text-xs font-semibold shadow-lg backdrop-blur-md"
           >
-            <LayoutGrid className="size-4" aria-hidden /> All demos
+            <LogOut className="size-4 rotate-180" aria-hidden /> Exit demo
           </Link>
           <motion.button
             key="tab-btn"
@@ -116,9 +136,10 @@ export function DemoBar({ slug }: { slug: string }) {
             <span className="hidden rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white/80 lg:inline">
               Demo concept
             </span>
-            <Link href="/demos" className={pill} aria-label="Back to all demos">
-              <LayoutGrid className="size-4" aria-hidden />
-              <span className="hidden sm:inline">All demos</span>
+            <Link href="/demos" className={`${pill} bg-white/10 font-semibold`} aria-label="Exit demo and see all demos">
+              <LogOut className="size-4 rotate-180" aria-hidden />
+              <span className="text-xs sm:hidden">Exit</span>
+              <span className="hidden sm:inline">Exit demo</span>
             </Link>
             <Link href={`/demos/${prev.slug}`} className="hidden size-11 shrink-0 place-items-center rounded-full text-white/85 hover:bg-white/10 sm:grid" aria-label={`Previous demo: ${prev.brand}`} title={prev.brand}>
               <ChevronLeft className="size-4" />
@@ -223,5 +244,6 @@ export function DemoBar({ slug }: { slug: string }) {
         )}
       </AnimatePresence>
     </nav>
+    </>
   );
 }

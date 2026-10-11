@@ -240,7 +240,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
         aria-live="polite"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-[14px] border border-muted bg-white p-6 sm:p-8"
+        className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8"
       >
         <CheckCircle2 className="size-8 text-whatsapp" aria-hidden />
         <h3 className="mt-4 font-display text-2xl font-semibold">Thanks, {String(values.name).split(" ")[0]} — your enquiry is sent.</h3>
@@ -263,7 +263,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
   const fieldErrorIds = Object.keys(errors).filter((k) => errors[k as Field]);
   const label = "mb-1.5 block text-sm font-medium";
   const input =
-    "w-full min-h-12 rounded-xl border bg-white px-4 text-base text-ink transition placeholder:text-ink-3/70 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15";
+    "w-full min-h-12 rounded-xl border bg-surface px-4 text-base text-ink transition placeholder:text-ink-3/70 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15";
   const cls = (k: Field) => `${input} ${errors[k] ? "border-danger" : "border-muted"}`;
   const err = (k: Field) =>
     errors[k] ? (

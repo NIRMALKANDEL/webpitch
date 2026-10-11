@@ -2,7 +2,7 @@ import Image from "next/image";
 import { BackgroundVideo } from "@/components/shared/BackgroundVideo";
 import { DemoDisclaimer, SampleTag } from "@/components/shared/DemoShell";
 import { unsplash, videos } from "@/lib/media";
-import { EnquiryForm, PackagePicker, Portfolio, ShowreelButton } from "./_parts/Parts";
+import { EnquiryForm, GalleryWalk, PackagePicker, Portfolio, ShowreelButton } from "./_parts/Parts";
 
 const story = [
   { id: "1789971649660-eefc756ee5dd", cap: "6:40 am — marigolds go up at the haveli" },
@@ -80,6 +80,14 @@ export default function PhotographyDemo() {
         <section id="work" className="mx-auto max-w-7xl scroll-mt-10 px-5 pb-24 md:px-10 md:pb-36" aria-labelledby="pg-work">
           <h2 id="pg-work" className="mb-10 text-center font-dd text-5xl font-light md:text-7xl">Selected work</h2>
           <Portfolio />
+        </section>
+
+        <section className="border-t border-[#F2EFEA]/10 pt-24" aria-labelledby="pg-walk">
+          <div className="mx-auto mb-8 max-w-7xl px-5 md:px-10">
+            <h2 id="pg-walk" className="font-dd text-5xl font-light md:text-7xl">Step inside the album</h2>
+            <p className="mt-3 text-[#8A8580]">Drag to look around. Click any photograph to open it.</p>
+          </div>
+          <GalleryWalk />
         </section>
 
         <section id="story" className="scroll-mt-10 border-y border-[#F2EFEA]/10 py-24 md:py-32" aria-labelledby="pg-story">
