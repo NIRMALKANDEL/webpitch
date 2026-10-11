@@ -5,6 +5,14 @@ Next.js 16 (App Router, Cache Components) · Tailwind CSS v4 · Motion · React 
 
 **Live site: https://webpitch.vercel.app** · Repository: https://github.com/NIRMALKANDEL/webpitch
 
+| Page | Link |
+|---|---|
+| Home (dark/light theme, live demo cards) | https://webpitch.vercel.app |
+| All demos | https://webpitch.vercel.app/demos |
+| Pricing | https://webpitch.vercel.app/pricing |
+| Contact (emails nirmalatlance@gmail.com) | https://webpitch.vercel.app/contact |
+| Developer portfolio | https://nirmal-portfolio-eta.vercel.app |
+
 The full specification is in [`docs/SITE-SPEC.md`](docs/SITE-SPEC.md).
 
 ## Live demos
@@ -13,7 +21,7 @@ The full specification is in [`docs/SITE-SPEC.md`](docs/SITE-SPEC.md).
 |---|---|---|
 | [Tamarind & Smoke](https://webpitch.vercel.app/demos/restaurant) | Restaurant (London) | 4K video hero, menu tabs, WhatsApp order cart, table booking |
 | [Kohl & Gold Studio](https://webpitch.vercel.app/demos/photography) | Wedding photography | 4K showreel, filterable portfolio, packages |
-| [Studio Neem](https://webpitch.vercel.app/demos/interior) | Interior design | Project modals, before/after slider |
+| [Studio Neem](https://webpitch.vercel.app/demos/interior) | Interior design | 3D room planner (3 styles, furniture drops in), project modals, before/after slider |
 | [Velvet Rooms](https://webpitch.vercel.app/demos/salon) | Salon & spa | 3-step booking with running total |
 | [Harbourline Estates](https://webpitch.vercel.app/demos/real-estate) | Real estate | Drone video, immersive 3D tower with day/night, pull-out floor plans, EMI calculator |
 | [Apex Academy](https://webpitch.vercel.app/demos/coaching) | Coaching | Course filters, timetable, admission enquiry |
