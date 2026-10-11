@@ -3,7 +3,30 @@
 A portfolio site where small businesses open a **live demo website built for their industry**, then ask for one of their own.
 Next.js 16 (App Router, Cache Components) · Tailwind CSS v4 · Motion · React Three Fiber · Lucide · Web3Forms · Vercel.
 
+**Live site: https://webpitch.vercel.app** · Repository: https://github.com/NIRMALKANDEL/webpitch
+
 The full specification is in [`docs/SITE-SPEC.md`](docs/SITE-SPEC.md).
+
+## Live demos
+
+| Demo | Industry | Highlights |
+|---|---|---|
+| [Tamarind & Smoke](https://webpitch.vercel.app/demos/restaurant) | Restaurant (London) | 4K video hero, menu tabs, WhatsApp order cart, table booking |
+| [Kohl & Gold Studio](https://webpitch.vercel.app/demos/photography) | Wedding photography | 4K showreel, filterable portfolio, packages |
+| [Studio Neem](https://webpitch.vercel.app/demos/interior) | Interior design | Project modals, before/after slider |
+| [Velvet Rooms](https://webpitch.vercel.app/demos/salon) | Salon & spa | 3-step booking with running total |
+| [Harbourline Estates](https://webpitch.vercel.app/demos/real-estate) | Real estate | Drone video, immersive 3D tower with day/night, pull-out floor plans, EMI calculator |
+| [Apex Academy](https://webpitch.vercel.app/demos/coaching) | Coaching | Course filters, timetable, admission enquiry |
+| [Woodgrain & Co.](https://webpitch.vercel.app/demos/furniture) | Furniture | Live 3D chair configurator, quote list, room hotspots |
+| [Forgeline Industries](https://webpitch.vercel.app/demos/manufacturer) | Manufacturing (B2B) | 3D exploded part viewer, spec catalogue, bulk enquiry |
+| [Maison Ira](https://webpitch.vercel.app/demos/fashion) | Fashion | Video lookbook, scroll-driven gallery, bag + WhatsApp checkout |
+| [FixRight Home Services](https://webpitch.vercel.app/demos/home-services) | Home services (Toronto) | Postal code coverage checker, quote form |
+| [Pearl & Pine Dental](https://webpitch.vercel.app/demos/dental) | Dental clinic | Appointment scheduler with live time slots, dentist profiles |
+| [Kai Varma](https://webpitch.vercel.app/demos/portfolio) | Personal portfolio | Interactive 3D sculpture, tilt cards, scramble text, cursor glow |
+| [FIZZBOLT Energy](https://webpitch.vercel.app/demos/energy-drink) | Energy drink brand | 3D can with floating ingredients, flavour repaint, scroll-spin can, pack ordering |
+
+Every demo has a floating demo bar: **All demos**, previous/next demo, a demo switcher (with Main website link),
+**Get a Website Like This**, and WhatsApp. It collapses to a small tab that keeps the **All demos** shortcut.
 
 ## Run locally
 
@@ -20,9 +43,9 @@ npm run dev
 | Route | What it is |
 |---|---|
 | `/` | Homepage: 3D demo carousel, industries, featured demos, what's possible, about, pricing, process, FAQ, quick enquiry |
-| `/industries`, `/industries/[slug]` | 10 industry pages from one template |
+| `/industries`, `/industries/[slug]` | 13 industry pages from one template |
 | `/demos` | All demos with an industry filter |
-| `/demos/<slug>` | 10 separate demo websites (restaurant, photography, interior, salon, real-estate, coaching, furniture, manufacturer, fashion, home-services) |
+| `/demos/<slug>` | 13 separate demo websites (see the table above) |
 | `/whats-possible` | Feature gallery with live 3D and video, "I want this" picker |
 | `/pricing` | Packages, comparison, add-ons, care plans, in the visitor's currency |
 | `/contact` | Enquiry form (prefilled from `?industry=&demo=&package=&features=`) |
@@ -54,7 +77,16 @@ The form posts from the browser to Web3Forms (the free plan doesn't allow server
 Web3Forms returns `success: true`. On any error, or if the key is missing, it keeps the visitor's text and offers a
 prefilled WhatsApp message instead. Free plan: 250 submissions/month.
 
-## Deploy to Vercel
+## Deployment
+
+Deployed on Vercel as project `webpitch` (team *nirmalkandel's projects*): https://webpitch.vercel.app.
+`NEXT_PUBLIC_SITE_URL` is set. **Still to add:** `NEXT_PUBLIC_WEB3FORMS_KEY` (until then the enquiry form offers WhatsApp instead).
+
+To redeploy from this folder: `npx vercel deploy --prod`.
+To auto-deploy on every push, give the Vercel GitHub app access to this repository
+(GitHub → Settings → Applications → Vercel → Repository access), then run `npx vercel git connect`.
+
+### Deploying a fresh copy
 
 1. Push this folder to a GitHub repository.
 2. On vercel.com: **Add New → Project →** import the repository (framework is detected automatically).
