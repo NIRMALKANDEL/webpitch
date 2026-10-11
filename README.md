@@ -80,11 +80,12 @@ prefilled WhatsApp message instead. Free plan: 250 submissions/month.
 ## Deployment
 
 Deployed on Vercel as project `webpitch` (team *nirmalkandel's projects*): https://webpitch.vercel.app.
-`NEXT_PUBLIC_SITE_URL` is set. **Still to add:** `NEXT_PUBLIC_WEB3FORMS_KEY` (until then the enquiry form offers WhatsApp instead).
+`NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_WEB3FORMS_KEY` are set (enquiries go to nirmalatlance@gmail.com).
 
-To redeploy from this folder: `npx vercel deploy --prod`.
-To auto-deploy on every push, give the Vercel GitHub app access to this repository
-(GitHub → Settings → Applications → Vercel → Repository access), then run `npx vercel git connect`.
+The project is connected to this GitHub repository: every push to `master` deploys to production automatically.
+To deploy by hand from this folder: `npx vercel deploy --prod`.
+
+Prices live in `src/data/pricing.ts` (see the "EDIT PRICES HERE" note at the top of that file).
 
 ### Deploying a fresh copy
 
