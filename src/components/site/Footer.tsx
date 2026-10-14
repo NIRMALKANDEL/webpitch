@@ -38,6 +38,7 @@ export function Footer() {
               ["/#process", "How I work"],
               ["/contact", "Contact"],
               ["/privacy", "Privacy"],
+              ["/terms", "Terms & Conditions"],
             ].map(([href, label]) => (
               <li key={href}>
                 <Link href={href} className="hover:text-white hover:underline">

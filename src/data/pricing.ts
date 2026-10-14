@@ -32,8 +32,8 @@ export type Package = {
 export const packages: Package[] = [
   {
     id: "starter",
-    name: "Starter",
-    tagline: "A single, beautifully built page",
+    name: "Landing Page",
+    tagline: "Single-page website",
     bestFor: "Cafes, salons, home services and anyone who needs to look professional fast.",
     includes: [
       "One long page with up to 7 sections",
@@ -47,11 +47,11 @@ export const packages: Package[] = [
     notIncluded: ["Online payments", "Blog"],
     timeline: "4–7 days",
     revisions: "2 rounds",
-    prices: { INR: 4999, USD: 299, GBP: 249, EUR: 279, AUD: 449, CAD: 399, NZD: 499 },
+    prices: { INR: 3999, USD: 299, GBP: 249, EUR: 279, AUD: 449, CAD: 399, NZD: 499 },
   },
   {
     id: "business",
-    name: "Business",
+    name: "Business Website",
     tagline: "A proper multi-page website",
     bestFor: "Established local businesses, clinics, institutes and B2B suppliers.",
     includes: [
@@ -60,19 +60,19 @@ export const packages: Package[] = [
       "Photo gallery",
       "Google Business Profile tips",
       "Speed optimisation",
-      "Everything in Starter",
+      "Everything in Landing Page",
       "2 rounds of revisions",
     ],
     notIncluded: ["Online payments"],
     timeline: "1–2 weeks",
     revisions: "2 rounds",
-    prices: { INR: 12999, USD: 699, GBP: 549, EUR: 649, AUD: 999, CAD: 949, NZD: 1149 },
+    prices: { INR: 5999, USD: 699, GBP: 549, EUR: 649, AUD: 999, CAD: 949, NZD: 1149 },
     featured: true,
   },
   {
     id: "premium",
-    name: "Premium",
-    tagline: "Custom design with the wow factor",
+    name: "Advanced Website",
+    tagline: "Multi-page site with custom design",
     bestFor: "Brands that want to stand out: restaurants, real estate, interiors, fashion.",
     includes: [
       "Up to 10 pages, fully custom design",
@@ -85,11 +85,11 @@ export const packages: Package[] = [
     notIncluded: ["3D viewers (available as an add-on)"],
     timeline: "2–3 weeks",
     revisions: "3 rounds",
-    prices: { INR: 24999, USD: 1199, GBP: 949, EUR: 1099, AUD: 1799, CAD: 1599, NZD: 1999 },
+    prices: { INR: 9999, USD: 1199, GBP: 949, EUR: 1099, AUD: 1799, CAD: 1599, NZD: 1999 },
   },
   {
     id: "store",
-    name: "Online Store",
+    name: "E-commerce Website",
     tagline: "Sell online, take payments",
     bestFor: "Boutiques, furniture and product brands ready to sell online.",
     includes: [
@@ -104,9 +104,25 @@ export const packages: Package[] = [
     notIncluded: ["Product photography"],
     timeline: "3–4 weeks",
     revisions: "3 rounds",
-    prices: { INR: 39999, USD: 1799, GBP: 1399, EUR: 1649, AUD: 2699, CAD: 2399, NZD: 2999 },
+    prices: { INR: 14999, USD: 1799, GBP: 1399, EUR: 1649, AUD: 2699, CAD: 2399, NZD: 2999 },
   },
 ];
+
+/** Custom web applications have no fixed starting price: quoted per project. */
+export const customApp = {
+  id: "custom",
+  name: "Custom Web Applications",
+  description: "Portals, dashboards and other web apps built around how your business works.",
+  priceNote: "Custom quote based on project requirements.",
+};
+
+/** Headline shown above the package cards on the homepage. */
+export const pricingHeadline = {
+  intro: "Websites starting at",
+  outro: "Flexible pricing based on your needs, features, and project requirements.",
+  startingNote:
+    "These are starting prices, not fixed prices for every project. Your final quote depends on the pages, features and content you need.",
+};
 
 export const redesign = {
   id: "redesign",
@@ -148,6 +164,8 @@ export const finePrint = {
   domainHosting: "Domain and hosting are billed at cost and registered in your name.",
   paymentIndia: "UPI or bank transfer.",
   paymentInternational: "International payment options are shared with your quote.",
+  extraCharges:
+    "Domain, hosting, paid third-party services (such as paid APIs, email services or payment gateway fees) and additional maintenance may incur extra charges where applicable.",
   /** Not GST-registered, so prices are final. Add a note here if that changes. */
   taxNote: "",
 };

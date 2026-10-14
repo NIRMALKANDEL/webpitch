@@ -1,5 +1,6 @@
-import { ArrowRight, Gauge, Globe2, Inbox, KeyRound, MapPin, MessageCircle, Smartphone } from "lucide-react";
+import { ArrowRight, Gauge, Globe2, Inbox, KeyRound, Layers, MapPin, MessageCircle, Smartphone } from "lucide-react";
 import Link from "next/link";
+import { Price } from "@/components/shared/Price";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { AboutMe } from "@/components/site/AboutMe";
 import { IndustryCard, SectionHeading } from "@/components/site/Cards";
@@ -11,6 +12,7 @@ import { PricingCards } from "@/components/site/PricingCards";
 import { Process } from "@/components/site/Process";
 import { CurrencySwitcher } from "@/components/site/CurrencySwitcher";
 import { homeFaq } from "@/data/faq";
+import { customApp, finePrint, packages, pricingHeadline } from "@/data/pricing";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
 import { waLink, waMessages } from "@/lib/whatsapp";
@@ -120,8 +122,36 @@ export default function HomePage() {
             intro="Starting prices in your currency. You get a fixed quote after a free 20-minute call."
             action={<CurrencySwitcher />}
           />
+          <div className="-mt-2 mb-6 rounded-[14px] bg-accent-soft p-5 ring-1 ring-accent/20 sm:-mt-4 sm:mb-10 sm:p-6">
+            <p className="font-display text-2xl leading-tight font-semibold tracking-tight text-balance sm:text-3xl">
+              {pricingHeadline.intro} <Price prices={packages[0].prices} className="text-accent" />.
+            </p>
+            <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2 sm:text-base">{pricingHeadline.outro}</p>
+            <p className="mt-3 text-sm leading-relaxed text-ink-3">{pricingHeadline.startingNote}</p>
+          </div>
           <PricingCards />
-          <p className="mt-8 text-sm text-ink-2">
+          <div className="mt-5 flex flex-col gap-4 rounded-[22px] bg-surface p-5 ring-1 ring-ink/10 sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+            <div className="flex gap-4">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent">
+                <Layers className="size-5" aria-hidden />
+              </span>
+              <div>
+                <h3 className="font-display text-lg font-semibold">{customApp.name}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink-2">{customApp.description}</p>
+                <p className="mt-1 text-sm font-semibold text-ink">{customApp.priceNote}</p>
+              </div>
+            </div>
+            <Link
+              href="/contact"
+              className="flex min-h-11 shrink-0 items-center justify-center rounded-full bg-ink px-5 text-sm font-semibold text-paper transition hover:bg-ink/85"
+            >
+              Request a quote
+            </Link>
+          </div>
+          <p className="mt-6 text-sm leading-relaxed text-ink-3">
+            <span className="font-semibold text-ink-2">Extra charges:</span> {finePrint.extraCharges}
+          </p>
+          <p className="mt-4 text-sm text-ink-2">
             Need a redesign, ongoing care or a 3D product viewer?{" "}
             <Link href="/pricing" className="font-semibold text-ink underline underline-offset-4">
               See full pricing, add-ons and care plans

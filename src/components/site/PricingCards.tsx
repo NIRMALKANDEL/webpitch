@@ -81,7 +81,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
 
                 <div className="mt-6">
                   <p className="flex items-baseline gap-1.5">
-                    <span className="text-sm text-ink-3">from</span>
+                    <span className="text-sm text-ink-3">Starting at</span>
                     <Price prices={p.prices} className="font-display text-[44px] leading-none font-semibold tracking-tight" />
                   </p>
                   <p className="mt-2 min-h-5 text-sm text-ink-2">

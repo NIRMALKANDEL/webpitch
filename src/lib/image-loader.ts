@@ -10,6 +10,6 @@ export default function imageLoader({ src, width, quality }: LoaderArgs) {
   if (src.startsWith("https://images.pexels.com/")) {
     return `${src}?auto=compress&cs=tinysrgb&w=${width}`;
   }
-  // Local files in /public are served as-is.
-  return src;
+  // Local files in /public are served as-is; the width param satisfies next/image and is ignored by the server.
+  return `${src}${src.includes("?") ? "&" : "?"}w=${width}`;
 }
