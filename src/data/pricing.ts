@@ -110,7 +110,7 @@ export const pricingHeadline = {
   intro: "Pricing is customised according to your requirements.",
   outro: "Contact me to discuss your project. Every website is quoted on the pages, features and content you need.",
   startingNote:
-    "After a free 20-minute call you get a clear, fixed quote, with no obligation to go ahead.",
+    "Just a quick call will give you clarity on what business website you need.",
 };
 
 export const redesign = {
