@@ -39,13 +39,13 @@ export default function TermsPage() {
           <h2>3. Prices and quotations</h2>
           <ul>
             <li>
-              Prices shown on this website are starting prices, not fixed prices for every project. The final price depends on your
-              requirements and is confirmed in a written quote.
+              Pricing is customised for each project. The final price depends on your requirements and is confirmed in a written
+              quote.
             </li>
             <li>Custom web applications are quoted individually based on project requirements.</li>
             <li>A quote is valid for [30] days from the date it is sent, unless it says otherwise.</li>
             <li>
-              Prices are shown in your local currency for convenience. Your quote states the currency and amount you will pay.{" "}
+              Your quote states the currency and amount you will pay.{" "}
               {finePrint.taxNote}
             </li>
           </ul>

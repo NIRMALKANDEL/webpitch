@@ -1,9 +1,7 @@
 import { Check, Minus } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Price } from "@/components/shared/Price";
 import { SectionHeading } from "@/components/site/Cards";
-import { CurrencySwitcher } from "@/components/site/CurrencySwitcher";
 import { FAQ } from "@/components/site/FAQ";
 import { PricingCards } from "@/components/site/PricingCards";
 import { pricingFaq } from "@/data/faq";
@@ -11,7 +9,7 @@ import { addOns, carePlans, finePrint, packages, redesign } from "@/data/pricing
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Upfront website prices in your currency: Starter, Business, Premium and Online Store, plus redesigns, add-ons and care plans.",
+  description: "Website packages tailored to your requirements: Landing Page, Business, Advanced and E-commerce websites, plus redesigns, add-ons and care plans. Contact me for a custom quote.",
 };
 
 const rows: { label: string; values: (string | boolean)[] }[] = [
@@ -41,12 +39,12 @@ export default function PricingPage() {
       <section className="container-x py-12 sm:py-20">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <h1 className="font-display text-5xl leading-[1] font-semibold tracking-tight sm:text-6xl">Simple, upfront pricing</h1>
+            <h1 className="font-display text-5xl leading-[1] font-semibold tracking-tight sm:text-6xl">Pricing tailored to you</h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-2">
-              Starting prices in your currency. After a free 20-minute call you get a fixed quote, so there are no surprises.
+              Pricing is customised according to your requirements. Contact me to discuss your project. After a free 20-minute call
+              you get a fixed quote, so there are no surprises.
             </p>
           </div>
-          <CurrencySwitcher />
         </div>
         <div className="mt-12">
           <PricingCards />
@@ -65,9 +63,6 @@ export default function PricingPage() {
                   {packages.map((p) => (
                     <th key={p.id} scope="col" className="p-4 text-center font-display text-base font-semibold">
                       {p.name}
-                      <span className="mt-0.5 block text-xs font-normal text-ink-3">
-                        from <Price prices={p.prices} />
-                      </span>
                     </th>
                   ))}
                 </tr>
@@ -89,7 +84,7 @@ export default function PricingPage() {
             {packages.map((p, pi) => (
               <div key={p.id} className="w-[84%] shrink-0 snap-center rounded-[14px] border border-muted bg-surface p-4">
                 <p className="font-display text-lg font-semibold">
-                  {p.name} <span className="text-sm font-normal text-ink-3">from <Price prices={p.prices} /></span>
+                  {p.name}
                 </p>
                 <dl className="mt-3 divide-y divide-muted text-sm">
                   {rows.map((r) => (
@@ -109,10 +104,7 @@ export default function PricingPage() {
         <div id="redesign" className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
           <h2 className="font-display text-2xl font-semibold">{redesign.name}</h2>
           <p className="mt-2 leading-relaxed text-ink-2">{redesign.description}</p>
-          <p className="mt-5 flex items-baseline gap-1.5">
-            <span className="text-sm text-ink-3">from</span>
-            <Price prices={redesign.prices} className="font-display text-3xl font-semibold" />
-          </p>
+          <p className="mt-5 font-display text-2xl font-semibold">Custom quote</p>
           <p className="mt-1 text-xs text-ink-3">{redesign.timeline}</p>
           <Link href="/contact?package=redesign" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper">
             Discuss a Redesign
@@ -125,7 +117,7 @@ export default function PricingPage() {
             {carePlans.map((c) => (
               <div key={c.id} className="rounded-xl bg-paper p-4">
                 <p className="font-semibold">{c.name}</p>
-                <p className="mt-1"><Price prices={c.prices} className="font-display text-2xl font-semibold" /> <span className="text-sm text-ink-3">/ month</span></p>
+                <p className="mt-1 text-sm text-ink-3">Monthly · quoted with your project</p>
                 <ul className="mt-3 space-y-1.5 text-sm text-ink-2">
                   {c.includes.map((i) => (
                     <li key={i} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden /> {i}</li>
@@ -143,7 +135,7 @@ export default function PricingPage() {
           {addOns.map((a) => (
             <li key={a.id} className="flex items-center justify-between gap-4 px-5 py-4">
               <span className="text-ink-2">{a.name}</span>
-              <span className="shrink-0 text-sm">from <Price prices={a.prices} className="font-semibold" /></span>
+              <span className="shrink-0 text-sm font-semibold">On request</span>
             </li>
           ))}
         </ul>

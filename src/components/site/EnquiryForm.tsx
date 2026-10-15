@@ -2,14 +2,14 @@
 
 import { AlertCircle, CheckCircle2, Loader2, Send, X } from "lucide-react";
 import { motion } from "motion/react";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useCurrency } from "@/components/shared/currency-store";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { demoBySlug } from "@/data/demos";
 import { industries, industryBySlug } from "@/data/industries";
-import { budgetBands, packages } from "@/data/pricing";
+import { packages } from "@/data/pricing";
 import { site } from "@/data/site";
-import { type Currency, formatCompact } from "@/lib/currency";
+import type { Currency } from "@/lib/currency";
 import { type Errors, hasErrors, type Rules, validate } from "@/lib/validate";
 import { waLink } from "@/lib/whatsapp";
 
@@ -41,6 +41,12 @@ const PKG_TO_TYPE: Record<string, string> = {
   store: WEBSITE_TYPES[3],
   redesign: WEBSITE_TYPES[4],
 };
+const BUDGETS = [
+  "Keep it simple and lean",
+  "A solid mid-range website",
+  "A premium, fully custom build",
+  "Flexible for the right result",
+];
 const TIMELINES = ["As soon as possible", "Within 2 weeks", "Within a month", "In 1–3 months", "Just exploring"];
 
 type Field =
@@ -92,18 +98,6 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
 
   // Pre-select the visitor's country from their currency, once known, if they haven't chosen one.
   const country = String(values.country) || (cur ? (CURRENCY_COUNTRY[cur] ?? "") : "");
-
-  const budgets = useMemo(() => {
-    if (!cur) return [];
-    const p = Object.fromEntries(packages.map((x) => [x.id, x.prices[cur]])) as Record<(typeof packages)[number]["id"], number>;
-    return budgetBands(p).map((b) =>
-      "kind" in b && b.kind === "under"
-        ? `Under ${formatCompact(b.max!, cur)}`
-        : "kind" in b && b.kind === "over"
-          ? `${formatCompact(b.min!, cur)}+`
-          : `${formatCompact(b.min!, cur)}–${formatCompact(b.max!, cur)}`,
-    );
-  }, [cur]);
 
   const full = variant === "full";
   const rules: Rules<Field> = full
@@ -385,9 +379,9 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
             </div>
             <div>
               <label htmlFor={`${id}-budget`} className={label}>Approximate budget *</label>
-              <select {...a11y("budget")} className={cls("budget")} value={String(values.budget)} onChange={(e) => set("budget", e.target.value)} disabled={!cur}>
-                <option value="">{cur ? "Choose…" : "Loading…"}</option>
-                {budgets.map((b) => <option key={b}>{b}</option>)}
+              <select {...a11y("budget")} className={cls("budget")} value={String(values.budget)} onChange={(e) => set("budget", e.target.value)}>
+                <option value="">Choose…</option>
+                {BUDGETS.map((b) => <option key={b}>{b}</option>)}
                 <option>Not sure yet</option>
               </select>
               {err("budget")}

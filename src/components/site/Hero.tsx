@@ -7,10 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Price } from "@/components/shared/Price";
 import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import { demoPreview, demos } from "@/data/demos";
-import { packages } from "@/data/pricing";
 
 const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
 
@@ -38,7 +36,6 @@ export function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const demo = demos[active];
-  const starter = packages.find((p) => p.id === "starter")!;
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -145,7 +142,7 @@ export function Hero() {
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-2 sm:mt-8">
             <li className="flex items-center gap-1.5"><Check className="size-4 text-accent" aria-hidden /> {demos.length} live demos</li>
             <li className="flex items-center gap-1.5">
-              <Check className="size-4 text-accent" aria-hidden /> Fixed price from <Price prices={starter.prices} className="font-semibold text-ink" />
+              <Check className="size-4 text-accent" aria-hidden /> Pricing tailored to your project
             </li>
             <li className="flex items-center gap-1.5"><Check className="size-4 text-accent" aria-hidden /> Launch in 1–3 weeks</li>
           </ul>

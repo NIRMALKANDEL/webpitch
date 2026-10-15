@@ -2,7 +2,6 @@ import Link from "next/link";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
 import { waLink, waMessages } from "@/lib/whatsapp";
-import { CurrencySwitcher } from "./CurrencySwitcher";
 
 export function Footer() {
   return (
@@ -12,9 +11,6 @@ export function Footer() {
           <p className="font-display text-xl font-bold">{site.brandName}</p>
           <p className="mt-1 text-sm text-white/55">{site.descriptor}</p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/70">{site.tagline}</p>
-          <div className="mt-4">
-            <CurrencySwitcher className="text-white/70" />
-          </div>
         </div>
         <div className="hidden sm:block">
           <p className="text-sm font-semibold">Industries</p>

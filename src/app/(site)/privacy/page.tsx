@@ -31,8 +31,8 @@ export default function PrivacyPage() {
         <section>
           <h2>Cookies</h2>
           <p>
-            The site sets one functional cookie, <code className="rounded bg-ink/5 px-1.5 py-0.5 text-base">cur</code>, to remember which
-            currency to show prices in. There are no tracking or advertising cookies. The demo websites remember whether you collapsed
+            The site sets one functional cookie, <code className="rounded bg-ink/5 px-1.5 py-0.5 text-base">cur</code>, to remember your likely
+            currency, which pre-fills your country on the enquiry form. There are no tracking or advertising cookies. The demo websites remember whether you collapsed
             the demo controls for the current browser tab only.
           </p>
         </section>

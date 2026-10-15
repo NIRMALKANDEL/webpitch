@@ -10,5 +10,5 @@ export const waMessages = {
     `Hi, I run a ${industry.toLowerCase()} business and I'd like to discuss a website.`,
   demo: (brand: string, industry: string) =>
     `Hi! I viewed the ${brand} ${industry.toLowerCase()} demo on your site and I'd like a similar website for my business.`,
-  pkg: (pkg: string, price: string) => `Hi, I'm interested in the ${pkg} package (from ${price}).`,
+  pkg: (pkg: string) => `Hi, I'm interested in the ${pkg} package and I'd like to discuss my project.`,
 };

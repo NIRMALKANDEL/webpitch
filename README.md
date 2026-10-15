@@ -55,7 +55,7 @@ npm run dev
 | `/demos` | All demos with an industry filter |
 | `/demos/<slug>` | 13 separate demo websites (see the table above) |
 | `/whats-possible` | Feature gallery with live 3D and video, "I want this" picker |
-| `/pricing` | Packages, comparison, add-ons, care plans, in the visitor's currency |
+| `/pricing` | Packages, comparison, add-ons, care plans (no prices shown; pricing is quoted per project) |
 | `/contact` | Enquiry form (prefilled from `?industry=&demo=&package=&features=`) |
 | `/privacy` | Privacy note |
 
@@ -64,7 +64,7 @@ npm run dev
 | To change… | Edit |
 |---|---|
 | Name, WhatsApp number, email, photo, tagline | `src/data/site.ts` |
-| Prices (all 7 currencies), add-ons, care plans, payment notes | `src/data/pricing.ts` |
+| Packages, add-ons, care plans, payment notes | `src/data/pricing.ts` |
 | Industry copy and images | `src/data/industries.ts` |
 | Demo cards (names, tags, summaries) | `src/data/demos.ts` |
 | FAQ | `src/data/faq.ts` |
@@ -75,9 +75,9 @@ npm run dev
 ## How currency works
 
 `src/proxy.ts` reads Vercel's `x-vercel-ip-country` header on the first visit and sets a `cur` cookie
-(IN→₹, US→$, GB→£, IE→€, AU→A$, CA→C$, NZ→NZ$, everywhere else→$). Pages stay static; prices render on the client
-from the cookie. Locally there's no geo header, so the timezone is used instead. Visitors can switch currency in the footer
-or on the pricing page.
+(IN→₹, US→$, GB→£, IE→€, AU→A$, CA→C$, NZ→NZ$, everywhere else→$). The site shows no prices; the cookie is used to
+pre-fill the visitor's country on the enquiry form and is recorded with each enquiry. Locally there's no geo header, so the
+timezone is used instead.
 
 ## Enquiry form (Web3Forms)
 
@@ -93,7 +93,7 @@ Deployed on Vercel as project `webpitch` (team *nirmalkandel's projects*): https
 The project is connected to this GitHub repository: every push to `master` deploys to production automatically.
 To deploy by hand from this folder: `npx vercel deploy --prod`.
 
-Prices live in `src/data/pricing.ts` (see the "EDIT PRICES HERE" note at the top of that file).
+Packages, add-ons and care plans live in `src/data/pricing.ts`. The site deliberately shows no prices.
 
 ### Deploying a fresh copy
 

@@ -3,17 +3,14 @@
 import { Check, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Price } from "@/components/shared/Price";
-import { useCurrency } from "@/components/shared/currency-store";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 // ─────────────────────────────────────────────────────────────────────────────
-// PRICES ARE NOT SET HERE. To change any price, edit src/data/pricing.ts:
-//   • packages[].prices   → the four package cards below (one number per currency)
-//   • carePlans[].prices  → the monthly "care plan" amount shown with the toggle
+// No prices are shown on these cards: pricing is customised per project.
+// To change what each card lists, edit src/data/pricing.ts:
 //   • packages[].includes → the tick list on each card
+//   • carePlans[].includes → the extra items shown with the "care plan" toggle
 // ─────────────────────────────────────────────────────────────────────────────
 import { carePlans, packages } from "@/data/pricing";
-import { formatPrice } from "@/lib/currency";
 import { waLink, waMessages } from "@/lib/whatsapp";
 
 const accents: Record<string, string> = {
@@ -24,14 +21,13 @@ const accents: Record<string, string> = {
 };
 
 export function PricingCards({ highlight }: { highlight?: string }) {
-  const cur = useCurrency();
   const [care, setCare] = useState(false);
   const plan = carePlans[0];
 
   return (
     <div>
       <div className="mb-6 flex flex-wrap items-center gap-3 sm:mb-8">
-        <div role="radiogroup" aria-label="Pricing option" className="inline-flex rounded-full bg-surface p-1 ring-1 ring-ink/10">
+        <div role="radiogroup" aria-label="Build option" className="inline-flex rounded-full bg-surface p-1 ring-1 ring-ink/10">
           {[
             [false, "One-time build"],
             [true, "Build + care plan"],
@@ -52,7 +48,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
           {care ? (
             <>Updates, backups and monthly edits, so you never touch the code.</>
           ) : (
-            <>Pay once. You own the site, domain and content.</>
+            <>You own the site, domain and content.</>
           )}
         </p>
       </div>
@@ -80,17 +76,12 @@ export function PricingCards({ highlight }: { highlight?: string }) {
                 <p className="mt-1 text-sm text-ink-3">{p.tagline}</p>
 
                 <div className="mt-6">
-                  <p className="flex items-baseline gap-1.5">
-                    <span className="text-sm text-ink-3">Starting at</span>
-                    <Price prices={p.prices} className="font-display text-[44px] leading-none font-semibold tracking-tight" />
-                  </p>
+                  <p className="font-display text-[28px] leading-tight font-semibold tracking-tight">Custom quote</p>
                   <p className="mt-2 min-h-5 text-sm text-ink-2">
                     {care ? (
-                      <>
-                        + <Price prices={plan.prices} className="font-semibold text-ink" /> / month care
-                      </>
+                      <>+ optional monthly care plan</>
                     ) : (
-                      <>one-time · {p.timeline}</>
+                      <>Tailored to your project · {p.timeline}</>
                     )}
                   </p>
                 </div>
@@ -114,7 +105,7 @@ export function PricingCards({ highlight }: { highlight?: string }) {
                     Start with {p.name}
                   </Link>
                   <a
-                    href={waLink(waMessages.pkg(p.name, cur ? formatPrice(p.prices[cur], cur) : ""))}
+                    href={waLink(waMessages.pkg(p.name))}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex min-h-11 items-center justify-center gap-2 rounded-full text-sm font-semibold text-ink-2 transition hover:bg-ink/5 hover:text-ink"

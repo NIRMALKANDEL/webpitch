@@ -37,8 +37,8 @@ export const homeFaq: QA[] = [
 
 export const pricingFaq: QA[] = [
   {
-    q: "Why are prices shown in my currency?",
-    a: "Prices are set separately for India, the US, the UK, Europe, Australia, Canada and New Zealand to reflect each market. You can switch currency at any time; the price list you saw is the one you'll be quoted.",
+    q: "How is pricing worked out?",
+    a: "Pricing is customised according to your requirements: the pages, features and content you need. After a free 20-minute call you get a fixed written quote in your currency, with no obligation to go ahead.",
   },
   {
     q: "Are there any hidden costs?",

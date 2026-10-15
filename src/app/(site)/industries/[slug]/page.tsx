@@ -134,7 +134,7 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
 
       <section className="border-y border-muted bg-alt py-16 sm:py-20" aria-labelledby="pkg-title">
         <div className="container-x">
-          <SectionHeading id="pkg-title" title="Packages" intro={`Most ${industry.short.toLowerCase()} businesses choose the highlighted package. Prices in your currency.`} />
+          <SectionHeading id="pkg-title" title="Packages" intro={`Most ${industry.short.toLowerCase()} businesses choose the highlighted package. Pricing is customised according to your requirements.`} />
           <PricingCards highlight={industry.recommended} />
         </div>
       </section>
