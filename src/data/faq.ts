@@ -38,7 +38,7 @@ export const homeFaq: QA[] = [
 export const pricingFaq: QA[] = [
   {
     q: "How is pricing worked out?",
-    a: "Pricing is customised according to your requirements: the pages, features and content you need. After a free 20-minute call you get a fixed written quote in your currency, with no obligation to go ahead.",
+    a: "Pricing is customised according to your requirements: the pages, features and content you need. After a call you get a fixed written quote in your currency, with no obligation to go ahead.",
   },
   {
     q: "Are there any hidden costs?",
