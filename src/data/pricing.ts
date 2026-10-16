@@ -146,7 +146,7 @@ export const addOns = [
 ];
 
 export const finePrint = {
-  terms: "75 to start, 25% before launch.",
+  terms: "75% to start, 25% before launch.",
   domainHosting: "Domain and hosting are billed at cost and registered in your name.",
   paymentIndia: "UPI or bank transfer.",
   paymentInternational: "International payment options are shared with your quote.",

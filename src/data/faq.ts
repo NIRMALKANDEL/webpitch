@@ -19,7 +19,7 @@ export const homeFaq: QA[] = [
   },
   {
     q: "How do payments work?",
-    a: "50% to start and 50% before launch. Indian clients can pay by UPI or bank transfer. International payment options are shared with your quote.",
+    a: "75% to start and 25% before launch. Indian clients can pay by UPI or bank transfer. International payment options are shared with your quote.",
   },
   {
     q: "I'm outside India. Does working across time zones cause delays?",
