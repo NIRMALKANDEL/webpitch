@@ -4,12 +4,15 @@ import { Suspense } from "react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site } from "@/data/site";
+import { pageMeta } from "@/lib/seo";
 import { waLink, waMessages } from "@/lib/whatsapp";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Discuss your project",
   description: "Tell me about your business and the website you need. I reply within 12 hours.",
-};
+  path: "/contact",
+  image: "contact",
+});
 
 function FormSkeleton() {
   return (

@@ -2,6 +2,7 @@
 
 import { ContactShadows, Environment, Float, Lightformer, RoundedBox, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "./constants";
 import { useRef } from "react";
 import * as THREE from "three";
 
@@ -93,7 +94,7 @@ function Ready({ onReady }: { onReady?: () => void }) {
 export default function AvatarScene({ onReady }: { onReady?: () => void }) {
   const waveRef = useRef(1.5);
   return (
-    <Canvas dpr={[1, 1.75]} camera={{ position: [0, 0.2, 4.6], fov: 40 }} gl={{ antialias: true, alpha: true }} role="img" aria-label="3D avatar of Kai. Its eyes follow your cursor; click to make it waveRef." onClick={() => (waveRef.current = 1.6)} style={{ cursor: "pointer" }}>
+    <Canvas onCreated={quietShaderWarnings} dpr={[1, 1.75]} camera={{ position: [0, 0.2, 4.6], fov: 40 }} gl={{ antialias: true, alpha: true }} role="img" aria-label="3D avatar of Kai. Its eyes follow your cursor; click to make it waveRef." onClick={() => (waveRef.current = 1.6)} style={{ cursor: "pointer" }}>
       <ambientLight intensity={0.6} />
       <pointLight position={[3, 3, 3]} intensity={30} color="#22D3EE" />
       <pointLight position={[-3, 2, 2]} intensity={25} color="#F472B6" />

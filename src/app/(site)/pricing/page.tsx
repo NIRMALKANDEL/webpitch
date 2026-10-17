@@ -1,16 +1,21 @@
 import { Check, Minus } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/shared/JsonLd";
 import { SectionHeading } from "@/components/site/Cards";
 import { FAQ } from "@/components/site/FAQ";
 import { PricingCards } from "@/components/site/PricingCards";
 import { pricingFaq } from "@/data/faq";
 import { addOns, carePlans, finePrint, packages, redesign } from "@/data/pricing";
+import { faqSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Pricing",
   description: "Website packages tailored to your requirements: Landing Page, Business, Advanced and E-commerce websites, plus redesigns, add-ons and care plans. Contact me for a custom quote.",
-};
+  path: "/pricing",
+  image: "pricing",
+});
 
 const rows: { label: string; values: (string | boolean)[] }[] = [
   { label: "Pages", values: ["1 long page", "Up to 5", "Up to 10", "Up to 10 + shop"] },
@@ -162,6 +167,7 @@ export default function PricingPage() {
       <section className="container-x" aria-labelledby="pfaq-title">
         <SectionHeading id="pfaq-title" title="Pricing questions" />
         <FAQ items={pricingFaq} variant="cards" />
+        <JsonLd data={faqSchema(pricingFaq)} />
       </section>
     </>
   );

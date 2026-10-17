@@ -2,6 +2,7 @@
 
 import { Float, MeshDistortMaterial } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "./constants";
 import { useRef } from "react";
 import * as THREE from "three";
 
@@ -36,7 +37,7 @@ function Ready({ onReady }: { onReady?: () => void }) {
 /** Soft, slowly morphing pastel shapes that drift with the cursor. Decorative background. */
 export default function SoftBlobs({ colors, onReady }: { colors: string[]; onReady?: () => void }) {
   return (
-    <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 6], fov: 45 }} gl={{ alpha: true, antialias: true }} aria-hidden>
+    <Canvas onCreated={quietShaderWarnings} dpr={[1, 1.5]} camera={{ position: [0, 0, 6], fov: 45 }} gl={{ alpha: true, antialias: true }} aria-hidden>
       <ambientLight intensity={0.9} />
       <directionalLight position={[2, 4, 3]} intensity={1.2} />
       <Blob color={colors[0]} position={[2.2, 0.8, -1]} scale={1.5} speed={1.2} />

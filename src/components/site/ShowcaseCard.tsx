@@ -8,7 +8,7 @@ import type { Demo } from "@/data/demos";
 import { industryBySlug } from "@/data/industries";
 
 /** Tall full-page screenshot that scrolls inside the card on hover (falls back to the regular preview). */
-export const demoTall = (slug: string) => `/previews/tall/${slug}.jpg`;
+export const demoTall = (slug: string) => `/previews/tall/${slug}.webp`;
 
 /**
  * The one card used for demos everywhere: a real screenshot of the live demo that scrolls on hover,

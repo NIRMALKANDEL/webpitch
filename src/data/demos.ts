@@ -214,7 +214,8 @@ export const demos: Demo[] = [
 ];
 
 /** Real screenshot of the demo, captured with Playwright (see docs/ASSETS.md). */
-export const demoPreview = (slug: string) => `/previews/${slug}.jpg`;
+/** WebP screenshot (JPEG originals are kept alongside for social images). */
+export const demoPreview = (slug: string) => `/previews/${slug}.webp`;
 
 export const demoBySlug = (slug: string) => demos.find((d) => d.slug === slug);
 export const demosForIndustry = (industry: string) => demos.filter((d) => d.industry === industry);

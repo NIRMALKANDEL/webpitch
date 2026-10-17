@@ -3,11 +3,14 @@ import { Suspense } from "react";
 import { DemoCard } from "@/components/site/Cards";
 import { DemoFilter } from "@/components/site/DemoFilter";
 import { demos } from "@/data/demos";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Live website demos",
   description: "Thirteen working website demos for restaurants, clinics, salons, real estate, fashion, furniture, product brands, portfolios and more.",
-};
+  path: "/demos",
+  image: "demos",
+});
 
 export default function DemosPage() {
   return (

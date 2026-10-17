@@ -30,7 +30,7 @@ export default function FurnitureDemo() {
               <a href="#configurator" className="inline-flex min-h-13 items-center rounded-full bg-white px-7 font-semibold ring-1 ring-black/10">Try the 3D chair</a>
             </div>
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] md:aspect-[4/4.5]">
+          <div className="relative aspect-4/5 overflow-hidden rounded-4xl md:aspect-4/4.5">
             <Image src={unsplash("1623353283172-2518d7e6f5ab")} alt="An armchair beside a window" fill priority sizes="(min-width:768px) 45vw, 92vw" className="object-cover" />
           </div>
         </section>

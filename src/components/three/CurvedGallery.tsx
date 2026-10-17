@@ -2,6 +2,7 @@
 
 import { Image as DreiImage, OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "./constants";
 import { Suspense, useRef, useState } from "react";
 import * as THREE from "three";
 
@@ -52,7 +53,7 @@ export default function CurvedGallery({ images, portrait = false, background, on
   // Repeat short sets so the ring is always full.
   const ring = images.length < 10 ? [...images, ...images] : images;
   return (
-    <Canvas dpr={[1, 1.75]} camera={{ position: [0, 0, 0.01], fov: 70 }} gl={{ antialias: true, alpha: !background }} role="img" aria-label="Immersive 3D gallery. Drag to look around; click a photo to open it." style={{ touchAction: "pan-y", cursor: "grab" }}>
+    <Canvas onCreated={quietShaderWarnings} dpr={[1, 1.75]} camera={{ position: [0, 0, 0.01], fov: 70 }} gl={{ antialias: true, alpha: !background }} role="img" aria-label="Immersive 3D gallery. Drag to look around; click a photo to open it." style={{ touchAction: "pan-y", cursor: "grab" }}>
       {background ? <color attach="background" args={[background]} /> : null}
       <Suspense fallback={null}>
         {ring.map((url, i) => (

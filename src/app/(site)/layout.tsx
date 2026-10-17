@@ -1,7 +1,11 @@
 import { Bricolage_Grotesque, Geist } from "next/font/google";
+import { JsonLd } from "@/components/shared/JsonLd";
+import { Toaster } from "@/components/shared/Toaster";
+import { CookieConsent } from "@/components/site/CookieConsent";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Footer } from "@/components/site/Footer";
 import { Nav } from "@/components/site/Nav";
+import { businessSchema, websiteSchema } from "@/lib/schema";
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--f-display", display: "swap" });
 const sans = Geist({ subsets: ["latin"], variable: "--f-sans", display: "swap" });
@@ -21,6 +25,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <CookieConsent />
+      <Toaster />
+      <JsonLd data={[businessSchema(), websiteSchema()]} />
     </div>
   );
 }

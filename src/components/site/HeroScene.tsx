@@ -2,6 +2,7 @@
 
 import { Image as DreiImage, RoundedBox, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { quietShaderWarnings } from "@/components/three/constants";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
 
@@ -76,6 +77,7 @@ export default function HeroScene({
 }) {
   return (
     <Canvas
+      onCreated={quietShaderWarnings}
       dpr={[1, 1.75]}
       camera={{ position: [0, 0.2, 6.1], fov: 34 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}

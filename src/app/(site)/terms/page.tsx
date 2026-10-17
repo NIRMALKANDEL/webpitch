@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { finePrint } from "@/data/pricing";
 import { site } from "@/data/site";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Terms & Conditions",
   description: "The terms for website design and development work: scope, quotes, payments, timelines, revisions, refunds and ownership.",
-};
+  path: "/terms",
+  image: "default",
+});
 
 /*
  * Replace the [bracketed] placeholders below with your real business details before publishing.

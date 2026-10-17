@@ -2,6 +2,7 @@
 
 import { ContactShadows, Environment, Float, Lightformer, OrbitControls, RoundedBox } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "./constants";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
@@ -126,7 +127,7 @@ function Ready({ onReady }: { onReady?: () => void }) {
 
 export default function CanScene({ flavour, spin, burst, distance = 6.2, interactive = true, onReady }: { flavour: Flavour; spin?: React.RefObject<number>; burst?: React.RefObject<number>; distance?: number; interactive?: boolean; onReady?: () => void }) {
   return (
-    <Canvas shadows dpr={[1, 1.75]} camera={{ position: [0, 0.3, distance], fov: 38 }} gl={{ antialias: true, alpha: true }} role="img" aria-label={`3D ${flavour.name} can surrounded by floating ingredients${interactive ? ". Drag to spin it." : ""}`} style={{ touchAction: "pan-y" }}>
+    <Canvas shadows="percentage" onCreated={quietShaderWarnings} dpr={[1, 1.75]} camera={{ position: [0, 0.3, distance], fov: 38 }} gl={{ antialias: true, alpha: true }} role="img" aria-label={`3D ${flavour.name} can surrounded by floating ingredients${interactive ? ". Drag to spin it." : ""}`} style={{ touchAction: "pan-y" }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[3, 5, 4]} intensity={1.6} castShadow />
       <Environment resolution={256}>

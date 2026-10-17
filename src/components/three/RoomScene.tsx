@@ -2,6 +2,7 @@
 
 import { ContactShadows, Environment, Lightformer, OrbitControls, RoundedBox } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "./constants";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { RoomItem, RoomStyle } from "./room-constants";
@@ -207,7 +208,8 @@ function Ready({ onReady }: { onReady?: () => void }) {
 export default function RoomScene({ style, items, onReady }: { style: RoomStyle; items: Record<RoomItem, boolean>; onReady?: () => void }) {
   return (
     <Canvas
-      shadows
+      shadows="percentage"
+      onCreated={quietShaderWarnings}
       dpr={[1, 1.75]}
       camera={{ position: [5.6, 3.6, 5.4], fov: 38 }}
       gl={{ antialias: true }}

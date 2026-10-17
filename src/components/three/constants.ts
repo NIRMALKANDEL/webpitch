@@ -1,3 +1,13 @@
+import type { RootState } from "@react-three/fiber";
+
+/**
+ * Canvas onCreated: skip three.js shader diagnostics. Only built-in materials are used, and on Windows the
+ * GPU driver reports harmless precision notes (warning X4122) that would otherwise flood the console.
+ */
+export const quietShaderWarnings = ({ gl }: RootState) => {
+  gl.debug.checkShaderErrors = false;
+};
+
 export const WOODS = {
   walnut: { label: "American walnut", color: "#5a3820" },
   oak: { label: "White oak", color: "#b48a5a" },

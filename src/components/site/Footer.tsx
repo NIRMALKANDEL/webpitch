@@ -2,6 +2,7 @@ import Link from "next/link";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
 import { waLink, waMessages } from "@/lib/whatsapp";
+import { CookiePreferencesLink } from "./CookieConsent";
 
 export function Footer() {
   return (
@@ -66,7 +67,10 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col gap-1 py-4 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>All demo websites are concept designs for fictional businesses.</p>
-          <p>© 2026 {site.brandName}</p>
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <CookiePreferencesLink className="hover:text-white hover:underline" />
+            <span>© 2026 {site.brandName}</span>
+          </p>
         </div>
       </div>
     </footer>

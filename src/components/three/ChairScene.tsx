@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { FABRICS, WOODS, type Fabric, type Wood } from "./constants";
+import { FABRICS, WOODS, type Fabric, type Wood, quietShaderWarnings } from "./constants";
 
 /** Procedural wood grain so the timber reads as timber without downloading textures. */
 function useGrainTexture() {
@@ -150,7 +150,8 @@ export default function ChairScene({
 }) {
   return (
     <Canvas
-      shadows
+      shadows="percentage"
+      onCreated={quietShaderWarnings}
       dpr={[1, compact ? 1.5 : 2]}
       camera={{ position: [1.6, 1.0, 2.2], fov: 32 }}
       gl={{ antialias: true, alpha: true }}

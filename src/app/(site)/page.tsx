@@ -1,5 +1,7 @@
 import { ArrowRight, Gauge, Globe2, Inbox, KeyRound, Layers, MapPin, MessageCircle, Smartphone } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/shared/JsonLd";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { AboutMe } from "@/components/site/AboutMe";
 import { IndustryCard, SectionHeading } from "@/components/site/Cards";
@@ -13,7 +15,11 @@ import { homeFaq } from "@/data/faq";
 import { customApp, finePrint, pricingHeadline } from "@/data/pricing";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
+import { faqSchema } from "@/lib/schema";
+import { defaultDescription, pageMeta } from "@/lib/seo";
 import { waLink, waMessages } from "@/lib/whatsapp";
+
+export const metadata: Metadata = pageMeta({ description: defaultDescription, path: "/" });
 
 const deliverables = [
   { icon: Smartphone, title: "Mobile-first design", text: "Most of your customers will see your site on a phone, so that's where I start." },
@@ -189,6 +195,7 @@ export default function HomePage() {
             </a>
           </div>
           <FAQ items={homeFaq} variant="cards" />
+          <JsonLd data={faqSchema(homeFaq)} />
         </div>
       </section>
 

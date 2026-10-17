@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/shared/JsonLd";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { BrowserFrame, IndustryCard, SectionHeading } from "@/components/site/Cards";
 import { NeedIcon } from "@/components/site/NeedIcon";
@@ -11,6 +12,8 @@ import { demoPreview, demosForIndustry } from "@/data/demos";
 import { industries, industryBySlug } from "@/data/industries";
 import { site } from "@/data/site";
 import { unsplash } from "@/lib/media";
+import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
 import { waLink, waMessages } from "@/lib/whatsapp";
 
 // Every industry is prerendered; navigations wait for the full static page rather than streaming a fallback.
@@ -24,10 +27,12 @@ export async function generateMetadata({ params }: PageProps<"/industries/[slug]
   const { slug } = await params;
   const industry = industryBySlug(slug);
   if (!industry) return {};
-  return {
+  return pageMeta({
     title: `${industry.short} website design — live demo`,
     description: `${industry.intro} See a live ${industry.short.toLowerCase()} website demo by ${site.brandName}.`,
-  };
+    path: `/industries/${industry.slug}`,
+    image: `industry-${industry.slug}`,
+  });
 }
 
 export default async function IndustryPage({ params }: PageProps<"/industries/[slug]">) {
@@ -49,6 +54,21 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
             <li aria-current="page" className="text-ink">{industry.short}</li>
           </ol>
         </nav>
+        <JsonLd
+          data={[
+            breadcrumbSchema([
+              { name: "Home", path: "/" },
+              { name: "Industries", path: "/industries" },
+              { name: industry.short, path: `/industries/${industry.slug}` },
+            ]),
+            serviceSchema({
+              name: `${industry.short} website design`,
+              description: industry.intro,
+              path: `/industries/${industry.slug}`,
+              serviceType: "Website design and development",
+            }),
+          ]}
+        />
       </div>
 
       <section className="container-x grid items-center gap-10 py-10 sm:py-14 lg:grid-cols-[1.1fr_1fr]">

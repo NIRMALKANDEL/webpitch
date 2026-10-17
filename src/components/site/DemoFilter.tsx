@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { demos } from "@/data/demos";
 import { industries } from "@/data/industries";
@@ -54,6 +55,20 @@ export function DemoFilter() {
           ))}
         </AnimatePresence>
       </motion.div>
+      {list.length === 0 ? (
+        <div className="mt-6 rounded-[20px] border border-dashed border-muted bg-surface p-8 text-center sm:mt-10">
+          <p className="font-display text-xl font-semibold">No demos for this industry yet</p>
+          <p className="mt-1 text-ink-2">Try another industry, or tell me about your business and I&apos;ll show you what&apos;s possible.</p>
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            <button type="button" onClick={() => choose("all")} className="inline-flex min-h-10 items-center rounded-full bg-ink px-4 text-sm font-semibold text-paper">
+              Show all demos
+            </button>
+            <Link href="/contact" className="inline-flex min-h-10 items-center rounded-full border border-ink/15 px-4 text-sm font-semibold">
+              Discuss your project
+            </Link>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

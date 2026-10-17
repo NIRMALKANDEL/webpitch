@@ -2,6 +2,7 @@
 
 import { Environment, Float, Lightformer, MeshDistortMaterial, Sparkles } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "./constants";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 
@@ -84,7 +85,7 @@ function Ready({ onReady }: { onReady?: () => void }) {
 
 export default function PortfolioScene({ onReady }: { onReady?: () => void }) {
   return (
-    <Canvas dpr={[1, 1.75]} camera={{ position: [0, 0, 6], fov: 45 }} gl={{ antialias: true, alpha: true }} role="img" aria-label="Interactive 3D sculpture. Click the centre shape to change its colour.">
+    <Canvas onCreated={quietShaderWarnings} dpr={[1, 1.75]} camera={{ position: [0, 0, 6], fov: 45 }} gl={{ antialias: true, alpha: true }} role="img" aria-label="Interactive 3D sculpture. Click the centre shape to change its colour.">
       <ambientLight intensity={0.4} />
       <pointLight position={[4, 4, 4]} intensity={40} color="#22D3EE" />
       <pointLight position={[-4, -2, 3]} intensity={30} color="#F472B6" />

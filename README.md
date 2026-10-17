@@ -79,6 +79,17 @@ npm run dev
 pre-fill the visitor's country on the enquiry form and is recorded with each enquiry. Locally there's no geo header, so the
 timezone is used instead.
 
+## SEO, sharing and analytics
+
+- **Page metadata:** every page builds its title, description, canonical URL, Open Graph and Twitter card with
+  `pageMeta()` from `src/lib/seo.ts`. Structured data (business, website, FAQ, service, breadcrumbs) lives in `src/lib/schema.ts`.
+- **Social images:** `public/og/*.jpg` (1200×630), one per main page and per industry. Icons: `public/favicon.*`,
+  `public/icon-*.png`, `public/apple-touch-icon.png`, with the web manifest in `src/app/manifest.ts`.
+- **Analytics:** set `NEXT_PUBLIC_GA_ID` (GA4) to enable. Google Analytics loads only after the visitor accepts analytics
+  in the cookie banner. Conversion events are listed in `src/lib/analytics.ts`; mark `generate_lead` as a key event in GA4.
+- **Security headers:** set in `next.config.ts`. The full Content Security Policy runs in report-only mode first; once the
+  browser console is clean on the live site, move it into the enforced policy.
+
 ## Enquiry form (Web3Forms)
 
 The form posts from the browser to Web3Forms (the free plan doesn't allow server-side calls). It only shows "sent" when

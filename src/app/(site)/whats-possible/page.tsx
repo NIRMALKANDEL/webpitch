@@ -5,11 +5,14 @@ import Link from "next/link";
 import { BrowserFrame } from "@/components/site/Cards";
 import { FeatureGallery } from "@/components/site/FeatureGallery";
 import { demoBySlug, demoPreview } from "@/data/demos";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "What your website can do",
   description: "3D product viewers, 4K video heroes, scroll-driven lookbooks, ordering carts and booking flows — all live in working demos.",
-};
+  path: "/whats-possible",
+  image: "whats-possible",
+});
 
 export default function WhatsPossiblePage() {
   const essential = demoBySlug("salon")!;

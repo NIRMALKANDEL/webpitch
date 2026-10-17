@@ -2,6 +2,7 @@
 
 import { ContactShadows, Environment, Html, Lightformer, MeshReflectorMaterial, OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "@/components/three/constants";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
@@ -158,7 +159,7 @@ export default function TowerScene({ floors, selected, availableFloors, onSelect
   }, [floors]);
   const sky = night ? "#0b1324" : "#dbeafe";
   return (
-    <Canvas shadows dpr={[1, 1.75]} camera={{ position: [7.5, 4.8, 9.5], fov: 38 }} gl={{ antialias: true }} role="img" aria-label="3D model of Harbourline Residences by the water. Use the floor buttons to choose a floor." style={{ touchAction: "pan-y" }}>
+    <Canvas shadows="percentage" onCreated={quietShaderWarnings} dpr={[1, 1.75]} camera={{ position: [7.5, 4.8, 9.5], fov: 38 }} gl={{ antialias: true }} role="img" aria-label="3D model of Harbourline Residences by the water. Use the floor buttons to choose a floor." style={{ touchAction: "pan-y" }}>
       <color attach="background" args={[sky]} />
       <fog attach="fog" args={[sky, 14, 30]} />
       <hemisphereLight args={[night ? "#334155" : "#ffffff", night ? "#0f172a" : "#9ca3af", night ? 0.25 : 0.7]} />

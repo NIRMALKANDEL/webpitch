@@ -10,6 +10,7 @@ import { industries, industryBySlug } from "@/data/industries";
 import { packages } from "@/data/pricing";
 import { site } from "@/data/site";
 import type { Currency } from "@/lib/currency";
+import { track } from "@/lib/analytics";
 import { type Errors, hasErrors, type Rules, validate } from "@/lib/validate";
 import { waLink } from "@/lib/whatsapp";
 
@@ -66,9 +67,13 @@ type Status =
 export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "full" | "short"; prefill?: Prefill }) {
   const id = useId();
   const cur = useCurrency();
-  const startedAt = useRef(0);
+  // Spam check: real people take more than a couple of seconds to fill the form.
+  const tooFast = useRef(true);
   useEffect(() => {
-    startedAt.current = Date.now();
+    const t = setTimeout(() => {
+      tooFast.current = false;
+    }, 2500);
+    return () => clearTimeout(t);
   }, []);
   const honeypot = useRef<HTMLInputElement>(null);
   const summaryRef = useRef<HTMLDivElement>(null);
@@ -157,7 +162,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
       return;
     }
     // Spam checks: bots fill the hidden field, or submit within a couple of seconds of page load.
-    if (honeypot.current?.checked || Date.now() - startedAt.current < 2500) {
+    if (honeypot.current?.checked || tooFast.current) {
       setStatus({ kind: "error", message: "That was a little too fast. Please wait a moment and try again." });
       return;
     }
@@ -205,6 +210,14 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
       const data = (await res.json().catch(() => null)) as { success?: boolean; message?: string } | null;
       if (res.ok && data?.success === true) {
         setStatus({ kind: "success" });
+        // Conversion: only after Web3Forms confirms delivery. No personal details are sent.
+        track("generate_lead", {
+          form: full ? "contact_page" : "homepage_quick",
+          category: String(v.category),
+          website_type: full ? String(v.websiteType) : undefined,
+          demo: demo?.slug,
+          package: prefill.package,
+        });
       } else {
         setStatus({
           kind: "error",

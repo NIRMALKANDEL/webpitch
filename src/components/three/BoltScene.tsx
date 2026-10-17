@@ -4,7 +4,7 @@ import { ContactShadows, Environment, Lightformer, OrbitControls } from "@react-
 import { Canvas, type ThreeEvent, useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import type { PartId } from "./constants";
+import { type PartId, quietShaderWarnings } from "./constants";
 
 function hexShape(r: number, hole: number) {
   const s = new THREE.Shape();
@@ -165,7 +165,8 @@ export default function BoltScene({
 }) {
   return (
     <Canvas
-      shadows
+      shadows="percentage"
+      onCreated={quietShaderWarnings}
       dpr={[1, compact ? 1.5 : 2]}
       camera={{ position: [3.4, 1.5, 5.2], fov: 34 }}
       gl={{ antialias: true, alpha: true }}

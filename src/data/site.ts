@@ -13,7 +13,7 @@ export const site = {
   portfolioUrl: "https://nirmal-portfolio-eta.vercel.app",
   /** Optional Cal.com / Calendly link. Empty means "Book a call" opens WhatsApp. */
   calendarUrl: "",
-  /** Swap for "/me.jpg" once you add a real photo to /public. */
-  photo: "/avatar.svg",
+  /** Profile photo: a 400×400 WebP made from public/me.jpg (the original is kept). */
+  photo: "/me.webp",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 } as const;

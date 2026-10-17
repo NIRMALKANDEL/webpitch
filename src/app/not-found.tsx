@@ -17,7 +17,7 @@ export default function NotFound() {
           <Link href="/demos" className="inline-flex min-h-12 items-center rounded-full bg-ink px-6 font-semibold text-paper">
             Explore Demos
           </Link>
-          <Link href="/industries" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 bg-white px-6 font-semibold">
+          <Link href="/industries" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 bg-surface px-6 font-semibold">
             Industries
           </Link>
           <Link href="/" className="inline-flex min-h-12 items-center rounded-full px-6 font-semibold underline-offset-4 hover:underline">

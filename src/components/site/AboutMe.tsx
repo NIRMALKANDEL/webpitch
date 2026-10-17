@@ -30,7 +30,7 @@ export function AboutMe() {
             <div className="relative grid size-24 shrink-0 place-items-center sm:size-48">
               <div aria-hidden className="absolute inset-0 animate-[spin_8s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,var(--accent),var(--accent-2),#f59e0b,var(--color-volt),var(--accent))] motion-reduce:animate-none" />
               <div className="relative size-[92%] overflow-hidden rounded-full bg-paper">
-                <Image src={site.photo} alt={`Illustrated portrait of ${site.ownerName}`} fill sizes="200px" className="object-cover" unoptimized />
+                <Image src={site.photo} alt={`Photo of ${site.ownerName}`} fill sizes="200px" className="object-cover" unoptimized />
               </div>
               <ul aria-hidden className="absolute -inset-10 hidden animate-[spin_30s_linear_infinite] motion-reduce:animate-none sm:block">
                 {orbit.map((s, i) => {
@@ -140,7 +140,7 @@ export function AboutMe() {
             </div>
             <div className="relative aspect-[16/11]">
               <Image
-                src="/previews/tall/nirmal-portfolio.jpg"
+                src="/previews/tall/nirmal-portfolio.webp"
                 alt="Screenshot of Nirmal's developer portfolio: projects, skills and timeline"
                 fill
                 sizes="(min-width:1024px) 45vw, 92vw"

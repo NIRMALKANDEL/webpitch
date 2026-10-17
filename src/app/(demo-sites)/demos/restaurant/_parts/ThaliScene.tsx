@@ -2,6 +2,7 @@
 
 import { ContactShadows, Environment, Float, Html, Lightformer, OrbitControls, Sparkles, useTexture } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { quietShaderWarnings } from "@/components/three/constants";
 import { Suspense, useRef, useState } from "react";
 import { unsplashSized } from "@/lib/media";
 import * as THREE from "three";
@@ -101,7 +102,7 @@ function Ready({ onReady }: { onReady?: () => void }) {
 
 export default function ThaliScene({ bowls, onAdd, onReady }: { bowls: Bowl[]; onAdd?: (id: string) => void; onReady?: () => void }) {
   return (
-    <Canvas shadows dpr={[1, 1.75]} camera={{ position: [0, 5.4, 7.2], fov: 38 }} gl={{ antialias: true, alpha: true }} role="img" aria-label="3D thali plate. Tap a bowl to add that dish to your order, or drag to spin the plate." style={{ touchAction: "pan-y" }}>
+    <Canvas shadows="percentage" onCreated={quietShaderWarnings} dpr={[1, 1.75]} camera={{ position: [0, 5.4, 7.2], fov: 38 }} gl={{ antialias: true, alpha: true }} role="img" aria-label="3D thali plate. Tap a bowl to add that dish to your order, or drag to spin the plate." style={{ touchAction: "pan-y" }}>
       <ambientLight intensity={1.1} />
       <directionalLight position={[3, 6, 3]} intensity={1.8} castShadow shadow-mapSize={[1024, 1024]} />
       <Environment resolution={128}>
