@@ -21,7 +21,7 @@ export default function JournalPage() {
         aside={
           <div className="rounded-3xl border border-(--line) bg-(--card) p-6">
             <h2 className="text-lg font-semibold">New posts by email</h2>
-            <p className="mt-1 mb-4 text-(--muted)">About one a month. No spam, unsubscribe any time.</p>
+            <p className="mt-1 mb-4 text-muted">About one a month. No spam, unsubscribe any time.</p>
             <NewsletterForm />
           </div>
         }
@@ -63,7 +63,7 @@ export default function JournalPage() {
               return (
                 <li key={c} className="rounded-[22px] border border-(--line) bg-(--card) p-5">
                   <span className={`inline-block rounded-full px-2.5 py-0.5 text-sm font-semibold text-[#0B0B0D] ${accentBg[categoryColor[c]]}`}>{c}</span>
-                  <p className="mt-3 text-(--muted)">{categoryBlurb[c]}</p>
+                  <p className="mt-3 text-muted">{categoryBlurb[c]}</p>
                   <p className="mt-3 text-sm font-semibold">
                     {n} {n === 1 ? "article" : "articles"}
                   </p>
