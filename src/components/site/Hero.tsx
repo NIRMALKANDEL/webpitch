@@ -29,6 +29,7 @@ const who: Record<string, string> = {
   dental: "clinics",
   portfolio: "creators",
   "energy-drink": "product brands",
+  agency: "agencies",
 };
 
 export function Hero() {

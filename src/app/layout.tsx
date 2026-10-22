@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   },
   description: defaultDescription,
   applicationName: site.brandName,
+  // Google Search Console "HTML tag" verification. Only output when the token is set.
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
   authors: [{ name: site.ownerName, url: site.portfolioUrl }],
   creator: site.ownerName,
   icons: {

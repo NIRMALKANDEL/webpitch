@@ -87,6 +87,18 @@ timezone is used instead.
   `public/icon-*.png`, `public/apple-touch-icon.png`, with the web manifest in `src/app/manifest.ts`.
 - **Analytics:** set `NEXT_PUBLIC_GA_ID` (GA4) to enable. Google Analytics loads only after the visitor accepts analytics
   in the cookie banner. Conversion events are listed in `src/lib/analytics.ts`; mark `generate_lead` as a key event in GA4.
+- **Google Tag Manager (optional):** set `NEXT_PUBLIC_GTM_ID` (GTM-XXXXXXX). Tag Manager then loads after consent instead of the
+  direct GA code (`NEXT_PUBLIC_GA_ID` is ignored, so nothing is counted twice). In the container add:
+  1. a **Google tag** with your `G-` ID, trigger *Initialization – All Pages* (page views, including in-app navigation, come
+     from GA4's enhanced measurement);
+  2. a **Custom Event** trigger with event name `generate_lead|whatsapp_click|email_click|phone_click|cta_click|demo_open`
+     and "Use regex matching" ticked;
+  3. a **GA4 Event** tag with Event Name `{{Event}}`, fired by that trigger. Add the parameters you want (`page`, `label`,
+     `destination`, `demo`, `industry`, `package`) as Data Layer Variables.
+  The `<noscript>` part of Google's snippet is deliberately left out: visitors without JavaScript can't give consent.
+- **Google Search Console:** for `webpitch.vercel.app` use the *URL prefix* property with the *HTML tag* method and put only the
+  `content` value in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (redeploy, then click Verify). With a custom domain you can verify
+  by DNS TXT record instead (no code). Then submit `sitemap.xml` under *Sitemaps*.
 - **Security headers:** set in `next.config.ts`. The full Content Security Policy runs in report-only mode first; once the
   browser console is clean on the live site, move it into the enforced policy.
 
@@ -121,7 +133,10 @@ Or with the CLI: `npm i -g vercel`, then `vercel` and `vercel --prod`.
 1. Add it to `src/data/demos.ts`.
 2. Create `src/app/(demo-sites)/demos/<slug>/layout.tsx` (fonts + `DemoShell`) and `page.tsx`.
    Keep data that the server page reads in a plain `.ts` file, not in a `"use client"` module.
-3. Add a screenshot at `public/previews/<slug>.jpg` (1440×900).
+3. Add a screenshot at `public/previews/<slug>.jpg` (1440×900) and `.webp`, plus the tall one in `public/previews/tall/`.
+
+A demo can have several pages: put them in sub-folders of its route (see `demos/agency`, whose own nav and footer live
+in its `layout.tsx`).
 
 ## Credits
 

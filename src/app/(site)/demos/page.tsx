@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
   title: "Live website demos",
-  description: "Thirteen working website demos for restaurants, clinics, salons, real estate, fashion, furniture, product brands, portfolios and more.",
+  description: "Fourteen working website demos for restaurants, clinics, salons, real estate, fashion, furniture, product brands, agencies, portfolios and more.",
   path: "/demos",
   image: "demos",
 });

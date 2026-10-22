@@ -211,6 +211,21 @@ export const demos: Demo[] = [
     image: "/previews/energy-drink.jpg",
     imageAlt: "FIZZBOLT energy drink can floating with fruit",
   },
+  {
+    slug: "agency",
+    industry: "agencies",
+    brand: "Hotwire Studio",
+    city: "Berlin",
+    country: "Germany",
+    summary: "A multi-page creative agency site with a cursor-reactive 3D hero, filterable case studies, team, journal and a full project brief form.",
+    tier: "Signature",
+    tags: ["Interactive 3D hero", "Case studies", "Brief form"],
+    sections: ["3D hero", "Services", "Work + case studies", "About", "Team", "Journal + articles", "Project brief", "Contact"],
+    palette: ["#000000", "#FF2E93", "#D8FF3C", "#F5F1F3"],
+    fonts: "Anybody & Schibsted Grotesk",
+    image: "/previews/agency.jpg",
+    imageAlt: "Hotwire Studio agency site with a glowing pink 3D wire",
+  },
 ];
 
 /** Real screenshot of the demo, captured with Playwright (see docs/ASSETS.md). */

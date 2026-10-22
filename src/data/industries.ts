@@ -274,6 +274,26 @@ export const industries: Industry[] = [
     ],
     recommended: "premium",
   },
+  {
+    slug: "agencies",
+    name: "Creative, Design & Marketing Agencies",
+    short: "Agency",
+    blurb: "A studio site that shows your taste in the first second and turns visitors into briefs.",
+    intro:
+      "Clients judge an agency by its own website before they read a word. Yours should show the work fast, explain what you do in plain language, and make sending a brief the easiest thing on the page.",
+    image: "/previews/agency.jpg",
+    imageAlt: "A black, pink and chartreuse creative agency website",
+    subtypes: ["Branding studios", "Web & digital agencies", "Motion & 3D studios", "Marketing agencies", "Freelance collectives", "Production houses"],
+    needs: [
+      { title: "Work first", text: "Case studies people can filter and open in a click.", icon: "LayoutGrid" },
+      { title: "A signature moment", text: "One interactive 3D or motion piece that sets your tone.", icon: "Sparkles" },
+      { title: "Services in plain words", text: "What you do, what's included and how long it takes.", icon: "ListChecks" },
+      { title: "Team and approach", text: "The people and the process clients will work with.", icon: "Users" },
+      { title: "A journal", text: "Articles with categories that show how you think.", icon: "PenLine" },
+      { title: "A real brief form", text: "Services, budget, timeline and details in one go.", icon: "ClipboardList" },
+    ],
+    recommended: "premium",
+  },
 ];
 
 export const industryBySlug = (slug: string) => industries.find((i) => i.slug === slug);
