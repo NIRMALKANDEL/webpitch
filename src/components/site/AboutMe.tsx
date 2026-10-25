@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BadgeIndianRupee, KeyRound, MapPin, MessageCircle } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,14 @@ import { site } from "@/data/site";
 const orbit = ["React", "Next.js", "Node.js", "Three.js", "MongoDB", "Tailwind", "TypeScript", "AI"];
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** "Hi, I'm Nirmal": spinning avatar ring with orbiting skills, letter-by-letter headline, and a live portfolio preview. */
+const reasons = [
+  { icon: MapPin, title: "Local and reachable", text: `Based in ${site.city}. We can meet at your shop, and I reply on WhatsApp within 12 hours.` },
+  { icon: MessageCircle, title: "You talk to the developer", text: "No account managers or hand-offs. The person on the call writes your code." },
+  { icon: BadgeIndianRupee, title: "Fixed price, 50/50 payment", text: "A written quote before work starts, and half the payment only before launch." },
+  { icon: KeyRound, title: "You own everything", text: "Domain, hosting and content in your name. No lock-in, ever." },
+];
+
+/** "Hi, I'm Nirmal": spinning avatar ring with orbiting skills, letter-by-letter headline, and why local businesses work with me. */
 export function AboutMe() {
   const first = site.ownerName.split(" ")[0];
   const mx = useMotionValue(0.5);
@@ -78,7 +85,7 @@ export function AboutMe() {
             transition={{ duration: 0.7, ease }}
           >
             <p>
-              I&apos;m a full-stack developer from {site.basedIn}.{" "}
+              I&apos;m a full-stack developer based in {site.city}.{" "}
               <span className="hidden sm:inline">I build with React, Next.js, Node.js and Three.js, and </span>
               <span className="sm:hidden">I </span>design and build every one of these sites myself. <span className="sm:hidden">You talk directly to me, no middlemen.</span>
             </p>
@@ -90,26 +97,27 @@ export function AboutMe() {
           </motion.div>
 
           <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-            <a
-              href={site.portfolioUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/about"
               className="group inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 font-semibold text-paper transition hover:bg-ink/85"
             >
-              See my portfolio <ArrowUpRight className="size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
-            </a>
-            <Link href="/contact" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 px-6 font-semibold transition hover:border-ink/40">
-              Work with me
+              More about me <ArrowUpRight className="size-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
             </Link>
+            {site.social.linkedin ? (
+              <a
+                href={site.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer me"
+                className="inline-flex min-h-12 items-center rounded-full border border-ink/15 px-6 font-semibold transition hover:border-ink/40"
+              >
+                LinkedIn
+              </a>
+            ) : null}
           </div>
         </div>
 
-        {/* live portfolio preview: auto-scrolling screenshot in a tilting browser window */}
-        <motion.a
-          href={site.portfolioUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Open Nirmal's developer portfolio in a new tab"
+        {/* why local businesses work with me: a tilting card */}
+        <motion.div
           style={{ rotateX: rx, rotateY: ry, transformPerspective: 1100 }}
           onPointerMove={(e) => {
             const r = e.currentTarget.getBoundingClientRect();
@@ -126,33 +134,25 @@ export function AboutMe() {
           transition={{ duration: 0.9, ease }}
           className="group relative block"
         >
-          <div aria-hidden className="absolute -inset-3 rounded-[26px] bg-gradient-to-br from-accent via-accent-2 to-volt opacity-40 blur-2xl transition duration-500 group-hover:opacity-70" />
-          <div className="relative overflow-hidden rounded-[18px] bg-[#0b0f0d] ring-1 ring-white/10 shadow-2xl">
-            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
-              <span className="flex gap-1.5" aria-hidden>
-                <span className="size-2.5 rounded-full bg-[#ff5f57]" />
-                <span className="size-2.5 rounded-full bg-[#febc2e]" />
-                <span className="size-2.5 rounded-full bg-[#28c840]" />
-              </span>
-              <span className="mx-auto truncate rounded-md bg-white/5 px-3 py-0.5 text-[11px] text-white/60">
-                {site.portfolioUrl.replace("https://", "")}
-              </span>
-            </div>
-            <div className="relative aspect-[16/11]">
-              <Image
-                src="/previews/tall/nirmal-portfolio.webp"
-                alt="Screenshot of Nirmal's developer portfolio: projects, skills and timeline"
-                fill
-                sizes="(min-width:1024px) 45vw, 92vw"
-                className="object-cover object-top transition-[object-position] duration-[6000ms] ease-in-out group-hover:object-bottom motion-reduce:transition-none"
-              />
-              <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: glare }} />
-            </div>
+          <div aria-hidden className="absolute -inset-3 rounded-[26px] bg-gradient-to-br from-accent via-accent-2 to-volt opacity-30 blur-2xl transition duration-500 group-hover:opacity-50" />
+          <div className="relative overflow-hidden rounded-[18px] bg-paper p-6 ring-1 ring-ink/10 shadow-2xl sm:p-8">
+            <h3 className="font-display text-2xl font-semibold tracking-tight">Why {site.city} businesses work with me</h3>
+            <ul className="mt-6 space-y-5">
+              {reasons.map(({ icon: Icon, title, text }) => (
+                <li key={title} className="flex gap-4">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <span>
+                    <span className="block font-semibold">{title}</span>
+                    <span className="mt-0.5 block text-sm leading-relaxed text-ink-2">{text}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: glare }} />
           </div>
-          <span className="absolute -right-3 -bottom-4 flex items-center gap-1.5 rounded-full bg-volt px-4 py-2 text-sm font-bold text-[#0b0b0f] shadow-xl transition group-hover:scale-105 sm:-right-5">
-            My portfolio <ArrowUpRight className="size-4" aria-hidden />
-          </span>
-        </motion.a>
+        </motion.div>
       </div>
     </div>
   );

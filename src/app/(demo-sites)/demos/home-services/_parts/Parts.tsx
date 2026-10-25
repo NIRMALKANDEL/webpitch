@@ -10,10 +10,11 @@ import { type Errors, hasErrors, validate } from "@/lib/validate";
 import { waLink, waMessages } from "@/lib/whatsapp";
 import { AREAS, SERVICES } from "./data";
 
-const FSA = /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z] ?\d[ABCEGHJ-NPRSTV-Z]\d$/i;
+/** Indian PIN code: six digits, first digit 1–9 (a space after the third digit is allowed). */
+const PIN = /^[1-9]\d{2} ?\d{3}$/;
 const areaFor = (code: string) => {
-  const p = code.toUpperCase().replace(/\s/g, "").slice(0, 3);
-  return AREAS.find((a) => a.fsa.includes(p));
+  const p = code.replace(/\s/g, "");
+  return AREAS.find((a) => a.pin.includes(p));
 };
 
 export function CoverageChecker() {
@@ -21,7 +22,7 @@ export function CoverageChecker() {
   const [res, setRes] = useState<null | { ok: boolean; text: string }>(null);
   const check = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!FSA.test(code.trim())) return setRes({ ok: false, text: "Enter a full Canadian postal code, like M5V 2T6." });
+    if (!PIN.test(code.trim())) return setRes({ ok: false, text: "Enter a 6-digit PIN code, like 452010." });
     const a = areaFor(code);
     setRes(a ? { ok: true, text: `Yes, we cover ${a.name}. A technician can usually be there today.` } : { ok: false, text: "Not yet in your area. Leave your number in the quote form and we'll call if we expand." });
   };
@@ -29,7 +30,7 @@ export function CoverageChecker() {
     <form onSubmit={check} className="rounded-xl bg-white p-4 text-[#0F172A] shadow-2xl" aria-label="Check if we cover your area">
       <label htmlFor="fx-code" className="font-dd text-xl font-bold uppercase">Do we cover you?</label>
       <div className="mt-2 flex gap-2">
-        <input id="fx-code" value={code} onChange={(e) => { setCode(e.target.value); setRes(null); }} placeholder="Postal code, e.g. M5V 2T6" autoComplete="postal-code" className="min-h-12 flex-1 rounded-lg border-2 border-slate-300 px-3 text-base uppercase" aria-describedby="fx-res" />
+        <input id="fx-code" value={code} onChange={(e) => { setCode(e.target.value); setRes(null); }} placeholder="PIN code, e.g. 452010" inputMode="numeric" autoComplete="postal-code" className="min-h-12 flex-1 rounded-lg border-2 border-slate-300 px-3 text-base" aria-describedby="fx-res" />
         <button type="submit" className="min-h-12 rounded-lg bg-[#1E40AF] px-5 font-bold text-white">Check</button>
       </div>
       <div id="fx-res" aria-live="polite">
@@ -87,15 +88,15 @@ export function QuoteForm() {
     e.preventDefault();
     const errs = validate(v, {
       name: [{ kind: "required" }], phone: [{ kind: "required" }, { kind: "phone" }],
-      postal: [{ kind: "required" }, { kind: "pattern", re: FSA, message: "Enter a valid postal code, like M5V 2T6." }],
+      postal: [{ kind: "required" }, { kind: "pattern", re: PIN, message: "Enter a valid 6-digit PIN code, like 452010." }],
       service: [{ kind: "required", message: "Which service do you need?" }], issue: [{ kind: "required", message: "Describe the problem briefly." }], address: [{ kind: "required" }],
     });
-    if (!errs.postal && !areaFor(v.postal)) errs.postal = "Sorry, that postal code is outside our service area.";
+    if (!errs.postal && !areaFor(v.postal)) errs.postal = "Sorry, that PIN code is outside our service area.";
     setErrors(errs);
     if (hasErrors(errs)) return;
-    setDone(formatEnquiry("New quote request — FixRight Home Services", { Name: v.name, Phone: v.phone, "Postal code": v.postal.toUpperCase(), Area: areaFor(v.postal)?.name, Service: v.service, Issue: v.issue, "Preferred date": v.date, "Time window": v.window, Address: v.address }));
+    setDone(formatEnquiry("New quote request — FixRight Home Services", { Name: v.name, Phone: v.phone, "PIN code": v.postal.replace(/\s/g, ""), Area: areaFor(v.postal)?.name, Service: v.service, Issue: v.issue, "Preferred date": v.date, "Time window": v.window, Address: v.address }));
   };
-  if (done) return <DemoResult brand="FixRight Home Services" industryName="Home services" demoSlug="home-services" industrySlug="home-services" preview={done} onReset={() => setDone(null)} className="border-white/20 bg-white text-[#0F172A]" channel="phone (SMS/WhatsApp) and email" />;
+  if (done) return <DemoResult brand="FixRight Home Services" industryName="Home services" demoSlug="home-services" industrySlug="home-services" preview={done} onReset={() => setDone(null)} className="border-white/20 bg-white text-[#0F172A]" channel="WhatsApp and email" />;
   const inp = "min-h-12 w-full rounded-lg border-2 bg-white px-3 text-base text-[#0F172A]";
   const a = (k: F) => ({ id: `fq-${k}`, "aria-invalid": !!errors[k], "aria-describedby": errors[k] ? `fq-${k}-e` : undefined, className: `${inp} ${errors[k] ? "border-[#fca5a5]" : "border-transparent"}` });
   const er = (k: F) => (errors[k] ? <p id={`fq-${k}-e`} className="mt-1 text-sm font-semibold text-[#fecaca]">{errors[k]}</p> : null);
@@ -104,7 +105,7 @@ export function QuoteForm() {
     <form onSubmit={submit} noValidate className="grid gap-4 md:grid-cols-2">
       <div>{lb("name", "Name")}<input {...a("name")} autoComplete="name" value={v.name} onChange={(e) => setV({ ...v, name: e.target.value })} />{er("name")}</div>
       <div>{lb("phone", "Phone")}<input {...a("phone")} type="tel" autoComplete="tel" value={v.phone} onChange={(e) => setV({ ...v, phone: e.target.value })} />{er("phone")}</div>
-      <div>{lb("postal", "Postal code")}<input {...a("postal")} autoComplete="postal-code" value={v.postal} onChange={(e) => setV({ ...v, postal: e.target.value })} />{er("postal")}</div>
+      <div>{lb("postal", "PIN code")}<input {...a("postal")} inputMode="numeric" autoComplete="postal-code" value={v.postal} onChange={(e) => setV({ ...v, postal: e.target.value })} />{er("postal")}</div>
       <div>{lb("service", "Service")}<select {...a("service")} value={v.service} onChange={(e) => setV({ ...v, service: e.target.value })}><option value="">Choose…</option>{SERVICES.map((s) => <option key={s.name}>{s.name}</option>)}</select>{er("service")}</div>
       <div className="md:col-span-2">{lb("issue", "What's the problem?")}<textarea {...a("issue")} rows={3} value={v.issue} onChange={(e) => setV({ ...v, issue: e.target.value })} />{er("issue")}</div>
       <div>{lb("date", "Preferred date")}<input id="fq-date" type="date" className={`${inp} border-transparent`} value={v.date} onChange={(e) => setV({ ...v, date: e.target.value })} /></div>

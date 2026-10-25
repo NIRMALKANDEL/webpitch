@@ -1,12 +1,15 @@
 /**
- * ═══════════════════════════════ PACKAGES AND SERVICES ═══════════════════════════════
- * The site deliberately shows no prices. Pricing is customised per project and given
- * in a written quote after the first call.
+ * ═══════════════════════════════ PACKAGES AND PRICES ═══════════════════════════════
+ * Starting prices in Indian rupees for the Indore market (set October 2026).
+ * Local benchmarks at the time: landing page ₹5k–20k, business site ₹15k–50k,
+ * dynamic site ₹30k–80k, e-commerce ₹30k–1.5L, maintenance ₹2k–10k/month.
+ * Every project still gets a fixed written quote after the first call.
  *
  *   packages   → the 4 main package cards (homepage, /pricing, industry pages)
  *   redesign   → "Website redesign" service on /pricing
  *   carePlans  → monthly care plans (also used by the "Build + care plan" toggle)
  *   addOns     → add-on list on /pricing
+ * To change a price, edit `from` (a plain number of rupees). It is formatted for you.
  * ═════════════════════════════════════════════════════════════════════════════════════
  */
 
@@ -14,6 +17,8 @@ export type Package = {
   id: "starter" | "business" | "premium" | "store";
   name: string;
   tagline: string;
+  /** Starting price in INR. */
+  from: number;
   bestFor: string;
   includes: string[];
   notIncluded: string[];
@@ -22,12 +27,16 @@ export type Package = {
   featured?: boolean;
 };
 
+/** "₹17,999" */
+export const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+
 export const packages: Package[] = [
   {
     id: "starter",
     name: "Landing Page",
     tagline: "Single-page website",
-    bestFor: "Cafes, salons, home services and anyone who needs to look professional fast.",
+    from: 7999,
+    bestFor: "Cafes, salons, tutors, home services and anyone who needs to look professional fast.",
     includes: [
       "One long page with up to 7 sections",
       "WhatsApp and call buttons",
@@ -45,12 +54,13 @@ export const packages: Package[] = [
     id: "business",
     name: "Business Website",
     tagline: "A proper multi-page website",
-    bestFor: "Established local businesses, clinics, institutes and B2B suppliers.",
+    from: 17999,
+    bestFor: "Established local businesses, clinics, coaching institutes and B2B suppliers.",
     includes: [
       "Up to 5 pages",
       "Enquiry and booking forms",
       "Photo gallery",
-      "Google Business Profile tips",
+      "Google Business Profile setup tips",
       "Speed optimisation",
       "Everything in Landing Page",
       "2 rounds of revisions",
@@ -64,7 +74,8 @@ export const packages: Package[] = [
     id: "premium",
     name: "Advanced Website",
     tagline: "Multi-page site with custom design",
-    bestFor: "Brands that want to stand out: restaurants, real estate, interiors, fashion.",
+    from: 34999,
+    bestFor: "Brands that want to stand out: restaurants, agencies, real estate, interiors, fashion.",
     includes: [
       "Up to 10 pages, fully custom design",
       "Booking, catalogue or menu system",
@@ -81,13 +92,14 @@ export const packages: Package[] = [
     id: "store",
     name: "E-commerce Website",
     tagline: "Sell online, take payments",
+    from: 44999,
     bestFor: "Boutiques, furniture and product brands ready to sell online.",
     includes: [
       "Up to 50 products",
       "Cart and checkout",
-      "Payment gateway setup",
+      "Razorpay / UPI payment setup",
       "Order notifications",
-      "Shipping and tax setup",
+      "Shipping and GST setup",
       "Cinematic video hero",
       "3 rounds of revisions",
     ],
@@ -101,21 +113,21 @@ export const packages: Package[] = [
 export const customApp = {
   id: "custom",
   name: "Custom Web Applications",
-  description: "Portals, dashboards and other web apps built around how your business works.",
-  priceNote: "Custom quote based on project requirements.",
+  description: "Portals, dashboards, booking systems and other web apps built around how your business works.",
+  priceNote: `From ${inr(75000)}, quoted on your requirements.`,
 };
 
 /** Headline shown above the package cards on the homepage. */
 export const pricingHeadline = {
-  intro: "Pricing is customised according to your requirements.",
-  outro: "Contact me to discuss your project. Every website is quoted on the pages, features and content you need.",
-  startingNote:
-    "Just a quick call will give you clarity on what business website you need.",
+  intro: "Clear starting prices. A fixed quote before any work starts.",
+  outro: "Every website is quoted on the pages, features and content you need. The price we agree is the price you pay.",
+  startingNote: "Not sure which one you need? A free 20-minute call (or a chai, if you're in Indore) will sort it out.",
 };
 
 export const redesign = {
   id: "redesign",
   name: "Website redesign",
+  from: 14999,
   description: "An audit of your current site, then a new design built on your existing content, with redirects so you keep your Google rankings.",
   timeline: "1–3 weeks",
 };
@@ -123,33 +135,45 @@ export const redesign = {
 export const carePlans = [
   {
     id: "care-basic",
-    name: "Care plan",
-    includes: ["Updates and backups", "Uptime monitoring", "30 minutes of edits each month"],
+    name: "Care",
+    perMonth: 3000,
+    bestFor: "Keep the site safe, fast and up to date.",
+    includes: ["Hosting checks, updates and backups", "Uptime monitoring", "1 hour of edits each month", "Reply within 24 hours"],
   },
   {
     id: "care-plus",
-    name: "Care plan Plus",
-    includes: ["Everything in Care plan", "2 hours of edits each month", "Monthly report", "Priority replies"],
+    name: "Care Plus",
+    perMonth: 5000,
+    bestFor: "Regular changes to menus, offers and photos.",
+    includes: ["Everything in Care", "3 hours of edits each month", "Google Business Profile posts (2 a month)", "Monthly traffic report", "Priority replies"],
+    featured: true,
+  },
+  {
+    id: "care-growth",
+    name: "Growth",
+    perMonth: 10000,
+    bestFor: "Grow on Google: content, local SEO and new features.",
+    includes: ["Everything in Care Plus", "6 hours of edits or new features each month", "1 blog post or landing page each month", "Local SEO and Search Console fixes", "Monthly call to plan what's next"],
   },
 ];
 
 export const addOns = [
-  { id: "page", name: "Extra page" },
-  { id: "logo", name: "Simple logo design" },
-  { id: "copy", name: "Copywriting, per page" },
-  { id: "products", name: "+25 products added to your store" },
-  { id: "gbp", name: "Google Business Profile setup" },
-  { id: "lang", name: "Extra language" },
-  { id: "video", name: "Cinematic video hero" },
-  { id: "3d-viewer", name: "3D product viewer (one model)" },
-  { id: "3d-config", name: "3D configurator (materials and colours, up to 3 models)" },
+  { id: "page", name: "Extra page", from: 1499 },
+  { id: "logo", name: "Simple logo design", from: 2999 },
+  { id: "copy", name: "Copywriting, per page", from: 999 },
+  { id: "products", name: "+25 products added to your store", from: 1999 },
+  { id: "gbp", name: "Google Business Profile setup", from: 1999 },
+  { id: "lang", name: "Extra language (e.g. Hindi)", from: 4999 },
+  { id: "video", name: "Cinematic video hero", from: 3999 },
+  { id: "3d-viewer", name: "3D product viewer (one model)", from: 9999 },
+  { id: "3d-config", name: "3D configurator (materials and colours, up to 3 models)", from: 24999 },
 ];
 
 export const finePrint = {
-  terms: "75% to start, 25% before launch.",
-  domainHosting: "Domain and hosting are billed at cost and registered in your name.",
+  terms: "50% to start, 50% before launch.",
+  domainHosting: "Domain and hosting are billed at cost and registered in your name. A .in or .com domain is usually ₹800–1,500 a year.",
   paymentIndia: "UPI or bank transfer.",
-  paymentInternational: "International payment options are shared with your quote.",
+  paymentInternational: "Clients outside India can pay by international bank transfer or Wise; the quote is in your currency.",
   extraCharges:
     "Domain, hosting, paid third-party services (such as paid APIs, email services or payment gateway fees) and additional maintenance may incur extra charges where applicable.",
   /** Not GST-registered, so quotes are final. Add a note here if that changes. */

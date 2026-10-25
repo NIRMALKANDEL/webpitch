@@ -19,14 +19,14 @@ export default function AboutPage() {
         crumb="About"
         accent="pink"
         title="A small studio for brands that want to be noticed"
-        lead="Six people in Berlin, a handful of clients at a time. The people you meet on the first call are the people who do the work."
+        lead="Six people in Indore, a handful of clients at a time. The people you meet on the first call are the people who do the work."
         aside={
           <FactPanel
             items={[
               { label: "Team", value: "6 people", color: "pink" },
-              { label: "Based in", value: "Berlin", color: "lime" },
+              { label: "Based in", value: "Indore", color: "lime" },
               { label: "Projects a year", value: "4 to 6", color: "violet" },
-              { label: "We work in", value: "English, German", color: "mist" },
+              { label: "We work in", value: "English, Hindi", color: "mist" },
             ]}
           />
         }

@@ -8,7 +8,7 @@ const services = [
   ["Interior design", "Spatial planning, finishes, furniture and lighting for homes and workplaces."],
   ["Architecture", "New homes, extensions and alterations, from concept to planning approval."],
   ["Renovations & extensions", "We manage builders and trades so the drawing becomes the room."],
-  ["Joinery & kitchens", "Custom kitchens, wardrobes and built-ins, made in Victoria."],
+  ["Joinery & kitchens", "Custom kitchens, wardrobes and built-ins, made in our own Pune workshop."],
   ["3D visualisation", "Photoreal renders, so you can walk through before anything is built."],
 ];
 
@@ -49,7 +49,7 @@ export default function InteriorDemo() {
           </h1>
           <div className="mt-10 grid gap-6 md:grid-cols-[2fr_1fr]">
             <p className="max-w-xl text-lg leading-relaxed text-[#171717]/70">
-              Studio Neem is an interior and architecture practice in Fitzroy, Melbourne. We design homes, cafes and workplaces with
+              Studio Neem is an interior and architecture practice in Koregaon Park, Pune. We design homes, cafes and workplaces with
               natural materials, honest detailing and a lot of light.
             </p>
             <a href="#consult" className="self-end justify-self-start border-b border-[#171717] pb-1 font-dd text-sm tracking-[0.2em] md:justify-self-end">
@@ -123,8 +123,8 @@ export default function InteriorDemo() {
           <div className="mx-auto grid max-w-[1400px] gap-12 px-5 md:grid-cols-[1fr_2fr] md:px-10">
             <div>
               <h2 id="sn-c" className="font-dd text-4xl leading-tight font-extralight md:text-5xl">Book a consultation</h2>
-              <p className="mt-4 text-[#171717]/65">An hour on site or in our Fitzroy studio. Fee credited to your project if you go ahead.</p>
-              <p className="mt-8 text-sm text-[#171717]/65">42 Gertrude Street, Fitzroy VIC 3065 (fictional)<br />(03) 5550 1234 · hello@example.com</p>
+              <p className="mt-4 text-[#171717]/65">An hour on site or in our Koregaon Park studio. Fee credited to your project if you go ahead.</p>
+              <p className="mt-8 text-sm text-[#171717]/65">42 Lane 6, Koregaon Park, Pune 411001 (fictional)<br />+91 98765 51234 · hello@example.com</p>
             </div>
             <Consultation />
           </div>

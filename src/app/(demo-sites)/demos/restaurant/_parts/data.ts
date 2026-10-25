@@ -13,33 +13,33 @@ export type MenuItem = {
 export const menuCats = ["Starters", "Grills", "Curries", "Breads & Rice", "Desserts", "Drinks"] as const;
 
 export const menu: MenuItem[] = [
-  { id: "s1", cat: "Starters", name: "Amritsari fish pakora", desc: "Carom-spiced batter, mint chutney, pickled onion", price: 8.5, veg: false, spice: 1 , img: "1666001120694-3ebe8fd207be" },
-  { id: "s2", cat: "Starters", name: "Dahi puri", desc: "Crisp shells, spiced potato, sweet yoghurt, tamarind", price: 6.5, veg: true, spice: 1 , img: "1760263051323-fcd7da7040b0" },
-  { id: "s3", cat: "Starters", name: "Paneer tikka", desc: "Charred cottage cheese, peppers, smoked chilli", price: 8, veg: true, spice: 2 , img: "1631452180519-c014fe946bc7", badge: "Popular" },
-  { id: "s4", cat: "Starters", name: "Chicken 65", desc: "Curry-leaf fried chicken, garlic, red chilli", price: 8.5, veg: false, spice: 3 , img: "1610057099431-d73a1c9d2f2f" },
-  { id: "g1", cat: "Grills", name: "Lamb seekh kebab", desc: "Hand-minced lamb, ginger, green chilli, charcoal grilled", price: 14, veg: false, spice: 2 , img: "1599487488170-d11ec9c172f0", badge: "Chef's pick" },
-  { id: "g2", cat: "Grills", name: "Tandoori chicken", desc: "Half bird, 24-hour yoghurt marinade, lime", price: 15.5, veg: false, spice: 2 , img: "1617692855027-33b14f061079", badge: "Popular" },
-  { id: "g3", cat: "Grills", name: "Malai broccoli", desc: "Cream cheese, cardamom, toasted almonds", price: 11, veg: true, spice: 0 , img: "1585937421612-70a008356fbe" },
-  { id: "g4", cat: "Grills", name: "Tiger prawns", desc: "Kashmiri chilli, garlic butter, ajwain", price: 18, veg: false, spice: 2 , img: "1565557623262-b51c2513a641" },
-  { id: "c1", cat: "Curries", name: "Butter chicken", desc: "Smoked tomato, fenugreek, cultured butter", price: 15, veg: false, spice: 1 , img: "1603894584373-5ac82b2ae398", badge: "Popular" },
-  { id: "c2", cat: "Curries", name: "Dal makhani", desc: "Black lentils slow-cooked overnight on the tandoor", price: 11, veg: true, spice: 1 , img: "1596797038530-2c107229654b" },
-  { id: "c3", cat: "Curries", name: "Goan prawn curry", desc: "Coconut, kokum, Goan red masala", price: 17, veg: false, spice: 2 , img: "1631452180539-96aca7d48617" },
-  { id: "c4", cat: "Curries", name: "Laal maas", desc: "Rajasthani lamb, mathania chilli, smoked ghee", price: 17.5, veg: false, spice: 3 , img: "1585937421612-70a008356fbe", badge: "Chef's pick" },
-  { id: "c5", cat: "Curries", name: "Palak paneer", desc: "Spinach, garlic, house-made paneer", price: 12.5, veg: true, spice: 1 , img: "1728910156510-77488f19b152", badge: "New" },
-  { id: "b1", cat: "Breads & Rice", name: "Garlic naan", desc: "Tandoor-baked, brushed with garlic butter", price: 4, veg: true, spice: 0 , img: "1655979284091-eea0e93405ee", badge: "Popular" },
-  { id: "b2", cat: "Breads & Rice", name: "Lachha paratha", desc: "Flaky layered wholewheat bread", price: 4.5, veg: true, spice: 0 , img: "1655979284091-eea0e93405ee" },
-  { id: "b3", cat: "Breads & Rice", name: "Hyderabadi chicken biryani", desc: "Dum-cooked basmati, saffron, raita", price: 16, veg: false, spice: 2 , img: "1631515243349-e0cb75fb8d3a", badge: "Chef's pick" },
-  { id: "b4", cat: "Breads & Rice", name: "Jeera rice", desc: "Basmati with toasted cumin", price: 4, veg: true, spice: 0 , img: "1589302168068-964664d93dc0" },
-  { id: "d1", cat: "Desserts", name: "Gulab jamun", desc: "Warm, with pistachio and rose", price: 6, veg: true, spice: 0 , img: "1666190092159-3171cf0fbb12" },
-  { id: "d2", cat: "Desserts", name: "Mango kulfi", desc: "Alphonso mango, slow-reduced milk", price: 6.5, veg: true, spice: 0 , img: "1728910156510-77488f19b152" },
-  { id: "k1", cat: "Drinks", name: "Salted lassi", desc: "Roasted cumin, mint", price: 4.5, veg: true, spice: 0 , img: "1738986589529-4e64555b399a" },
-  { id: "k2", cat: "Drinks", name: "Masala chai", desc: "Assam, ginger, cardamom", price: 3.5, veg: true, spice: 0 , img: "1630748662359-40a2105640c7" },
-  { id: "k3", cat: "Drinks", name: "Tamarind smash", desc: "Tamarind, lime, soda, chaat masala (alcohol-free)", price: 6, veg: true, spice: 0 , img: "1514362545857-3bc16c4c7d1b", badge: "New" },
+  { id: "s1", cat: "Starters", name: "Amritsari fish pakora", desc: "Carom-spiced batter, mint chutney, pickled onion", price: 329, veg: false, spice: 1 , img: "1666001120694-3ebe8fd207be" },
+  { id: "s2", cat: "Starters", name: "Dahi puri", desc: "Crisp shells, spiced potato, sweet yoghurt, tamarind", price: 179, veg: true, spice: 1 , img: "1760263051323-fcd7da7040b0" },
+  { id: "s3", cat: "Starters", name: "Paneer tikka", desc: "Charred cottage cheese, peppers, smoked chilli", price: 299, veg: true, spice: 2 , img: "1631452180519-c014fe946bc7", badge: "Popular" },
+  { id: "s4", cat: "Starters", name: "Chicken 65", desc: "Curry-leaf fried chicken, garlic, red chilli", price: 319, veg: false, spice: 3 , img: "1610057099431-d73a1c9d2f2f" },
+  { id: "g1", cat: "Grills", name: "Lamb seekh kebab", desc: "Hand-minced lamb, ginger, green chilli, charcoal grilled", price: 449, veg: false, spice: 2 , img: "1599487488170-d11ec9c172f0", badge: "Chef's pick" },
+  { id: "g2", cat: "Grills", name: "Tandoori chicken", desc: "Half bird, 24-hour yoghurt marinade, lime", price: 399, veg: false, spice: 2 , img: "1617692855027-33b14f061079", badge: "Popular" },
+  { id: "g3", cat: "Grills", name: "Malai broccoli", desc: "Cream cheese, cardamom, toasted almonds", price: 329, veg: true, spice: 0 , img: "1585937421612-70a008356fbe" },
+  { id: "g4", cat: "Grills", name: "Tiger prawns", desc: "Kashmiri chilli, garlic butter, ajwain", price: 649, veg: false, spice: 2 , img: "1565557623262-b51c2513a641" },
+  { id: "c1", cat: "Curries", name: "Butter chicken", desc: "Smoked tomato, fenugreek, cultured butter", price: 429, veg: false, spice: 1 , img: "1603894584373-5ac82b2ae398", badge: "Popular" },
+  { id: "c2", cat: "Curries", name: "Dal makhani", desc: "Black lentils slow-cooked overnight on the tandoor", price: 299, veg: true, spice: 1 , img: "1596797038530-2c107229654b" },
+  { id: "c3", cat: "Curries", name: "Goan prawn curry", desc: "Coconut, kokum, Goan red masala", price: 549, veg: false, spice: 2 , img: "1631452180539-96aca7d48617" },
+  { id: "c4", cat: "Curries", name: "Laal maas", desc: "Rajasthani lamb, mathania chilli, smoked ghee", price: 499, veg: false, spice: 3 , img: "1585937421612-70a008356fbe", badge: "Chef's pick" },
+  { id: "c5", cat: "Curries", name: "Palak paneer", desc: "Spinach, garlic, house-made paneer", price: 329, veg: true, spice: 1 , img: "1728910156510-77488f19b152", badge: "New" },
+  { id: "b1", cat: "Breads & Rice", name: "Garlic naan", desc: "Tandoor-baked, brushed with garlic butter", price: 69, veg: true, spice: 0 , img: "1655979284091-eea0e93405ee", badge: "Popular" },
+  { id: "b2", cat: "Breads & Rice", name: "Lachha paratha", desc: "Flaky layered wholewheat bread", price: 79, veg: true, spice: 0 , img: "1655979284091-eea0e93405ee" },
+  { id: "b3", cat: "Breads & Rice", name: "Hyderabadi chicken biryani", desc: "Dum-cooked basmati, saffron, raita", price: 429, veg: false, spice: 2 , img: "1631515243349-e0cb75fb8d3a", badge: "Chef's pick" },
+  { id: "b4", cat: "Breads & Rice", name: "Jeera rice", desc: "Basmati with toasted cumin", price: 149, veg: true, spice: 0 , img: "1589302168068-964664d93dc0" },
+  { id: "d1", cat: "Desserts", name: "Gulab jamun", desc: "Warm, with pistachio and rose", price: 129, veg: true, spice: 0 , img: "1666190092159-3171cf0fbb12" },
+  { id: "d2", cat: "Desserts", name: "Mango kulfi", desc: "Alphonso mango, slow-reduced milk", price: 149, veg: true, spice: 0 , img: "1728910156510-77488f19b152" },
+  { id: "k1", cat: "Drinks", name: "Salted lassi", desc: "Roasted cumin, mint", price: 99, veg: true, spice: 0 , img: "1738986589529-4e64555b399a" },
+  { id: "k2", cat: "Drinks", name: "Masala chai", desc: "Assam, ginger, cardamom", price: 49, veg: true, spice: 0 , img: "1630748662359-40a2105640c7" },
+  { id: "k3", cat: "Drinks", name: "Tamarind smash", desc: "Tamarind, lime, soda, chaat masala (alcohol-free)", price: 149, veg: true, spice: 0 , img: "1514362545857-3bc16c4c7d1b", badge: "New" },
 ];
 
-export const gbp = (n: number) => `£${n.toFixed(2).replace(/\.00$/, "")}`;
+export const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
-// Opening hours in Europe/London time; index = day of week (0 = Sunday)
+// Opening hours in Indian time (Asia/Kolkata); index = day of week (0 = Sunday)
 export const hours: { day: string; open: string; close: string }[] = [
   { day: "Sunday", open: "12:00", close: "22:00" },
   { day: "Monday", open: "17:00", close: "23:00" },
@@ -63,10 +63,10 @@ export const gallery = [
 ];
 
 export const reviews = [
-  { name: "Priya S.", text: "The laal maas is the best I've had outside Jaipur. Ordered on WhatsApp and it arrived in 25 minutes, still smoking hot.", stars: 5 },
-  { name: "Tom H.", text: "Proper charcoal flavour on the seekh kebabs. The dining room is gorgeous at night. We've booked again for my birthday.", stars: 5 },
+  { name: "Priya S.", text: "The laal maas is the best I've had outside Jaipur, right here in Vijay Nagar. Ordered on WhatsApp and it arrived in 25 minutes, still smoking hot.", stars: 5 },
+  { name: "Rohit M.", text: "Proper charcoal flavour on the seekh kebabs. The dining room is gorgeous at night. We've booked again for my birthday.", stars: 5 },
   { name: "Aisha K.", text: "Dal makhani that tastes like it's been cooking all day, because it has. Friendly staff and great alcohol-free drinks.", stars: 5 },
-  { name: "Marcus L.", text: "Came for the butter chicken, stayed for the gulab jamun. Booking online took ten seconds.", stars: 4 },
+  { name: "Megha J.", text: "Came for the butter chicken, stayed for the gulab jamun. Booking online took ten seconds.", stars: 4 },
 ];
 
 /** Dishes on the 3D thali; tapping a bowl adds its dish to the order. */

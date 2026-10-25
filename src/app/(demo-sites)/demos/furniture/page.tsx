@@ -24,7 +24,7 @@ export default function FurnitureDemo() {
         <section className={`${wrap} grid items-end gap-8 pt-10 pb-16 md:grid-cols-2 md:pt-16`} aria-labelledby="wg-h">
           <div>
             <h1 id="wg-h" className="font-dd text-6xl leading-[0.95] md:text-8xl">Solid wood, built to be handed down.</h1>
-            <p className="mt-6 max-w-md text-lg text-[#1C1917]/70">Chairs, tables and beds made by hand in our Austin workshop from walnut, oak and maple.</p>
+            <p className="mt-6 max-w-md text-lg text-[#1C1917]/70">Chairs, tables and beds made by hand in our Jodhpur workshop from walnut, oak and maple.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#catalogue" className="inline-flex min-h-13 items-center rounded-full bg-[#1C1917] px-7 font-semibold text-white">Browse Collection</a>
               <a href="#configurator" className="inline-flex min-h-13 items-center rounded-full bg-white px-7 font-semibold ring-1 ring-black/10">Try the 3D chair</a>
@@ -84,10 +84,10 @@ export default function FurnitureDemo() {
           <div className={`${wrap} grid gap-8 md:grid-cols-2`}>
             <div>
               <h2 id="sh-h" className={h2}>Visit the showroom</h2>
-              <p className="mt-6 flex gap-2"><MapPin className="size-5 shrink-0 text-[#6B4226]" aria-hidden /> 1801 E Cesar Chavez St, Austin, TX (fictional)</p>
+              <p className="mt-6 flex gap-2"><MapPin className="size-5 shrink-0 text-[#6B4226]" aria-hidden /> Plot 18, Basni Industrial Area, Jodhpur 342005 (fictional)</p>
               <p className="mt-2 text-[#1C1917]/65">Thu–Sun, 10am–6pm · (512) 555-0147</p>
             </div>
-            <iframe title="Map of East Austin" src="https://www.google.com/maps?q=East+Cesar+Chavez,+Austin,+TX&z=14&output=embed" loading="lazy" className="h-72 w-full rounded-[28px] border-0" />
+            <iframe title="Map of Basni, Jodhpur" src="https://www.google.com/maps?q=Basni+Industrial+Area,+Jodhpur&z=14&output=embed" loading="lazy" className="h-72 w-full rounded-[28px] border-0" />
           </div>
         </section>
       </main>

@@ -9,9 +9,9 @@ import { Menu } from "./_parts/Menu";
 import { reviews } from "./_parts/data";
 
 const signature = [
-  { id: "1603894584373-5ac82b2ae398", name: "Smoked butter chicken", price: "£15", veg: false, note: "Our most ordered dish" },
-  { id: "1589302168068-964664d93dc0", name: "Hyderabadi dum biryani", price: "£16", veg: false, note: "Sealed and slow-cooked" },
-  { id: "1565557623262-b51c2513a641", name: "Dal makhani & naan", price: "£15", veg: true, note: "Overnight on the tandoor" },
+  { id: "1603894584373-5ac82b2ae398", name: "Smoked butter chicken", price: "₹429", veg: false, note: "Our most ordered dish" },
+  { id: "1589302168068-964664d93dc0", name: "Hyderabadi dum biryani", price: "₹429", veg: false, note: "Sealed and slow-cooked" },
+  { id: "1565557623262-b51c2513a641", name: "Dal makhani & naan", price: "₹369", veg: true, note: "Overnight on the tandoor" },
 ];
 
 export default function RestaurantDemo() {
@@ -34,7 +34,7 @@ export default function RestaurantDemo() {
               Fire, smoke &amp; slow curries
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/85 md:text-xl">
-              Charcoal grills and dishes from across India, cooked over real flame in Shoreditch and delivered hot across East London.
+              Charcoal grills and dishes from across India, cooked over real flame in Vijay Nagar and delivered hot across Indore.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#menu" className="inline-flex min-h-13 items-center rounded-full bg-[#E3A21A] px-7 text-lg font-bold text-[#1b1b1b]">
@@ -73,7 +73,7 @@ export default function RestaurantDemo() {
           <div className="mx-auto max-w-7xl px-4 md:px-8">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <h2 id="menu-t" className="font-dd text-4xl text-[#12372A] md:text-6xl">The menu</h2>
-              <p className="max-w-md text-black/65">Add dishes, then send your order straight to our kitchen on WhatsApp. Delivery within 3 miles, about 30 minutes.</p>
+              <p className="max-w-md text-black/65">Add dishes, then send your order straight to our kitchen on WhatsApp. Delivery within 5 km, about 30 minutes.</p>
             </div>
             <div className="mt-10">
               <Menu />
@@ -136,14 +136,14 @@ export default function RestaurantDemo() {
             <div>
               <h2 id="visit-t" className="font-dd text-4xl md:text-6xl">Find us</h2>
               <p className="mt-4 flex items-start gap-2 text-lg">
-                <MapPin className="mt-1 size-5 shrink-0 text-[#E3A21A]" aria-hidden /> 14 Calvert Yard, Shoreditch, London E2 (fictional address)
+                <MapPin className="mt-1 size-5 shrink-0 text-[#E3A21A]" aria-hidden /> 14 Scheme 54, Vijay Nagar, Indore 452010 (fictional address)
               </p>
-              <p className="mt-2 text-white/70">Phone: 020 7946 0321 · Delivery via our own riders within 3 miles</p>
+              <p className="mt-2 text-white/70">Phone: +91 98765 43210 (sample) · Delivery by our own riders within 5 km</p>
               <div className="mt-8 max-w-md">
                 <TodayHours />
               </div>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Shoreditch+London"
+                href="https://www.google.com/maps/search/?api=1&query=Vijay+Nagar+Indore"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex min-h-12 items-center rounded-full bg-[#E3A21A] px-6 font-bold text-[#1b1b1b]"
@@ -153,8 +153,8 @@ export default function RestaurantDemo() {
             </div>
             <div className="overflow-hidden rounded-2xl">
               <iframe
-                title="Map of Shoreditch, London"
-                src="https://www.google.com/maps?q=Shoreditch,+London&z=14&output=embed"
+                title="Map of Vijay Nagar, Indore"
+                src="https://www.google.com/maps?q=Vijay+Nagar,+Indore&z=14&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-[360px] w-full border-0 md:h-full md:min-h-[420px]"

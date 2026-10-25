@@ -5,12 +5,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 // ─────────────────────────────────────────────────────────────────────────────
-// No prices are shown on these cards: pricing is customised per project.
-// To change what each card lists, edit src/data/pricing.ts:
+// Starting prices (INR) are shown on each card; the final price is a fixed quote.
+// To change prices or what each card lists, edit src/data/pricing.ts:
+//   • packages[].from     → the "From ₹…" price
 //   • packages[].includes → the tick list on each card
 //   • carePlans[].includes → the extra items shown with the "care plan" toggle
 // ─────────────────────────────────────────────────────────────────────────────
-import { carePlans, packages } from "@/data/pricing";
+import { carePlans, inr, packages } from "@/data/pricing";
 import { waLink, waMessages } from "@/lib/whatsapp";
 
 const accents: Record<string, string> = {
@@ -76,12 +77,13 @@ export function PricingCards({ highlight }: { highlight?: string }) {
                 <p className="mt-1 text-sm text-ink-3">{p.tagline}</p>
 
                 <div className="mt-6">
-                  <p className="font-display text-[28px] leading-tight font-semibold tracking-tight">Custom quote</p>
+                  <p className="text-sm text-ink-3">Starting from</p>
+                  <p className="font-display text-[32px] leading-tight font-semibold tracking-tight">{inr(p.from)}</p>
                   <p className="mt-2 min-h-5 text-sm text-ink-2">
                     {care ? (
-                      <>+ optional monthly care plan</>
+                      <>+ {inr(plan.perMonth)}/month care plan</>
                     ) : (
-                      <>Tailored to your project · {p.timeline}</>
+                      <>One-time · ready in {p.timeline}</>
                     )}
                   </p>
                 </div>

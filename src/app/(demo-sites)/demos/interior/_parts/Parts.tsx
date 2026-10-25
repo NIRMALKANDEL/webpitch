@@ -9,12 +9,12 @@ import { unsplash } from "@/lib/media";
 import { type Errors, hasErrors, validate } from "@/lib/validate";
 
 export const projects = [
-  { slug: "fitzroy-terrace", name: "Fitzroy Terrace", type: "Residential", area: "186 m²", place: "Fitzroy", scope: "Full renovation, joinery, lighting", cover: "1724582586529-62622e50c0b3", images: ["1724582586529-62622e50c0b3", "1725257928373-dc6d2ac7b145", "1680210849951-34d1a56eb7aa"] },
-  { slug: "brunswick-loft", name: "Brunswick Loft", type: "Residential", area: "112 m²", place: "Brunswick", scope: "Interior design, furniture", cover: "1664711942326-2c3351e215e6", images: ["1664711942326-2c3351e215e6", "1668089677938-b52086753f77", "1600489000022-c2086d79f9d4"] },
-  { slug: "sorrento-house", name: "Sorrento House", type: "Residential", area: "240 m²", place: "Sorrento", scope: "Architecture, interiors, landscape", cover: "1628012209120-d9db7abf7eab", images: ["1628012209120-d9db7abf7eab", "1721815693498-cc28507c0ba2", "1609081144289-eacc3108cd03"] },
-  { slug: "collins-cafe", name: "Pressed, Collins St", type: "Hospitality", area: "95 m²", place: "Melbourne CBD", scope: "Cafe fit-out, branding coordination", cover: "1554118811-1e0d58224f24", images: ["1554118811-1e0d58224f24", "1555396273-367ea4eb4db5"] },
-  { slug: "richmond-studio", name: "Richmond Studio", type: "Commercial", area: "310 m²", place: "Richmond", scope: "Workplace design, acoustics", cover: "1519219788971-8d9797e0928e", images: ["1519219788971-8d9797e0928e", "1611269154421-4e27233ac5c7"] },
-  { slug: "carlton-salon", name: "Atelier Hair, Carlton", type: "Commercial", area: "80 m²", place: "Carlton", scope: "Salon fit-out, custom mirrors", cover: "1600948836101-f9ffda59d250", images: ["1600948836101-f9ffda59d250", "1633681926022-84c23e8cb2d6"] },
+  { slug: "koregaon-villa", name: "Koregaon Park Villa", type: "Residential", area: "2,000 sq ft", place: "Koregaon Park", scope: "Full renovation, joinery, lighting", cover: "1724582586529-62622e50c0b3", images: ["1724582586529-62622e50c0b3", "1725257928373-dc6d2ac7b145", "1680210849951-34d1a56eb7aa"] },
+  { slug: "baner-apartment", name: "Baner 3BHK", type: "Residential", area: "1,200 sq ft", place: "Baner", scope: "Interior design, furniture", cover: "1664711942326-2c3351e215e6", images: ["1664711942326-2c3351e215e6", "1668089677938-b52086753f77", "1600489000022-c2086d79f9d4"] },
+  { slug: "lonavala-house", name: "Lonavala House", type: "Residential", area: "2,600 sq ft", place: "Lonavala", scope: "Architecture, interiors, landscape", cover: "1628012209120-d9db7abf7eab", images: ["1628012209120-d9db7abf7eab", "1721815693498-cc28507c0ba2", "1609081144289-eacc3108cd03"] },
+  { slug: "fc-road-cafe", name: "Pressed, FC Road", type: "Hospitality", area: "1,000 sq ft", place: "FC Road", scope: "Cafe fit-out, branding coordination", cover: "1554118811-1e0d58224f24", images: ["1554118811-1e0d58224f24", "1555396273-367ea4eb4db5"] },
+  { slug: "kalyani-studio", name: "Kalyani Nagar Studio", type: "Commercial", area: "3,300 sq ft", place: "Kalyani Nagar", scope: "Workplace design, acoustics", cover: "1519219788971-8d9797e0928e", images: ["1519219788971-8d9797e0928e", "1611269154421-4e27233ac5c7"] },
+  { slug: "aundh-salon", name: "Atelier Hair, Aundh", type: "Commercial", area: "850 sq ft", place: "Aundh", scope: "Salon fit-out, custom mirrors", cover: "1600948836101-f9ffda59d250", images: ["1600948836101-f9ffda59d250", "1633681926022-84c23e8cb2d6"] },
 ];
 
 const types = ["All", "Residential", "Commercial", "Hospitality"] as const;
@@ -162,12 +162,12 @@ export function Consultation() {
       email: [{ kind: "required" }, { kind: "email" }],
       phone: [{ kind: "phone" }],
       property: [{ kind: "required", message: "Choose a property type." }],
-      suburb: [{ kind: "required", message: "Which suburb is the project in?" }],
+      suburb: [{ kind: "required", message: "Which locality is the project in?" }],
       slot: [{ kind: "required", message: "Pick a consultation slot." }],
     });
     setErrors(errs);
     if (hasErrors(errs)) return;
-    setDone(formatEnquiry("Consultation request — Studio Neem", { Name: v.name, Email: v.email, Phone: v.phone, Property: v.property, "Area (m²)": v.area, Budget: v.budget, Suburb: v.suburb, Slot: v.slot, Notes: v.notes }));
+    setDone(formatEnquiry("Consultation request — Studio Neem", { Name: v.name, Email: v.email, Phone: v.phone, Property: v.property, "Area (sq ft)": v.area, Budget: v.budget, Locality: v.suburb, Slot: v.slot, Notes: v.notes }));
   };
 
   if (done) return <DemoResult brand="Studio Neem" industryName="Interior design" demoSlug="interior" industrySlug="interiors" preview={done} onReset={() => setDone(null)} className="border-[#171717]/15 bg-[#f7f6f3]" channel="email" />;
@@ -191,15 +191,15 @@ export function Consultation() {
         </select>
         {err("property")}
       </div>
-      <div><label htmlFor="sn-area" className={lab}>AREA (M²)</label><input id="sn-area" inputMode="numeric" className={`${input} border-[#171717]/20`} value={v.area} onChange={(e) => setV({ ...v, area: e.target.value })} /></div>
+      <div><label htmlFor="sn-area" className={lab}>AREA (SQ FT)</label><input id="sn-area" inputMode="numeric" className={`${input} border-[#171717]/20`} value={v.area} onChange={(e) => setV({ ...v, area: e.target.value })} /></div>
       <div>
-        <label htmlFor="sn-budget" className={lab}>BUDGET (AUD)</label>
+        <label htmlFor="sn-budget" className={lab}>BUDGET (₹)</label>
         <select id="sn-budget" className={`${input} border-[#171717]/20`} value={v.budget} onChange={(e) => setV({ ...v, budget: e.target.value })}>
           <option value="">Choose…</option>
-          {["Under $50k", "$50k–$150k", "$150k–$400k", "$400k+"].map((o) => <option key={o}>{o}</option>)}
+          {["Under ₹10 lakh", "₹10–25 lakh", "₹25–60 lakh", "₹60 lakh+"].map((o) => <option key={o}>{o}</option>)}
         </select>
       </div>
-      <div className="md:col-span-2"><label htmlFor="sn-suburb" className={lab}>SUBURB</label><input {...a("suburb")} autoComplete="address-level2" className={`${input} ${bc("suburb")}`} value={v.suburb} onChange={(e) => setV({ ...v, suburb: e.target.value })} />{err("suburb")}</div>
+      <div className="md:col-span-2"><label htmlFor="sn-suburb" className={lab}>LOCALITY</label><input {...a("suburb")} autoComplete="address-level2" className={`${input} ${bc("suburb")}`} value={v.suburb} onChange={(e) => setV({ ...v, suburb: e.target.value })} />{err("suburb")}</div>
       <fieldset className="md:col-span-2" aria-describedby={errors.slot ? "sn-slot-e" : undefined}>
         <legend className={lab}>CONSULTATION SLOT (NEXT WEEK, IN STUDIO OR ON SITE)</legend>
         <div className="mt-3 flex flex-wrap gap-2">

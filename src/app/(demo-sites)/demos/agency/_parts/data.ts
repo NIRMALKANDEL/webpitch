@@ -7,11 +7,11 @@ export const BASE = "/demos/agency";
 
 export const studio = {
   name: "Hotwire Studio",
-  city: "Berlin",
+  city: "Indore",
   // Placeholder details: the .example domain can never receive email.
   email: "hello@hotwire.example",
-  address: "Studio address goes here, Berlin",
-  hours: "Monday to Friday, 9:00 to 18:00 CET",
+  address: "Studio address goes here, Indore",
+  hours: "Monday to Saturday, 10:00 to 19:00 IST",
 };
 
 export const nav = [
@@ -156,17 +156,17 @@ export const projects: Project[] = [
   },
   {
     slug: "fernweh",
-    client: "Fernweh Bikes",
+    client: "Ghumakkad Bikes",
     sector: "E-bike start-up",
     year: "2025",
     disciplines: ["Web", "Motion"],
     summary: "A product site where you can spin the bike, change its colour and see it ride.",
     challenge:
-      "Fernweh sells online only. People wanted to see the bike from every side before spending a month's salary on it.",
+      "Ghumakkad sells online only. People wanted to see the bike from every side before spending a month's salary on it.",
     idea:
       "Put a real-time 3D bike at the centre of the site. Visitors turn it, pick a colour and watch a short ride film that matches the colour they chose.",
     made: ["3D bike configurator", "Product films", "Comparison pages", "Test-ride booking"],
-    cover: { bg: "#232323", fg: "#D8FF3C", art: "wave", word: "Fernweh" },
+    cover: { bg: "#232323", fg: "#D8FF3C", art: "wave", word: "Ghumakkad" },
   },
   {
     slug: "mellow-fellow",
@@ -203,11 +203,11 @@ export type Member = { name: string; role: string; focus: string[]; bio: string;
 
 // Fictional people for the demo: no photos of real people are used.
 export const team: Member[] = [
-  { name: "Mara Lindqvist", role: "Creative director", focus: ["Brand strategy", "Art direction"], bio: "Leads the idea on every project and runs the first workshop.", hue: "pink" },
-  { name: "Tobi Adeyemi", role: "Design lead", focus: ["Identity", "Type"], bio: "Draws the logos and builds the type and colour systems.", hue: "lime" },
-  { name: "Ana Ferreira", role: "Lead developer", focus: ["Next.js", "Shopify"], bio: "Builds the websites and makes sure they load quickly on a phone.", hue: "violet" },
-  { name: "Jun Park", role: "Motion and 3D", focus: ["3D renders", "Animation"], bio: "Makes things move, from logo animations to product films.", hue: "mist" },
-  { name: "Lea Hoffmann", role: "Strategist", focus: ["Research", "Naming"], bio: "Talks to your customers before anyone opens a design file.", hue: "lime" },
+  { name: "Meera Lalwani", role: "Creative director", focus: ["Brand strategy", "Art direction"], bio: "Leads the idea on every project and runs the first workshop.", hue: "pink" },
+  { name: "Tanmay Agrawal", role: "Design lead", focus: ["Identity", "Type"], bio: "Draws the logos and builds the type and colour systems.", hue: "lime" },
+  { name: "Aanya Fernandes", role: "Lead developer", focus: ["Next.js", "Shopify"], bio: "Builds the websites and makes sure they load quickly on a phone.", hue: "violet" },
+  { name: "Jatin Parmar", role: "Motion and 3D", focus: ["3D renders", "Animation"], bio: "Makes things move, from logo animations to product films.", hue: "mist" },
+  { name: "Leena Holkar", role: "Strategist", focus: ["Research", "Naming"], bio: "Talks to your customers before anyone opens a design file.", hue: "lime" },
   { name: "Ravi Menon", role: "Producer", focus: ["Planning", "Budgets"], bio: "Keeps the timeline honest and your inbox free of surprises.", hue: "pink" },
 ];
 
@@ -255,7 +255,7 @@ export const posts: Post[] = [
     title: "Your system matters more than your logo",
     category: "Branding",
     date: "2026-08-27",
-    author: "Tobi Adeyemi",
+    author: "Tanmay Agrawal",
     excerpt: "People see your type, colours and layouts far more often than your logo. Design those first.",
     body: [
       { p: "Clients usually want to talk about the logo first. It's the most visible part of a brand, so that makes sense. But count how often a customer actually sees it compared with everything else you publish." },
@@ -272,7 +272,7 @@ export const posts: Post[] = [
     title: "Speed is a design feature",
     category: "Web",
     date: "2026-07-30",
-    author: "Ana Ferreira",
+    author: "Aanya Fernandes",
     excerpt: "A beautiful site that takes six seconds to load on a train is a beautiful site nobody sees.",
     body: [
       { p: "We design on large screens with fast connections. Most of your visitors are on a phone, half-way through a commute, with one bar of signal." },
@@ -290,7 +290,7 @@ export const posts: Post[] = [
     title: "Give every animation a job",
     category: "Motion",
     date: "2026-06-12",
-    author: "Jun Park",
+    author: "Jatin Parmar",
     excerpt: "Motion should explain what just happened. If it only decorates, cut it.",
     body: [
       { p: "Animation is the easiest way to make a website feel expensive, and the easiest way to make it feel tiring. The difference is whether each movement has a reason." },
@@ -307,7 +307,7 @@ export const posts: Post[] = [
     title: "Naming a product without losing a month",
     category: "Branding",
     date: "2026-05-21",
-    author: "Lea Hoffmann",
+    author: "Leena Holkar",
     excerpt: "A simple process for finding a name that's available, sayable and yours.",
     body: [
       { p: "Naming projects stall for one reason: every name gets judged on gut feeling alone. A few clear filters make the conversation much faster." },
@@ -322,7 +322,7 @@ export const posts: Post[] = [
     title: "What we check in launch week",
     category: "Web",
     date: "2026-04-09",
-    author: "Ana Ferreira",
+    author: "Aanya Fernandes",
     excerpt: "The short list we run through before any website goes live.",
     body: [
       { p: "Launch week is not the time for new ideas. It's the time to make sure what's there works for everyone who visits." },
@@ -357,7 +357,7 @@ export const categoryColor: Record<Category, Accent> = {
 export const faqs = [
   {
     q: "How much does a project cost?",
-    a: "Most identity-plus-website projects fall between €15k and €50k, depending on scope. After a short call we send a written plan with a fixed price, so there are no surprises.",
+    a: "Most identity-plus-website projects fall between ₹3 lakh and ₹10 lakh, depending on scope. After a short call we send a written plan with a fixed price, so there are no surprises.",
   },
   {
     q: "How long does it take?",
@@ -379,7 +379,7 @@ export const faqs = [
 
 export const callTimes = ["10:00", "11:30", "14:00", "16:00"];
 
-export const budgets = ["Under €10k", "€10k to €25k", "€25k to €50k", "Over €50k", "Not sure yet"];
+export const budgets = ["Under ₹2 lakh", "₹2 to 5 lakh", "₹5 to 10 lakh", "Over ₹10 lakh", "Not sure yet"];
 export const timelines = ["As soon as possible", "In 1 to 3 months", "In 3 to 6 months", "Just exploring"];
 
 /* ------------------------------------------------------------------ extra page content */
@@ -434,16 +434,16 @@ export const rhythm = [
 ];
 
 export const aboutFaqs = [
-  { q: "Where are you based?", a: "Berlin, with clients across Europe. Calls happen on video, and we visit for workshops when it helps." },
+  { q: "Where are you based?", a: "Indore, with clients across India. We meet in person in Indore and Bhopal, and on video everywhere else." },
   { q: "How many clients do you take on?", a: "Four to six projects a year, so each one gets the senior team's full attention." },
-  { q: "Do you work in languages other than English?", a: "We work in English and German. For other languages, we partner with native copywriters." },
+  { q: "Do you work in languages other than English?", a: "We work in English and Hindi. For other languages, we partner with native copywriters." },
 ];
 
 export const teamPhases = [
-  { phase: "Listen", people: ["Lea Hoffmann", "Mara Lindqvist"], text: "Research and the first workshop." },
-  { phase: "Define", people: ["Mara Lindqvist", "Tobi Adeyemi"], text: "The idea and the identity direction." },
-  { phase: "Make", people: ["Tobi Adeyemi", "Ana Ferreira", "Jun Park"], text: "Design, build and motion, in parallel." },
-  { phase: "Launch", people: ["Ana Ferreira", "Ravi Menon"], text: "Go-live, training and the 30-day fix window." },
+  { phase: "Listen", people: ["Leena Holkar", "Meera Lalwani"], text: "Research and the first workshop." },
+  { phase: "Define", people: ["Meera Lalwani", "Tanmay Agrawal"], text: "The idea and the identity direction." },
+  { phase: "Make", people: ["Tanmay Agrawal", "Aanya Fernandes", "Jatin Parmar"], text: "Design, build and motion, in parallel." },
+  { phase: "Launch", people: ["Aanya Fernandes", "Ravi Menon"], text: "Go-live, training and the 30-day fix window." },
 ];
 
 export const contactSteps = [

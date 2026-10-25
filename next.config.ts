@@ -50,6 +50,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   cacheComponents: true,
   partialPrefetching: true,
+  experimental: {
+    // Security-only upgrade prompts from the Next.js agent upgrade flow (set when upgrading 16.4.0 -> 16.4.3).
+    agentUpgrade: "security",
+  },
   turbopack: {
     rules: {
       "*.css": {

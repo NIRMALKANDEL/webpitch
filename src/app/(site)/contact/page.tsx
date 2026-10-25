@@ -9,7 +9,7 @@ import { waLink, waMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMeta({
   title: "Discuss your project",
-  description: "Tell me about your business and the website you need. I reply within 12 hours.",
+  description: `Tell me about your business and the website you need. Based in ${site.city}; I reply within 12 hours and can meet in person.`,
   path: "/contact",
   image: "contact",
 });
@@ -61,7 +61,7 @@ export default function ContactPage() {
             <ol className="mt-4 space-y-4">
               {[
                 ["I read your enquiry", "and look at your business and any current site."],
-                ["We have a free 20-minute call", "on WhatsApp, Meet or Zoom, at a time that suits you."],
+                ["We have a free 20-minute call", `on WhatsApp, Meet or Zoom, or in person in ${site.city}.`],
                 ["You get a fixed quote and date", "with no obligation to go ahead."],
               ].map(([t, d], i) => (
                 <li key={t} className="flex gap-3">

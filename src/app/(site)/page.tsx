@@ -11,6 +11,7 @@ import { FeatureTeaser } from "@/components/site/FeatureTeaser";
 import { Hero } from "@/components/site/Hero";
 import { PricingCards } from "@/components/site/PricingCards";
 import { Process } from "@/components/site/Process";
+import { Testimonials } from "@/components/site/Testimonials";
 import { homeFaq } from "@/data/faq";
 import { customApp, finePrint, pricingHeadline } from "@/data/pricing";
 import { industries } from "@/data/industries";
@@ -26,7 +27,7 @@ const deliverables = [
   { icon: Gauge, title: "Fast loading", text: "Optimised images and lean code, so visitors don't leave before it loads." },
   { icon: MessageCircle, title: "WhatsApp and call buttons", text: "One tap from interested to talking to you." },
   { icon: Inbox, title: "Forms that reach you", text: "Enquiry, booking and quote forms delivered to your inbox." },
-  { icon: MapPin, title: "Google Maps and basic SEO", text: "So people nearby can find you, and Google understands your site." },
+  { icon: MapPin, title: "Google Maps and local SEO", text: "So people nearby in your city find you on Google and Maps." },
   { icon: KeyRound, title: "You own everything", text: "Domain, hosting and content in your name. No lock-in." },
 ];
 
@@ -101,6 +102,8 @@ export default function HomePage() {
         <AboutMe />
       </section>
 
+      <Testimonials className="container-x pb-12 sm:pb-24" />
+
       <section className="container-x pb-12 sm:pb-24" aria-labelledby="deliver-title">
         <SectionHeading id="deliver-title" title="What every website includes" />
         <ul className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
@@ -123,7 +126,7 @@ export default function HomePage() {
           <SectionHeading
             id="pricing-title"
             title="Pick a plan that fits your business."
-            intro="Pricing is customised according to your requirements. Contact me to discuss your project."
+            intro="Starting prices in rupees, then a fixed written quote after a free call."
           />
           <div className="-mt-2 mb-6 rounded-[14px] bg-accent-soft p-5 ring-1 ring-accent/20 sm:-mt-4 sm:mb-10 sm:p-6">
             <p className="font-display text-2xl leading-tight font-semibold tracking-tight text-balance sm:text-3xl">
@@ -167,12 +170,34 @@ export default function HomePage() {
         <SectionHeading
           id="process-title"
           title="How I work"
-          intro="From first message to launch, usually in one to three weeks. Wherever you are, I keep overlap hours with your time zone."
+          intro={`From first message to launch, usually in one to three weeks. In ${site.city} we can meet in person; everywhere else, WhatsApp and video calls.`}
         />
         <Process />
         <p className="mt-6 flex items-center gap-2 text-sm text-ink-2">
           <Globe2 className="size-4 text-accent" aria-hidden /> {site.timezoneNote}
         </p>
+      </section>
+
+      <section className="container-x pb-12 sm:pb-24" aria-labelledby="local-title">
+        <div className="grid gap-6 rounded-[22px] bg-surface p-6 ring-1 ring-ink/10 sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-14">
+          <div>
+            <h2 id="local-title" className="font-display text-[28px] leading-[1.08] font-semibold tracking-tight text-balance sm:text-[40px]">
+              A web designer in {site.city}, not a call centre
+            </h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-ink-2 sm:text-lg">
+              I work with cafés, salons, clinics, coaching institutes and agencies across {site.city}, and with businesses across{" "}
+              {site.region} and India on WhatsApp and video calls.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <Link href="/web-design-indore" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 font-semibold text-paper transition hover:bg-ink/85">
+              Web design in {site.city} <ArrowRight className="size-4" aria-hidden />
+            </Link>
+            <Link href="/blog" className="inline-flex min-h-12 items-center rounded-full border border-ink/15 px-6 font-semibold transition hover:border-ink/40">
+              Read the blog
+            </Link>
+          </div>
+        </div>
       </section>
 
       <section className="container-x pb-12 sm:pb-24" aria-labelledby="faq-title">

@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronDown, Plus } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
 import { useId, useState } from "react";
 
 export type QA = { q: string; a: string };
@@ -63,24 +62,22 @@ export function FAQ({ items, variant = "plain" }: { items: QA[]; variant?: "plai
                 )}
               </button>
             </h3>
-            <AnimatePresence initial={false}>
-              {isOpen ? (
-                <motion.div
-                  id={`${base}-p${i}`}
-                  role="region"
-                  aria-labelledby={`${base}-b${i}`}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className="overflow-hidden"
-                >
-                  <p className={cards ? "max-w-3xl px-4 pb-4 text-sm leading-relaxed text-ink-2 sm:pr-16 sm:pb-6 sm:pl-[68px] sm:text-base" : "max-w-3xl pb-6 leading-relaxed text-ink-2"}>
-                    {it.a}
-                  </p>
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
+            {/* Every answer is always in the HTML (so search engines and Ctrl+F can read it); closed ones are only collapsed visually. */}
+            <div
+              id={`${base}-p${i}`}
+              role="region"
+              aria-labelledby={`${base}-b${i}`}
+              inert={!isOpen}
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className={cards ? "max-w-3xl px-4 pb-4 text-sm leading-relaxed text-ink-2 sm:pr-16 sm:pb-6 sm:pl-[68px] sm:text-base" : "max-w-3xl pb-6 leading-relaxed text-ink-2"}>
+                  {it.a}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}

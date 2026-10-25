@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -6,13 +7,15 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { BrowserFrame, IndustryCard, SectionHeading } from "@/components/site/Cards";
+import { FAQ } from "@/components/site/FAQ";
 import { NeedIcon } from "@/components/site/NeedIcon";
 import { PricingCards } from "@/components/site/PricingCards";
 import { demoPreview, demosForIndustry } from "@/data/demos";
 import { industries, industryBySlug } from "@/data/industries";
+import { industryContent } from "@/data/industry-content";
 import { site } from "@/data/site";
 import { unsplash } from "@/lib/media";
-import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
 import { waLink, waMessages } from "@/lib/whatsapp";
 
@@ -27,20 +30,22 @@ export async function generateMetadata({ params }: PageProps<"/industries/[slug]
   const { slug } = await params;
   const industry = industryBySlug(slug);
   if (!industry) return {};
+  const content = industryContent[industry.slug];
   return pageMeta({
-    title: `${industry.short} website design — live demo`,
-    description: `${industry.intro} See a live ${industry.short.toLowerCase()} website demo by ${site.brandName}.`,
+    title: content?.seoTitle ?? `${industry.short} website design in ${site.city} — live demo`,
+    description: content?.seoDescription ?? `${industry.intro} See a live ${industry.short.toLowerCase()} website demo by ${site.brandName}, ${site.city}.`,
     path: `/industries/${industry.slug}`,
     image: `industry-${industry.slug}`,
   });
 }
 
-export default async function IndustryPage({ params }: PageProps<"/industries/[slug]">) {
+async function IndustryPageBody({ params }: { params: PageProps<"/industries/[slug]">["params"] }) {
   const { slug } = await params;
   const industry = industryBySlug(slug);
   if (!industry) notFound();
   const list = demosForIndustry(industry.slug);
   const others = industries.filter((i) => i.slug !== industry.slug);
+  const content = industryContent[industry.slug];
 
   return (
     <>
@@ -152,12 +157,38 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
         </ul>
       </section>
 
+      {content ? (
+        <section className="container-x pb-16 sm:pb-20" aria-labelledby="guide-title">
+          <h2 id="guide-title" className="sr-only">{`${industry.short} websites in ${site.city}: a short guide`}</h2>
+          <div className="grid gap-10 lg:grid-cols-3 lg:gap-12">
+            {content.sections.map((sec) => (
+              <article key={sec.heading}>
+                <h3 className="font-display text-2xl leading-tight font-semibold tracking-tight">{sec.heading}</h3>
+                {sec.paragraphs.map((para) => (
+                  <p key={para.slice(0, 32)} className="mt-3 leading-relaxed text-ink-2">{para}</p>
+                ))}
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section className="border-y border-muted bg-alt py-16 sm:py-20" aria-labelledby="pkg-title">
         <div className="container-x">
-          <SectionHeading id="pkg-title" title="Packages" intro={`Most ${industry.short.toLowerCase()} businesses choose the highlighted package. Pricing is customised according to your requirements.`} />
+          <SectionHeading id="pkg-title" title="Packages" intro={`Most ${industry.short.toLowerCase()} businesses choose the highlighted package. Starting prices below; you get a fixed quote after a free call.`} />
           <PricingCards highlight={industry.recommended} />
         </div>
       </section>
+
+      {content ? (
+        <section className="container-x pt-16 sm:pt-20" aria-labelledby="ifaq-title">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.4fr] lg:gap-14">
+            <SectionHeading id="ifaq-title" title={`${industry.short} website questions`} />
+            <FAQ items={content.faq} variant="cards" />
+          </div>
+          <JsonLd data={faqSchema(content.faq)} />
+        </section>
+      ) : null}
 
       <section className="py-16 sm:py-20" aria-labelledby="others-title">
         <div className="container-x">
@@ -189,5 +220,17 @@ export default async function IndustryPage({ params }: PageProps<"/industries/[s
         </div>
       </section>
     </>
+  );
+}
+
+/**
+ * The page reads its slug inside <Suspense>, so client navigations can show the shell instantly
+ * (Next.js "instant navigation" validation). Every slug is still prerendered by generateStaticParams.
+ */
+export default function IndustryPage({ params }: PageProps<"/industries/[slug]">) {
+  return (
+    <Suspense fallback={<div className="container-x min-h-[70vh] py-12" aria-busy="true" />}>
+      <IndustryPageBody params={params} />
+    </Suspense>
   );
 }

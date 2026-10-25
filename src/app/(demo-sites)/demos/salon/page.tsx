@@ -13,7 +13,7 @@ const offers = [
 const reviews = [
   { n: "Kavya R.", t: "Riya understood exactly the balayage I wanted from one blurry photo. The booking took less than a minute." },
   { n: "Meher S.", t: "Calm, spotless and genuinely kind staff. My bridal trial made me cry happy tears." },
-  { n: "Ishita P.", t: "Best gel manicure in Bandra, and it lasted three weeks." },
+  { n: "Ishita P.", t: "Best gel manicure in Indore, and it lasted three weeks." },
 ];
 
 export default function SalonDemo() {
@@ -35,7 +35,7 @@ export default function SalonDemo() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm shadow-sm"><Star className="size-4 fill-[#BE185D] text-[#BE185D]" aria-hidden /> 4.9 average · sample rating</p>
             <h1 id="vr-h" className="mt-6 font-dd text-5xl leading-[1.05] md:text-7xl">Hair, skin and a little bit of calm.</h1>
-            <p className="mt-5 max-w-md text-lg text-[#831843]/75">A boutique studio on Hill Road, Bandra. Book online in three taps, any time of day.</p>
+            <p className="mt-5 max-w-md text-lg text-[#831843]/75">A boutique studio in Old Palasia, Indore. Book online in three taps, any time of day.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <BookButton className="min-h-13 rounded-full bg-[#BE185D] px-8 font-semibold text-white shadow-lg shadow-[#BE185D]/30">Book an appointment</BookButton>
               <a href="#services" className="inline-flex min-h-13 items-center rounded-full bg-white px-8 font-semibold">See prices</a>
@@ -107,13 +107,13 @@ export default function SalonDemo() {
             <div className="p-8 md:p-12">
               <h2 id="vr-v" className="font-dd text-4xl">Visit us</h2>
               <ul className="mt-6 space-y-4">
-                <li className="flex gap-3"><MapPin className="size-5 shrink-0 text-[#BE185D]" aria-hidden /> 2nd floor, 18 Hill Road, Bandra West, Mumbai (fictional)</li>
+                <li className="flex gap-3"><MapPin className="size-5 shrink-0 text-[#BE185D]" aria-hidden /> 2nd floor, 18 Old Palasia, Indore 452018 (fictional)</li>
                 <li className="flex gap-3"><Clock className="size-5 shrink-0 text-[#BE185D]" aria-hidden /> Tue–Sun, 10am–9pm · Mondays closed</li>
                 <li className="flex gap-3"><Car className="size-5 shrink-0 text-[#BE185D]" aria-hidden /> Valet parking available in the building</li>
               </ul>
               <BookButton className="mt-8 min-h-12 rounded-full bg-[#BE185D] px-7 font-semibold text-white">Book an appointment</BookButton>
             </div>
-            <iframe title="Map of Bandra West, Mumbai" src="https://www.google.com/maps?q=Hill+Road,+Bandra+West,+Mumbai&z=15&output=embed" loading="lazy" className="h-80 w-full border-0 md:h-full" />
+            <iframe title="Map of Old Palasia, Indore" src="https://www.google.com/maps?q=Old+Palasia,+Indore&z=15&output=embed" loading="lazy" className="h-80 w-full border-0 md:h-full" />
           </div>
         </section>
       </main>

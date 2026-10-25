@@ -3,12 +3,13 @@ import Link from "next/link";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { IndustryCard } from "@/components/site/Cards";
 import { industries } from "@/data/industries";
+import { site } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 import { waLink, waMessages } from "@/lib/whatsapp";
 
 export const metadata: Metadata = pageMeta({
-  title: "Website design by industry",
-  description: "Choose your industry and open a live website demo built for businesses like yours.",
+  title: `Website design by industry, ${site.city}`,
+  description: `Choose your industry and open a live website demo built for businesses like yours: cafés, salons, agencies, clinics, coaching and more. Built in ${site.city}.`,
   path: "/industries",
   image: "industries",
 });

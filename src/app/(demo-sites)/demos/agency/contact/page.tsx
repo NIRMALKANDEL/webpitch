@@ -7,7 +7,7 @@ import { accentBg, disp, FactPanel, Faq, gapAfterHead, h2, PageHero, section, Se
 
 export const metadata: Metadata = {
   title: "Contact — Hotwire Studio demo",
-  description: "How to reach Hotwire Studio: book a free call, send a project brief, or email the studio in Berlin. What happens after you get in touch.",
+  description: "How to reach Hotwire Studio: book a free call, send a project brief, or email the studio in Indore. What happens after you get in touch.",
 };
 
 const tile = "group flex h-full flex-col justify-between gap-6 rounded-[26px] p-6 text-left text-[#0B0B0D] transition duration-300 hover:-translate-y-1 md:gap-12 md:p-8";
@@ -26,8 +26,8 @@ export default function ContactPage() {
             items={[
               { label: "We reply in", value: "2 working days", color: "pink" },
               { label: "First call", value: "Free, 20 min", color: "lime" },
-              { label: "Languages", value: "English, German", color: "violet" },
-              { label: "Time zone", value: "Berlin (CET)", color: "mist" },
+              { label: "Languages", value: "English, Hindi", color: "violet" },
+              { label: "Time zone", value: "Indore (IST)", color: "mist" },
             ]}
           />
         }
@@ -87,7 +87,7 @@ export default function ContactPage() {
               {[
                 { icon: MapPin, text: studio.address },
                 { icon: Clock, text: studio.hours },
-                { icon: Globe, text: "Clients across Europe, on video" },
+                { icon: Globe, text: "Clients across India, in person or on video" },
               ].map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
                   <Icon className="mt-0.5 size-5 shrink-0 text-(--ink-pink)" aria-hidden />

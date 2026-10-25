@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import { demoPreview, demos } from "@/data/demos";
+import { packages } from "@/data/pricing";
+import { site } from "@/data/site";
 
 const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
 
@@ -16,7 +18,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 /** The rotating word in the headline, one per demo. */
 const who: Record<string, string> = {
-  restaurant: "restaurants",
+  restaurant: "cafés & restaurants",
   photography: "photographers",
   interior: "interior designers",
   salon: "salons & spas",
@@ -61,18 +63,21 @@ export function Hero() {
             transition={{ duration: 0.5, ease }}
           >
             <span className="size-2 rounded-full bg-volt shadow-[0_0_10px_var(--color-volt)]" aria-hidden />
-            Nirmal Kandel · independent web developer
+            Nirmal Kandel · web developer in Indore
           </motion.p>
 
-          <motion.h1
-            id="hero-title"
+          <motion.div
             className="mt-6 font-display text-[40px] leading-[1.02] font-semibold tracking-[-0.035em] sm:text-6xl lg:text-[72px]"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
           >
-            I build websites for{" "}
-            <span className="relative block h-[1.15em] overflow-hidden">
+            {/* The H1 is static so search engines always read the same keyword-rich heading. */}
+            <h1 id="hero-title">
+              Websites for {site.city}&apos;s
+              <span className="sr-only"> small businesses: cafés, salons, clinics, coaching institutes and agencies</span>
+            </h1>
+            <span aria-hidden className="relative block h-[1.15em] overflow-hidden">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span
                   key={demo.slug}
@@ -86,7 +91,7 @@ export function Hero() {
                 </motion.span>
               </AnimatePresence>
             </span>
-          </motion.h1>
+          </motion.div>
 
           {/* Phones/tablets: show a live demo right under the headline (the 3D carousel is desktop-only). */}
           <Link
@@ -117,7 +122,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease }}
           >
             Don&apos;t imagine your new website. <strong className="font-semibold text-ink">Open a live demo</strong> made for your
-            industry, click around, then I&apos;ll build yours.
+            industry, click around, then I&apos;ll build yours. Local, fast, and from ₹{packages[0].from.toLocaleString("en-IN")}.
           </motion.p>
 
           <motion.div
@@ -143,7 +148,7 @@ export function Hero() {
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-2 sm:mt-8">
             <li className="flex items-center gap-1.5"><Check className="size-4 text-accent" aria-hidden /> {demos.length} live demos</li>
             <li className="flex items-center gap-1.5">
-              <Check className="size-4 text-accent" aria-hidden /> Pricing tailored to your project
+              <Check className="size-4 text-accent" aria-hidden /> Fixed price, 50/50 payment
             </li>
             <li className="flex items-center gap-1.5"><Check className="size-4 text-accent" aria-hidden /> Launch in 1–3 weeks</li>
           </ul>

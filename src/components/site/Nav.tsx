@@ -14,9 +14,9 @@ import { ThemeToggle } from "./ThemeToggle";
 const links = [
   { href: "/demos", label: "Demos" },
   { href: "/industries", label: "Industries" },
-  { href: "/whats-possible", label: "What's possible" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/#process", label: "How I work" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Nav() {
@@ -72,7 +72,7 @@ export function Nav() {
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <Link href="/" className="group flex items-center gap-2.5" aria-label={`${site.brandName}, home`}>
           <span className="grid size-8 place-items-center rounded-lg bg-accent font-display text-[13px] font-extrabold tracking-tight text-on-accent">
-            NK
+            NB
           </span>
           <span className="leading-tight">
             <span className="block font-display text-[15px] font-bold tracking-tight whitespace-nowrap">{site.brandName}</span>

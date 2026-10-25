@@ -1,37 +1,61 @@
-# Nirmal Kandel — Website pitch platform
+# NirmalBuilds — web design for small businesses in Indore
 
 A portfolio site where small businesses open a **live demo website built for their industry**, then ask for one of their own.
 Next.js 16 (App Router, Cache Components) · Tailwind CSS v4 · Motion · React Three Fiber · Lucide · Web3Forms · Vercel.
 
-**Live site: https://webpitch.vercel.app** · Repository: https://github.com/NIRMALKANDEL/webpitch
+**Live site:** set `NEXT_PUBLIC_SITE_URL` to your domain (e.g. https://nirmalbuilds.com) · Repository: https://github.com/NIRMALKANDEL/webpitch
 
-| Page | Link |
+| Page | What it's for |
 |---|---|
-| Home (dark/light theme, live demo cards) | https://webpitch.vercel.app |
-| All demos | https://webpitch.vercel.app/demos |
-| Pricing | https://webpitch.vercel.app/pricing |
-| Contact (emails nirmalatlance@gmail.com) | https://webpitch.vercel.app/contact |
-| Developer portfolio | https://nirmal-portfolio-eta.vercel.app |
+| `/` | Homepage: static keyword H1, live demo cards, prices, about, process, FAQ, enquiry |
+| `/web-design-indore` | Local landing page for "web designer in Indore" searches |
+| `/pricing` | Starting prices in ₹ for every package, add-on and care plan |
+| `/industries/<slug>` | One page per industry; focus industries have long-form copy + FAQ schema |
+| `/about` | About Nirmal (Person schema, links to LinkedIn and GitHub) |
+| `/blog`, `/blog/<slug>` | Articles for business owners (BlogPosting schema) |
+| `/work` | Real client case studies (hidden from Google until the first one is added) |
+| `/for/<slug>` | Private personalised sample sites for outreach (noindex) |
+| `/demos`, `/demos/<slug>` | 14 fictional demo websites (noindex) |
 
-The full specification is in [`docs/SITE-SPEC.md`](docs/SITE-SPEC.md).
+The full original specification is in [`docs/SITE-SPEC.md`](docs/SITE-SPEC.md).
+
+## Everyday edits
+
+| To change… | Edit |
+|---|---|
+| Brand, city, WhatsApp, email, social links | `src/data/site.ts` |
+| Prices, packages, add-ons, care plans, payment terms | `src/data/pricing.ts` |
+| Real testimonials and case studies | `src/data/work.ts` |
+| Blog posts | `src/data/blog.ts` |
+| Personalised outreach demos | `src/data/prospects.ts` |
+| Long copy + FAQ for focus industries | `src/data/industry-content.ts` |
+| Industry cards and short copy | `src/data/industries.ts` |
+| Demo cards (names, cities, tags) | `src/data/demos.ts` |
+| Homepage FAQ | `src/data/faq.ts` |
+
+Social share images in `public/og/` were regenerated for the NirmalBuilds brand. If you change the domain or prices,
+regenerate them (or edit the text in any image editor) so link previews stay accurate.
 
 ## Live demos
 
-| Demo | Industry | Highlights |
+All demo businesses are fictional and set in India.
+
+| Demo | Industry (city) | Highlights |
 |---|---|---|
-| [Tamarind & Smoke](https://webpitch.vercel.app/demos/restaurant) | Restaurant (London) | 4K video hero, menu tabs, WhatsApp order cart, table booking |
-| [Kohl & Gold Studio](https://webpitch.vercel.app/demos/photography) | Wedding photography | 4K showreel, filterable portfolio, packages |
-| [Studio Neem](https://webpitch.vercel.app/demos/interior) | Interior design | 3D room planner (3 styles, furniture drops in), project modals, before/after slider |
-| [Velvet Rooms](https://webpitch.vercel.app/demos/salon) | Salon & spa | 3-step booking with running total |
-| [Harbourline Estates](https://webpitch.vercel.app/demos/real-estate) | Real estate | Drone video, immersive 3D tower with day/night, pull-out floor plans, EMI calculator |
-| [Apex Academy](https://webpitch.vercel.app/demos/coaching) | Coaching | Course filters, timetable, admission enquiry |
-| [Woodgrain & Co.](https://webpitch.vercel.app/demos/furniture) | Furniture | Live 3D chair configurator, quote list, room hotspots |
-| [Forgeline Industries](https://webpitch.vercel.app/demos/manufacturer) | Manufacturing (B2B) | 3D exploded part viewer, spec catalogue, bulk enquiry |
-| [Maison Ira](https://webpitch.vercel.app/demos/fashion) | Fashion | Video lookbook, scroll-driven gallery, bag + WhatsApp checkout |
-| [FixRight Home Services](https://webpitch.vercel.app/demos/home-services) | Home services (Toronto) | Postal code coverage checker, quote form |
-| [Pearl & Pine Dental](https://webpitch.vercel.app/demos/dental) | Dental clinic | Appointment scheduler with live time slots, dentist profiles |
-| [Kai Varma](https://webpitch.vercel.app/demos/portfolio) | Personal portfolio | Interactive 3D sculpture, tilt cards, scramble text, cursor glow |
-| [FIZZBOLT Energy](https://webpitch.vercel.app/demos/energy-drink) | Energy drink brand | 3D can with floating ingredients, flavour repaint, scroll-spin can, pack ordering |
+| [Tamarind & Smoke](/demos/restaurant) | restaurants (Indore) | 4K video hero, WhatsApp cart, Table booking |
+| [Velvet Rooms](/demos/salon) | salons (Indore) | 3-step booking, Price tabs, Offers |
+| [Hotwire Studio](/demos/agency) | agencies (Indore) | Interactive 3D hero, Case studies, Brief form |
+| [FixRight Home Services](/demos/home-services) | home-services (Indore) | PIN code checker, Sticky call bar, Quote form |
+| [Pearl & Pine Dental](/demos/dental) | clinics (Bhopal) | Appointment scheduler, Dentist profiles, Treatment prices |
+| [Apex Academy](/demos/coaching) | coaching (Kota) | Course filters, Timetable, Admission form |
+| [Harbourline Estates](/demos/real-estate) | real-estate (Kochi) | Drone video, 3D floor picker, EMI calculator |
+| [Studio Neem](/demos/interior) | interiors (Pune) | Before/after slider, Project modals, Consultation booking |
+| [Kohl & Gold Studio](/demos/photography) | photographers (Jaipur) | 4K showreel, Portfolio lightbox, Packages |
+| [Maison Ira](/demos/fashion) | fashion (Delhi) | Video lookbook, Quick view, Bag checkout |
+| [Woodgrain & Co.](/demos/furniture) | furniture (Jodhpur) | 3D configurator, Workshop film, Quote list |
+| [Forgeline Industries](/demos/manufacturer) | manufacturing (Ludhiana) | 3D part viewer, Spec catalogue, Bulk enquiry |
+| [Kai Varma](/demos/portfolio) | personal-brands (Bengaluru) | Interactive 3D hero, Tilt project cards, Scroll transitions |
+| [FIZZBOLT Energy](/demos/energy-drink) | beverages (Mumbai) | 3D can, Flavour switcher, Floating ingredients |
 
 Every demo has a floating demo bar: **All demos**, previous/next demo, a demo switcher (with Main website link),
 **Get a Website Like This**, and WhatsApp. It collapses to a small tab that keeps the **All demos** shortcut.
@@ -45,32 +69,6 @@ npm run dev
 ```
 
 `npm run build` creates the production build; `npm run lint` checks the code.
-
-## What's inside
-
-| Route | What it is |
-|---|---|
-| `/` | Homepage: 3D demo carousel, industries, featured demos, what's possible, about, pricing, process, FAQ, quick enquiry |
-| `/industries`, `/industries/[slug]` | 13 industry pages from one template |
-| `/demos` | All demos with an industry filter |
-| `/demos/<slug>` | 13 separate demo websites (see the table above) |
-| `/whats-possible` | Feature gallery with live 3D and video, "I want this" picker |
-| `/pricing` | Packages, comparison, add-ons, care plans (no prices shown; pricing is quoted per project) |
-| `/contact` | Enquiry form (prefilled from `?industry=&demo=&package=&features=`) |
-| `/privacy` | Privacy note |
-
-## Everyday edits
-
-| To change… | Edit |
-|---|---|
-| Name, WhatsApp number, email, photo, tagline | `src/data/site.ts` |
-| Packages, add-ons, care plans, payment notes | `src/data/pricing.ts` |
-| Industry copy and images | `src/data/industries.ts` |
-| Demo cards (names, tags, summaries) | `src/data/demos.ts` |
-| FAQ | `src/data/faq.ts` |
-| Features on /whats-possible | `src/data/features.ts` |
-
-**Your photo:** save it as `public/me.jpg` and set `photo: "/me.jpg"` in `src/data/site.ts`.
 
 ## How currency works
 
@@ -110,7 +108,7 @@ prefilled WhatsApp message instead. Free plan: 250 submissions/month.
 
 ## Deployment
 
-Deployed on Vercel as project `webpitch` (team *nirmalkandel's projects*): https://webpitch.vercel.app.
+Deployed on Vercel as project `webpitch`. Note: Vercel's free Hobby plan is for non-commercial use only; a business site needs the Pro plan (or another host).
 `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_WEB3FORMS_KEY` are set (enquiries go to nirmalatlance@gmail.com).
 
 The project is connected to this GitHub repository: every push to `master` deploys to production automatically.

@@ -21,7 +21,7 @@ export default function AgencyHome() {
         <div className={`${wrap} pointer-events-none flex min-h-150 flex-col justify-end pt-32 pb-16 md:h-[min(calc(100svh-4rem),780px)] md:justify-center md:py-0`}>
           <p className="hw-rise mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-(--line) bg-(--card)/70 px-3 py-1.5 text-sm backdrop-blur">
             <span aria-hidden className="size-2 rounded-full bg-(--lime) shadow-[0_0_12px_var(--lime)]" />
-            Independent studio in Berlin
+            Independent studio in Indore
           </p>
           <h1 id="hero-h" className={`${disp} text-[clamp(2.1rem,5.6vw,5rem)] leading-[1.04]`}>
             <span className="sr-only">Brand, web and motion for challenger brands.</span>

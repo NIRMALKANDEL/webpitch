@@ -9,10 +9,10 @@ import { BookFor, Scheduler } from "./_parts/Scheduler";
 const w = "mx-auto max-w-7xl px-4 md:px-8";
 const h2 = "font-dd text-4xl leading-tight md:text-6xl";
 const faq = [
-  { q: "Do you take my health fund?", a: "Yes. We have HICAPS on site, so your health fund rebate is claimed on the spot and you only pay the gap." },
+  { q: "Do you accept insurance or EMI?", a: "Yes. We help with cashless claims for most health insurers, and treatments over ₹10,000 can be paid in no-cost EMIs. UPI, cards and cash are all accepted." },
   { q: "I'm nervous about the dentist. Can you help?", a: "Tell us when you book. We'll give you a longer appointment, explain every step, and you can stop at any time. Happy-gas sedation is available." },
-  { q: "Do you see children?", a: "Yes, from their first tooth. Children under 18 may be eligible for the Child Dental Benefits Schedule." },
-  { q: "What if I need to cancel?", a: "Just reply to your SMS reminder at least 24 hours before your appointment. There's no fee." },
+  { q: "Do you see children?", a: "Yes, from their first tooth. Our paediatric visits are gentle, short and fun, with a small prize at the end." },
+  { q: "What if I need to cancel?", a: "Just reply to your WhatsApp reminder at least 24 hours before your appointment. There's no fee." },
 ];
 
 export default function DentalDemo() {
@@ -32,13 +32,13 @@ export default function DentalDemo() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full bg-[#F2F7F6] px-4 py-2 text-sm"><Star className="size-4 fill-[#3BA58B] text-[#3BA58B]" aria-hidden /> 4.9 from 1,200 patients · sample rating</p>
             <h1 id="pp-h" className="mt-6 font-dd text-5xl leading-[1.02] md:text-7xl">Gentle dentistry, booked in a minute.</h1>
-            <p className="mt-5 max-w-lg text-lg text-[#0B1F1C]/70">A calm, modern clinic in Surry Hills. See real appointment times, choose your dentist and confirm online, day or night.</p>
+            <p className="mt-5 max-w-lg text-lg text-[#0B1F1C]/70">A calm, modern clinic in Arera Colony, Bhopal. See real appointment times, choose your dentist and confirm online, day or night.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#book" className="inline-flex min-h-13 items-center rounded-full bg-[#1F4D45] px-7 font-medium text-white">See available times</a>
               <BookFor treatment="emergency" className="inline-flex min-h-13 items-center rounded-full bg-[#F2F7F6] px-7 font-medium">Emergency? Same-day care</BookFor>
             </div>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#0B1F1C]/70">
-              <li className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#3BA58B]" aria-hidden /> HICAPS health-fund claims</li>
+              <li className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#3BA58B]" aria-hidden /> Insurance & no-cost EMI</li>
               <li className="flex items-center gap-2"><HeartHandshake className="size-4 text-[#3BA58B]" aria-hidden /> Nervous patients welcome</li>
               <li className="flex items-center gap-2"><Clock className="size-4 text-[#3BA58B]" aria-hidden /> Open Saturdays</li>
             </ul>
@@ -56,7 +56,7 @@ export default function DentalDemo() {
 
         <section id="treatments" className={`${w} scroll-mt-24 py-16 md:py-24`} aria-labelledby="tr-h">
           <h2 id="tr-h" className={h2}>Treatments &amp; fees</h2>
-          <p className="mt-3 max-w-xl text-[#0B1F1C]/65">Transparent prices before you book. Health-fund rebates are claimed on the day.</p>
+          <p className="mt-3 max-w-xl text-[#0B1F1C]/65">Transparent prices before you book. Pay by UPI, card or no-cost EMI.</p>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {treatments.map((t) => (
               <li key={t.id} className="flex flex-col rounded-3xl bg-[#F2F7F6] p-6">
@@ -109,7 +109,7 @@ export default function DentalDemo() {
         <section className={`${w} py-16 md:py-24`} aria-labelledby="rv-h">
           <h2 id="rv-h" className={h2}>Patients say</h2>
           <ul className="mt-10 grid gap-4 md:grid-cols-3">
-            {[["Hannah, Redfern", "I hadn't been to a dentist in eight years. Dr. Patel was so patient I actually booked my next clean before leaving."], ["Luis, Surry Hills", "Booked a Saturday slot online at midnight with a cracked tooth. Sorted by lunchtime."], ["Priya, Newtown", "Clear prices, no upselling, and the whitening results are lovely."]].map(([n, t]) => (
+            {[["Sneha, MP Nagar", "I hadn't been to a dentist in eight years. Dr. Patel was so patient I actually booked my next clean before leaving."], ["Arjun, Arera Colony", "Booked a Saturday slot online at midnight with a cracked tooth. Sorted by lunchtime."], ["Priya, Kolar Road", "Clear prices, no upselling, and the whitening results are lovely."]].map(([n, t]) => (
               <li key={n} className="rounded-3xl bg-[#F2F7F6] p-6"><SampleTag /><p className="mt-3 text-lg">&ldquo;{t}&rdquo;</p><p className="mt-4 font-medium">{n}</p></li>
             ))}
           </ul>
@@ -120,16 +120,16 @@ export default function DentalDemo() {
             <div>
               <h2 id="vs-h" className={h2}>Visit us</h2>
               <ul className="mt-8 space-y-4">
-                <li className="flex gap-3"><MapPin className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> Level 1, 88 Crown Street, Surry Hills NSW 2010 (fictional)</li>
-                <li className="flex gap-3"><Phone className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> (02) 5550 1180 · display only</li>
+                <li className="flex gap-3"><MapPin className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> 1st floor, 88 E-5, Arera Colony, Bhopal 462016 (fictional)</li>
+                <li className="flex gap-3"><Phone className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> +91 98765 01180 · display only</li>
                 <li className="flex gap-3"><Mail className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> hello@example.com</li>
                 <li className="flex gap-3"><Clock className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> Mon–Fri 8am–6pm · Sat 8am–2pm</li>
-                <li className="flex gap-3"><Car className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> Two-hour street parking; Central Station 8 minutes&apos; walk</li>
+                <li className="flex gap-3"><Car className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> Free parking for patients; 10 minutes from Rani Kamlapati station</li>
                 <li className="flex gap-3"><Accessibility className="size-5 shrink-0 text-[#3BA58B]" aria-hidden /> Lift access and wheelchair-friendly surgery</li>
               </ul>
               <a href="#book" className="mt-8 inline-flex min-h-12 items-center rounded-full bg-[#1F4D45] px-6 font-medium text-white">Book online</a>
             </div>
-            <iframe title="Map of Surry Hills, Sydney" src="https://www.google.com/maps?q=Crown+Street,+Surry+Hills,+NSW&z=15&output=embed" loading="lazy" className="h-80 w-full rounded-3xl border-0 md:h-full" />
+            <iframe title="Map of Arera Colony, Bhopal" src="https://www.google.com/maps?q=Arera+Colony,+Bhopal&z=15&output=embed" loading="lazy" className="h-80 w-full rounded-3xl border-0 md:h-full" />
           </div>
         </section>
 

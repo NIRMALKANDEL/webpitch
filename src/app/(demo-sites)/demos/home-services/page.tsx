@@ -1,4 +1,4 @@
-import { BadgeCheck, CalendarCheck, Clock, DollarSign, Mail, MapPin, Phone, ShieldCheck, Star, Wrench } from "lucide-react";
+import { BadgeCheck, BadgeIndianRupee, CalendarCheck, Clock, Mail, MapPin, Phone, ShieldCheck, Star, Wrench } from "lucide-react";
 import Image from "next/image";
 import { DemoDisclaimer, SampleTag } from "@/components/shared/DemoShell";
 import { unsplash } from "@/lib/media";
@@ -15,7 +15,7 @@ export default function HomeServicesDemo() {
       <div className="bg-[#0F172A] text-sm text-white">
         <div className={`${w} flex h-10 items-center justify-between`}>
           <span className="flex items-center gap-2"><Clock className="size-4" aria-hidden /> Open 7 days · 8am–9pm</span>
-          <span className="hidden sm:inline">(416) 555-0182 · display only</span>
+          <span className="hidden sm:inline">+91 98765 50182 · display only</span>
         </div>
       </div>
       <header className="sticky top-0 z-40 bg-[#1E40AF] text-white shadow">
@@ -32,9 +32,9 @@ export default function HomeServicesDemo() {
           <Image src={unsplash("1570129477492-45c003edd2be")} alt="" fill priority sizes="100vw" className="object-cover opacity-20" />
           <div className={`${w} relative grid gap-10 py-16 md:grid-cols-[1.3fr_1fr] md:py-24`}>
             <div>
-              <p className="inline-block rounded bg-[#C2410C] px-3 py-1 font-dd text-lg font-bold uppercase">Same-day service across Toronto</p>
-              <h1 id="fx-h" className="mt-5 font-dd text-6xl leading-[0.92] font-extrabold uppercase md:text-8xl">Plumber, electrician or furnace repair — at your door today.</h1>
-              <p className="mt-5 max-w-lg text-lg text-white/85">Licensed technicians, upfront prices before we start, and a 90-day workmanship guarantee.</p>
+              <p className="inline-block rounded bg-[#C2410C] px-3 py-1 font-dd text-lg font-bold uppercase">Same-day service across Indore</p>
+              <h1 id="fx-h" className="mt-5 font-dd text-6xl leading-[0.92] font-extrabold uppercase md:text-8xl">Plumber, electrician or AC repair — at your door today.</h1>
+              <p className="mt-5 max-w-lg text-lg text-white/85">Verified technicians, upfront prices before we start, and a 90-day workmanship guarantee.</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#quote" className="inline-flex min-h-13 items-center rounded-lg bg-[#C2410C] px-7 font-dd text-xl font-bold uppercase">Get a free quote</a>
                 <CallButton className="inline-flex min-h-13 items-center gap-2 rounded-lg bg-white px-7 font-dd text-xl font-bold text-[#1E40AF] uppercase"><Phone className="size-5" aria-hidden /> Call now</CallButton>
@@ -46,7 +46,7 @@ export default function HomeServicesDemo() {
 
         <section className="border-b border-slate-200 bg-[#EFF6FF]" aria-label="Why choose us">
           <ul className={`${w} grid grid-cols-2 gap-4 py-6 md:grid-cols-4`}>
-            {[[ShieldCheck, "Licensed & insured"], [DollarSign, "Upfront pricing"], [BadgeCheck, "90-day guarantee"], [Star, "4.8 average · sample rating"]].map(([I, t]) => {
+            {[[ShieldCheck, "Verified & insured"], [BadgeIndianRupee, "Upfront pricing"], [BadgeCheck, "90-day guarantee"], [Star, "4.8 average · sample rating"]].map(([I, t]) => {
               const Icon = I as typeof ShieldCheck;
               return <li key={t as string} className="flex items-center gap-2 font-semibold"><Icon className="size-6 shrink-0 text-[#1E40AF]" aria-hidden /> {t as string}</li>;
             })}
@@ -62,7 +62,7 @@ export default function HomeServicesDemo() {
                 <div className="flex flex-1 flex-col p-4">
                   <h3 className="font-dd text-2xl font-bold uppercase">{s.name}</h3>
                   <p className="text-sm text-slate-600">{s.text}</p>
-                  <p className="mt-2 font-semibold">Service call from C${s.from}</p>
+                  <p className="mt-2 font-semibold">Visit from ₹{s.from}</p>
                   <div className="mt-auto"><ServiceQuoteLink name={s.name} /></div>
                 </div>
               </li>
@@ -93,7 +93,7 @@ export default function HomeServicesDemo() {
               ))}
             </div>
           </div>
-          <div className="relative min-h-80 overflow-hidden rounded-xl"><Image src={unsplash("1603466182843-75f713ba06b3")} alt="Aerial view of Toronto's waterfront" fill sizes="(min-width:768px) 45vw, 92vw" className="object-cover" /></div>
+          <div className="relative min-h-80 overflow-hidden rounded-xl"><Image src={unsplash("1522832712787-3fbd36c9fe2d")} alt="A FixRight technician at work" fill sizes="(min-width:768px) 45vw, 92vw" className="object-cover" /></div>
         </section>
 
         <section id="pricing" className="scroll-mt-20 bg-[#EFF6FF] py-16 md:py-24" aria-labelledby="pr-h">
@@ -103,14 +103,14 @@ export default function HomeServicesDemo() {
               <caption className="sr-only">Indicative prices</caption>
               <tbody>{JOBS.map(([j, p]) => <tr key={j} className="border-b border-slate-200 last:border-0"><th scope="row" className="p-4 font-semibold">{j}</th><td className="p-4 text-right font-dd text-2xl font-bold text-[#1E40AF]">{p}</td></tr>)}</tbody>
             </table>
-            <p className="mt-3 text-sm text-slate-600">Indicative prices including labour. Parts extra. HST applies.</p>
+            <p className="mt-3 text-sm text-slate-600">Indicative prices including labour and GST. Parts extra.</p>
           </div>
         </section>
 
         <section className={`${w} py-16 md:py-24`} aria-labelledby="rv-h">
           <h2 id="rv-h" className={h2}>Neighbours say</h2>
           <ul className="mt-8 grid gap-4 md:grid-cols-3">
-            {[["Jenna, Leslieville", "Burst pipe at 7pm on a Sunday. They were here in 50 minutes and told me the price before touching anything."], ["Raj, North York", "Furnace died during a cold snap. Fixed the same afternoon, and the tech explained everything."], ["Marco, High Park", "Booked online for three small jobs. One visit, all done, fair price."]].map(([n, t]) => (
+            {[["Neha, Vijay Nagar", "Burst pipe at 7pm on a Sunday. They were here in 50 minutes and told me the price before touching anything."], ["Raj, Palasia", "AC stopped cooling in the middle of May. Fixed the same afternoon, and the tech explained everything."], ["Mohit, Annapurna", "Booked online for three small jobs. One visit, all done, fair price."]].map(([n, t]) => (
               <li key={n} className="rounded-xl border-2 border-slate-200 p-6"><SampleTag className="text-[#0F172A]" /><p className="mt-3 text-lg">&ldquo;{t}&rdquo;</p><p className="mt-4 font-bold">{n}</p></li>
             ))}
           </ul>
@@ -122,9 +122,9 @@ export default function HomeServicesDemo() {
               <h2 id="qt-h" className={h2}>Free quote</h2>
               <p className="mt-4 text-lg text-white/85">Tell us what&apos;s wrong. We reply within 15 minutes during opening hours.</p>
               <ul className="mt-8 space-y-3">
-                <li className="flex items-center gap-3"><Phone className="size-5 text-[#fdba74]" aria-hidden /> (416) 555-0182 (display only)</li>
+                <li className="flex items-center gap-3"><Phone className="size-5 text-[#fdba74]" aria-hidden /> +91 98765 50182 (display only)</li>
                 <li className="flex items-center gap-3"><Mail className="size-5 text-[#fdba74]" aria-hidden /> help@example.com</li>
-                <li className="flex items-center gap-3"><MapPin className="size-5 text-[#fdba74]" aria-hidden /> 220 Carlaw Ave, Toronto ON (fictional)</li>
+                <li className="flex items-center gap-3"><MapPin className="size-5 text-[#fdba74]" aria-hidden /> 22 Scheme 78, Vijay Nagar, Indore 452010 (fictional)</li>
                 <li className="flex items-center gap-3"><CalendarCheck className="size-5 text-[#fdba74]" aria-hidden /> 7 days, 8am–9pm</li>
               </ul>
             </div>

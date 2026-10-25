@@ -200,7 +200,7 @@ export function BookCallDialog() {
         {done ? (
           <div className="mt-6" role="status">
             <p className="rounded-2xl bg-(--lime) p-4 font-semibold text-[#0B0B0D]">
-              {chosen ? `${chosen.day} ${chosen.date}` : ""} at {v.time} (Berlin time), with {v.name.split(" ")[0] || "you"}.
+              {chosen ? `${chosen.day} ${chosen.date}` : ""} at {v.time} (IST), with {v.name.split(" ")[0] || "you"}.
             </p>
             <p className="mt-4 text-(--muted)">
               This is a demo, so nothing was booked and no email was sent. On a real site, a calendar invite would arrive at{" "}
@@ -232,7 +232,7 @@ export function BookCallDialog() {
             </fieldset>
             <fieldset>
               <legend className="font-semibold">
-                Time <span className="font-normal text-(--muted)">(Berlin time)</span>
+                Time <span className="font-normal text-(--muted)">(IST)</span>
               </legend>
               <div className="mt-2 grid grid-cols-4 gap-1.5" aria-describedby={errors.time ? "bk-time-e" : undefined}>
                 {callTimes.map((t) => (

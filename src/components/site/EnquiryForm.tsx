@@ -7,7 +7,7 @@ import { useCurrency } from "@/components/shared/currency-store";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { demoBySlug } from "@/data/demos";
 import { industries, industryBySlug } from "@/data/industries";
-import { packages } from "@/data/pricing";
+import { carePlans, inr, packages } from "@/data/pricing";
 import { site } from "@/data/site";
 import type { Currency } from "@/lib/currency";
 import { track } from "@/lib/analytics";
@@ -26,28 +26,15 @@ const CURRENCY_COUNTRY: Partial<Record<Currency, string>> = {
   NZD: "New Zealand",
   EUR: "Ireland",
 };
-const WEBSITE_TYPES = [
-  "Starter single-page website",
-  "Business multi-page website",
-  "Premium custom website",
-  "Online store",
-  "Website redesign",
-  "Care plan / maintenance",
-  "Not sure yet",
-];
+/** Built from the packages in src/data/pricing.ts, so names and prices always match the pricing cards. */
+const PACKAGE_TYPES = packages.map((p) => `${p.name} (from ${inr(p.from)})`);
+const WEBSITE_TYPES = [...PACKAGE_TYPES, "Website redesign", "Custom web application", "Care plan / maintenance", "Not sure yet"];
 const PKG_TO_TYPE: Record<string, string> = {
-  starter: WEBSITE_TYPES[0],
-  business: WEBSITE_TYPES[1],
-  premium: WEBSITE_TYPES[2],
-  store: WEBSITE_TYPES[3],
-  redesign: WEBSITE_TYPES[4],
+  ...Object.fromEntries(packages.map((p, i) => [p.id, PACKAGE_TYPES[i]])),
+  redesign: "Website redesign",
+  ...Object.fromEntries(carePlans.map((c) => [c.id, "Care plan / maintenance"])),
 };
-const BUDGETS = [
-  "Keep it simple and lean",
-  "A solid mid-range website",
-  "A premium, fully custom build",
-  "Flexible for the right result",
-];
+const BUDGETS = ["Under ₹10,000", "₹10,000–25,000", "₹25,000–50,000", "₹50,000–1 lakh", "Over ₹1 lakh", "Not sure yet"];
 const TIMELINES = ["As soon as possible", "Within 2 weeks", "Within a month", "In 1–3 months", "Just exploring"];
 
 type Field =
@@ -299,7 +286,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
               </>
             ) : prefill.package ? (
               <>
-                You&apos;re asking about the <strong>{packages.find((p) => p.id === prefill.package)?.name ?? prefill.package}</strong> package.
+                You&apos;re asking about the <strong>{packages.find((p) => p.id === prefill.package)?.name ?? carePlans.find((c) => c.id === prefill.package)?.name ?? prefill.package}</strong> {carePlans.some((c) => c.id === prefill.package) ? "care plan" : "package"}.
               </>
             ) : (
               <>
@@ -341,7 +328,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
         </div>
         <div>
           <label htmlFor={`${id}-phone`} className={label}>WhatsApp / phone <span className="font-normal text-ink-3">(with country code)</span></label>
-          <input {...a11y("phone")} type="tel" inputMode="tel" autoComplete="tel" placeholder="+44 7700 900123" className={cls("phone")} value={String(values.phone)} onChange={(e) => set("phone", e.target.value)} />
+          <input {...a11y("phone")} type="tel" inputMode="tel" autoComplete="tel" placeholder="+91 98765 43210" className={cls("phone")} value={String(values.phone)} onChange={(e) => set("phone", e.target.value)} />
           {err("phone")}
         </div>
         {full ? (
@@ -409,7 +396,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
             </div>
             <div>
               <label htmlFor={`${id}-website`} className={label}>Current website <span className="font-normal text-ink-3">(if any)</span></label>
-              <input {...a11y("website")} inputMode="url" placeholder="yourbusiness.com" className={cls("website")} value={String(values.website)} onChange={(e) => set("website", e.target.value)} />
+              <input {...a11y("website")} inputMode="url" placeholder="yourbusiness.in" className={cls("website")} value={String(values.website)} onChange={(e) => set("website", e.target.value)} />
               {err("website")}
             </div>
           </div>

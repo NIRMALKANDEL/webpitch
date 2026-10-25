@@ -25,16 +25,16 @@ const links = [
   ["#visit", "Visit"],
 ] as const;
 
-/** Day and time in London, re-read every minute. */
-function londonNow() {
-  const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", weekday: "long", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+/** Day and time in Indore (IST), re-read every minute. */
+function indoreNow() {
+  const parts = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Kolkata", weekday: "long", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
   const get = (t: string) => parts.find((p) => p.type === t)!.value;
   return `${get("weekday")}|${get("hour")}:${get("minute")}`;
 }
 const tick = everyMs(60000);
 
 function useOpenStatus() {
-  const now = useClientValue(londonNow, tick);
+  const now = useClientValue(indoreNow, tick);
   if (!now) return null;
   const [day, time] = now.split("|");
   const today = hours.find((h) => h.day === day)!;
@@ -54,7 +54,7 @@ export function OpenNow({ className = "" }: { className?: string }) {
 }
 
 export function TodayHours() {
-  const today = useClientValue(londonNow, tick)?.split("|")[0] ?? null;
+  const today = useClientValue(indoreNow, tick)?.split("|")[0] ?? null;
   return (
     <table className="w-full text-[15px]">
       <caption className="sr-only">Opening hours</caption>
@@ -191,7 +191,7 @@ export function DishReveal() {
           <p className="text-lg font-bold text-[#E3A21A]">The one to order</p>
           <h2 id="sig-title" className="mt-3 font-dd text-5xl leading-[1.02] md:text-7xl">Laal maas</h2>
           <p className="mt-5 max-w-md text-lg text-white/75">Served as a full thali. Drag the plate to spin it. 
-            A Rajasthani hunters&apos; curry, made our way: fiery, smoky and worth the wait. £17.50, serves one generously.
+            A Rajasthani hunters&apos; curry, made our way: fiery, smoky and worth the wait. ₹499, serves one generously.
           </p>
           <ul className="mt-8 space-y-3">
             {ingredients.map((i, n) => (

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
 import { waLink } from "@/lib/whatsapp";
-import { gbp, menu } from "./data";
+import { inr, menu } from "./data";
 
 type Ctx = {
   items: Record<string, number>;
@@ -91,9 +91,9 @@ function CartDrawer() {
   const message = [
     "[Demo order from Tamarind & Smoke website]",
     "",
-    ...lines.map((l) => `${l.qty} × ${l.item.name} — ${gbp(l.item.price * l.qty)}`),
+    ...lines.map((l) => `${l.qty} × ${l.item.name} — ${inr(l.item.price * l.qty)}`),
     "",
-    `Total: ${gbp(total)}`,
+    `Total: ${inr(total)}`,
     `Name: ${name || "—"}`,
     `Delivery address: ${address || "—"}`,
   ].join("\n");
@@ -131,7 +131,7 @@ function CartDrawer() {
                     <li key={item.id} className="flex items-center justify-between gap-3 py-3">
                       <div>
                         <p className="font-semibold">{item.name}</p>
-                        <p className="text-sm text-black/60">{gbp(item.price)}</p>
+                        <p className="text-sm text-black/60">{inr(item.price)}</p>
                       </div>
                       <div className="flex items-center gap-2">
                         <button type="button" onClick={() => dec(item.id)} className="grid size-9 place-items-center rounded-full border border-black/15" aria-label={`Remove one ${item.name}`}>
@@ -162,7 +162,7 @@ function CartDrawer() {
             </div>
             <div className="border-t border-black/10 p-5">
               <p className="flex justify-between text-lg font-semibold">
-                <span>Total</span> <span>{gbp(total)}</span>
+                <span>Total</span> <span>{inr(total)}</span>
               </p>
               <p className="mt-2 text-xs text-black/55">
                 Demo: this sends a sample order to the website developer on WhatsApp, labelled as a demo. On your live site it goes to your own number.

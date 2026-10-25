@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { industries } from "@/data/industries";
-import { site } from "@/data/site";
+import { caseStudies } from "@/data/work";
+import { site, socialLinks } from "@/data/site";
 import { waLink, waMessages } from "@/lib/whatsapp";
 import { CookiePreferencesLink } from "./CookieConsent";
 
@@ -30,9 +31,12 @@ export function Footer() {
           <ul className="mt-3 space-y-1.5 text-sm text-white/70">
             {[
               ["/demos", "Live demos"],
-              ["/whats-possible", "What's possible"],
+              ["/web-design-indore", "Web design in Indore"],
               ["/pricing", "Pricing"],
-              ["/#process", "How I work"],
+              ["/about", "About me"],
+              ...(caseStudies.length ? [["/work", "Client work"]] : []),
+              ["/blog", "Blog"],
+              ["/whats-possible", "What's possible"],
               ["/contact", "Contact"],
               ["/privacy", "Privacy"],
               ["/terms", "Terms & Conditions"],
@@ -60,16 +64,25 @@ export function Footer() {
                 {site.email}
               </a>
             </li>
-            <li>Based in {site.basedIn} · working with clients worldwide</li>
+            <li>Based in {site.basedIn} · working with businesses across India</li>
+            {socialLinks.length ? (
+              <li className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
+                {socialLinks.map((s) => (
+                  <a key={s.key} href={s.url} target="_blank" rel="noopener noreferrer me" className="capitalize hover:text-white hover:underline">
+                    {s.key === "linkedin" ? "LinkedIn" : s.key === "github" ? "GitHub" : s.key === "googleBusiness" ? "Google reviews" : s.key}
+                  </a>
+                ))}
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col gap-1 py-4 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>All demo websites are concept designs for fictional businesses.</p>
+          <p>Live demos are concept designs for fictional businesses.</p>
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <CookiePreferencesLink className="hover:text-white hover:underline" />
-            <span>© 2026 {site.brandName}</span>
+            <span>© 2026 {site.brandName} · {site.ownerName}</span>
           </p>
         </div>
       </div>

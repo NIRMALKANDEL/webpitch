@@ -12,20 +12,20 @@ export const metadata: Metadata = pageMeta({
 });
 
 /*
- * Replace the [bracketed] placeholders below with your real business details before publishing.
+ * Business details come from src/data/site.ts. Have a lawyer review these terms before relying on them.
  */
 export default function TermsPage() {
   const link = "font-medium text-ink underline underline-offset-2";
   return (
     <article className="container-x max-w-3xl py-12 sm:py-20">
       <h1 className="font-display text-5xl leading-[1] font-semibold tracking-tight">Terms &amp; Conditions</h1>
-      <p className="mt-3 text-sm text-ink-3">Last updated 14 October 2026</p>
+      <p className="mt-3 text-sm text-ink-3">Last updated 25 October 2026</p>
       <div className="mt-10 space-y-8 text-lg leading-relaxed text-ink-2 [&_h2]:mb-2 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-ink [&_li]:mt-1.5 [&_ul]:list-disc [&_ul]:pl-6">
         <section>
           <h2>1. About these terms</h2>
           <p>
-            These terms apply to website design and development services provided by {site.ownerName} ([Registered business name, if
-            any]), [Business address] (&ldquo;I&rdquo;, &ldquo;me&rdquo;), to you, the client. By accepting a quote or paying an advance,
+            These terms apply to website design and development services provided by {site.ownerName}, trading as {site.brandName},{" "}
+            {site.city}, {site.region}, {site.country} (&ldquo;I&rdquo;, &ldquo;me&rdquo;), to you, the client. By accepting a quote or paying an advance,
             you agree to these terms. If a written quote or agreement for your project says something different, that document takes
             priority for your project.
           </p>
@@ -42,11 +42,11 @@ export default function TermsPage() {
           <h2>3. Prices and quotations</h2>
           <ul>
             <li>
-              Pricing is customised for each project. The final price depends on your requirements and is confirmed in a written
-              quote.
+              Prices shown on this website are starting prices. The final price depends on your requirements and is confirmed in a
+              written quote.
             </li>
             <li>Custom web applications are quoted individually based on project requirements.</li>
-            <li>A quote is valid for [30] days from the date it is sent, unless it says otherwise.</li>
+            <li>A quote is valid for 30 days from the date it is sent, unless it says otherwise.</li>
             <li>
               Your quote states the currency and amount you will pay.{" "}
               {finePrint.taxNote}
@@ -61,7 +61,7 @@ export default function TermsPage() {
               Paying from India: {finePrint.paymentIndia} {finePrint.paymentInternational}
             </li>
             <li>
-              The website goes live, and files and access are handed over, once the full amount is paid. Invoices are due within [7] days
+              The website goes live, and files and access are handed over, once the full amount is paid. Invoices are due within 7 days
               of being sent.
             </li>
             <li>Any bank, transfer or currency-conversion charges on your side are paid by you.</li>
@@ -73,7 +73,7 @@ export default function TermsPage() {
             Delivery times shown on this website are typical estimates. Your quote gives the expected timeline for your project, which
             starts once I have received both the advance and the content I need from you (text, photos, logo and business details).
             Delays in sending content, feedback or approvals will move the delivery date. If a project is on hold waiting for you for more
-            than [30] days, I may schedule it after other work already booked.
+            than 30 days, I may schedule it after other work already booked.
           </p>
         </section>
         <section>
@@ -93,7 +93,7 @@ export default function TermsPage() {
               been completed than the advance covers, the completed work is billed at a fair proportion of the quoted price.
             </li>
             <li>Payments for domains, hosting and other third-party services cannot be refunded by me once purchased.</li>
-            <li>Refunds, where due, are made by the original payment method within [14] days.</li>
+            <li>Refunds, where due, are made by the original payment method within 14 days.</li>
           </ul>
         </section>
         <section>
@@ -122,7 +122,7 @@ export default function TermsPage() {
         <section>
           <h2>11. Maintenance and support</h2>
           <p>
-            After launch, I will fix bugs in the work I delivered that are reported within [15] days, at no extra cost. Ongoing updates,
+            After launch, I will fix bugs in the work I delivered that are reported within 15 days, at no extra cost. Ongoing updates,
             backups and content edits are not included in the build price; they are available through an optional monthly care plan (see{" "}
             <Link className={link} href="/pricing#care">care plans</Link>) or as separately quoted one-off work.
           </p>
@@ -152,14 +152,14 @@ export default function TermsPage() {
           <h2>15. Applicable law</h2>
           <p>
             These terms are governed by the laws of India. Any dispute will first be discussed in good faith, and if it cannot be resolved,
-            it will be subject to the jurisdiction of the courts at [City, State].
+            it will be subject to the jurisdiction of the courts at {site.city}, {site.region}.
           </p>
         </section>
         <section>
           <h2>16. Contact</h2>
           <p>
             Questions about these terms? Email <a className={link} href={`mailto:${site.email}`}>{site.email}</a> or message me on
-            WhatsApp at {site.phoneDisplay}. Postal address: [Business address].
+            WhatsApp at {site.phoneDisplay}. Based in {site.city}, {site.region}, {site.country}.
           </p>
         </section>
       </div>

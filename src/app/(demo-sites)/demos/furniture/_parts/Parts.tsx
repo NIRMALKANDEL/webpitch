@@ -10,7 +10,7 @@ import { Scene3DGate } from "@/components/shared/Scene3DGate";
 import { FABRICS, WOODS, type Fabric, type Wood } from "@/components/three/constants";
 import { unsplash } from "@/lib/media";
 import { type Errors, hasErrors, validate } from "@/lib/validate";
-import { collections, products, usd, type Product } from "./data";
+import { collections, products, inr, type Product } from "./data";
 
 const ChairScene = dynamic(() => import("@/components/three/ChairScene"), { ssr: false });
 
@@ -83,7 +83,7 @@ export function Configurator() {
             ))}
           </div>
         </fieldset>
-        <p className="mt-6 font-dd text-3xl">{usd(1290 + (wood === "walnut" ? 0 : -120) + (fabric === "ochre" ? 90 : 0))}</p>
+        <p className="mt-6 font-dd text-3xl">{inr(34900 + (wood === "walnut" ? 0 : -3000) + (fabric === "ochre" ? 2000 : 0))}</p>
         <button type="button" onClick={() => add("p1")} className="mt-4 min-h-12 rounded-full bg-[#6B4226] px-6 font-semibold text-white sm:self-start">Add to quote list</button>
       </div>
     </div>
@@ -111,7 +111,7 @@ export function Catalogue() {
   const [wood, setWood] = useState("All");
   const [sort, setSort] = useState("featured");
   const [view, setView] = useState<Product | null>(null);
-  const [cm, setCm] = useState(false);
+  const [cm, setCm] = useState(true);
   let list = products.filter((p) => (col === "All" || p.col === col) && (wood === "All" || p.wood === wood));
   if (sort === "low") list = [...list].sort((a, b) => a.price - b.price);
   if (sort === "high") list = [...list].sort((a, b) => b.price - a.price);
@@ -143,7 +143,7 @@ export function Catalogue() {
                   <span className="absolute top-3 left-3 rounded-full bg-[#A3B18A] px-2.5 py-1 text-xs font-semibold">{p.wood}</span>
                 </div>
                 <p className="mt-3 font-dd text-lg">{p.name}</p>
-                <p className="text-sm text-[#1C1917]/65">from {usd(p.price)}</p>
+                <p className="text-sm text-[#1C1917]/65">from {inr(p.price)}</p>
               </button>
             </motion.li>
           ))}
@@ -159,8 +159,8 @@ export function Catalogue() {
                   <h3 className="font-dd text-3xl">{view.name}</h3>
                   <button type="button" autoFocus onClick={() => setView(null)} className="grid size-10 place-items-center rounded-full hover:bg-black/5" aria-label="Close"><X className="size-5" /></button>
                 </div>
-                <p className="mt-2 font-dd text-2xl">from {usd(view.price)}</p>
-                <p className="mt-4 text-[#1C1917]/70">Solid {view.wood.toLowerCase()}, finished with hard-wax oil. Made to order in our Austin workshop in 6–8 weeks.</p>
+                <p className="mt-2 font-dd text-2xl">from {inr(view.price)}</p>
+                <p className="mt-4 text-[#1C1917]/70">Solid {view.wood.toLowerCase()}, finished with hard-wax oil. Made to order in our Jodhpur workshop in 4–6 weeks.</p>
                 <div className="mt-6 flex items-center justify-between">
                   <p className="text-sm font-semibold">Dimensions</p>
                   <button type="button" onClick={() => setCm(!cm)} className="text-sm underline" aria-pressed={cm}>Show in {cm ? "inches" : "cm"}</button>
@@ -205,7 +205,7 @@ export function RoomHotspots() {
             return (
               <motion.div key={active} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute hidden w-56 rounded-2xl bg-white p-4 shadow-xl md:block" style={{ left: `min(${s.x}%, calc(100% - 15rem))`, top: `calc(${s.y}% + 28px)` }}>
                 <p className="font-dd text-lg">{p.name}</p>
-                <p className="text-sm text-[#1C1917]/60">from {usd(p.price)}</p>
+                <p className="text-sm text-[#1C1917]/60">from {inr(p.price)}</p>
                 <button type="button" onClick={() => add(p.id)} className="mt-3 min-h-10 w-full rounded-full bg-[#1C1917] text-sm font-semibold text-white">Add to quote</button>
               </motion.div>
             );
@@ -218,7 +218,7 @@ export function RoomHotspots() {
           return (
             <li key={s.id} className={`flex items-center gap-3 rounded-2xl bg-white p-3 ${active === s.id ? "ring-2 ring-[#6B4226]" : ""}`}>
               <div className="relative size-16 shrink-0 overflow-hidden rounded-xl"><Image src={unsplash(p.img)} alt="" fill sizes="64px" className="object-cover" /></div>
-              <div className="flex-1"><p className="font-dd">{p.name}</p><p className="text-sm text-[#1C1917]/60">{usd(p.price)}</p></div>
+              <div className="flex-1"><p className="font-dd">{p.name}</p><p className="text-sm text-[#1C1917]/60">{inr(p.price)}</p></div>
               <button type="button" onClick={() => add(p.id)} className="grid size-10 place-items-center rounded-full bg-[#F5F5F4]" aria-label={`Add ${p.name} to quote`}><Plus className="size-4" /></button>
             </li>
           );
@@ -228,10 +228,10 @@ export function RoomHotspots() {
   );
 }
 
-type F = "name" | "email" | "phone" | "zip";
+type F = "name" | "email" | "phone" | "pin";
 function QuoteDrawer() {
   const { quote, setQty, open, setOpen } = useShop();
-  const [v, setV] = useState({ name: "", email: "", phone: "", zip: "", notes: "" });
+  const [v, setV] = useState({ name: "", email: "", phone: "", pin: "", notes: "" });
   const [errors, setErrors] = useState<Errors<F>>({});
   const [done, setDone] = useState<string | null>(null);
   const lines = Object.entries(quote).map(([id, q]) => ({ p: products.find((x) => x.id === id)!, q }));
@@ -245,10 +245,10 @@ function QuoteDrawer() {
   }, [open, setOpen]);
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const errs = validate(v, { name: [{ kind: "required" }], email: [{ kind: "required" }, { kind: "email" }], phone: [{ kind: "phone" }], zip: [{ kind: "required" }, { kind: "pattern", re: /^\d{5}(-\d{4})?$/, message: "Enter a 5-digit US ZIP code." }] });
+    const errs = validate(v, { name: [{ kind: "required" }], email: [{ kind: "required" }, { kind: "email" }], phone: [{ kind: "phone" }], pin: [{ kind: "required" }, { kind: "pattern", re: /^[1-9]\d{5}$/, message: "Enter a 6-digit PIN code." }] });
     setErrors(errs);
     if (hasErrors(errs) || !lines.length) return;
-    setDone(formatEnquiry("Quote request — Woodgrain & Co.", { Name: v.name, Email: v.email, Phone: v.phone, ZIP: v.zip, Items: lines.map((l) => `${l.q} × ${l.p.name} (${usd(l.p.price)})`).join("; "), "Estimated total": usd(total), Notes: v.notes }));
+    setDone(formatEnquiry("Quote request — Woodgrain & Co.", { Name: v.name, Email: v.email, Phone: v.phone, "PIN code": v.pin, Items: lines.map((l) => `${l.q} × ${l.p.name} (${inr(l.p.price)})`).join("; "), "Estimated total": inr(total), Notes: v.notes }));
   };
   const inp = "min-h-11 w-full rounded-xl bg-white px-3 ring-1 ring-black/10";
   return (
@@ -268,18 +268,18 @@ function QuoteDrawer() {
                     {lines.map(({ p, q }) => (
                       <li key={p.id} className="flex items-center gap-3 py-3">
                         <div className="relative size-14 shrink-0 overflow-hidden rounded-xl"><Image src={unsplash(p.img)} alt="" fill sizes="56px" className="object-cover" /></div>
-                        <div className="flex-1"><p className="font-semibold">{p.name}</p><p className="text-sm text-[#1C1917]/60">{usd(p.price)}</p></div>
+                        <div className="flex-1"><p className="font-semibold">{p.name}</p><p className="text-sm text-[#1C1917]/60">{inr(p.price)}</p></div>
                         <button type="button" onClick={() => setQty(p.id, q - 1)} className="grid size-8 place-items-center rounded-full bg-white" aria-label={`Fewer ${p.name}`}><Minus className="size-3.5" /></button>
                         <span className="w-4 text-center">{q}</span>
                         <button type="button" onClick={() => setQty(p.id, q + 1)} className="grid size-8 place-items-center rounded-full bg-white" aria-label={`More ${p.name}`}><Plus className="size-3.5" /></button>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-4 flex justify-between font-semibold"><span>Estimated total</span><span>{usd(total)}</span></p>
+                  <p className="mt-4 flex justify-between font-semibold"><span>Estimated total</span><span>{inr(total)}</span></p>
                   <form onSubmit={submit} noValidate className="mt-6 grid gap-3">
-                    {(["name", "email", "phone", "zip"] as F[]).map((k) => (
+                    {(["name", "email", "phone", "pin"] as F[]).map((k) => (
                       <div key={k}>
-                        <label htmlFor={`wq-${k}`} className="mb-1 block text-sm font-semibold">{{ name: "Name", email: "Email", phone: "Phone (optional)", zip: "Delivery ZIP code" }[k]}</label>
+                        <label htmlFor={`wq-${k}`} className="mb-1 block text-sm font-semibold">{{ name: "Name", email: "Email", phone: "Phone (optional)", pin: "Delivery PIN code" }[k]}</label>
                         <input id={`wq-${k}`} className={inp} value={v[k]} onChange={(e) => setV({ ...v, [k]: e.target.value })} aria-invalid={!!errors[k]} aria-describedby={errors[k] ? `wq-${k}-e` : undefined} />
                         {errors[k] ? <p id={`wq-${k}-e`} className="mt-1 text-sm text-[#b42318]">{errors[k]}</p> : null}
                       </div>

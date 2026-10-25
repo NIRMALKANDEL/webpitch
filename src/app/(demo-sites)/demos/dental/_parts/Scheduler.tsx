@@ -18,7 +18,7 @@ function useDays(): Day[] {
     return Array.from({ length: 21 }, (_, i) => new Date(t.getFullYear(), t.getMonth(), t.getDate() + i))
       .filter((d) => d.getDay() !== 0)
       .slice(0, 14)
-      .map((d) => ({ key: d.toDateString(), date: d, dow: d.getDay(), label: d.toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "short" }) }));
+      .map((d) => ({ key: d.toDateString(), date: d, dow: d.getDay(), label: d.toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" }) }));
   }, [today]);
 }
 
@@ -72,7 +72,7 @@ export function Scheduler() {
   };
 
   if (done)
-    return <DemoResult brand="Pearl & Pine Dental" industryName="Clinic" demoSlug="dental" industrySlug="clinics" preview={done} onReset={() => { setDone(null); setStep("time"); setSlot(null); }} className="border-[#1F4D45]/15 bg-white" channel="clinic booking inbox and the patient's SMS" />;
+    return <DemoResult brand="Pearl & Pine Dental" industryName="Clinic" demoSlug="dental" industrySlug="clinics" preview={done} onReset={() => { setDone(null); setStep("time"); setSlot(null); }} className="border-[#1F4D45]/15 bg-white" channel="clinic booking inbox and the patient's WhatsApp" />;
 
   return (
     <div className="grid overflow-hidden rounded-[28px] bg-white shadow-[0_30px_80px_-40px_rgba(31,77,69,0.5)] ring-1 ring-[#1F4D45]/10 lg:grid-cols-[320px_1fr]">

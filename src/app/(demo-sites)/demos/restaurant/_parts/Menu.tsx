@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { unsplash } from "@/lib/media";
 import { useCart } from "./Cart";
-import { gbp, menu, menuCats } from "./data";
+import { inr, menu, menuCats } from "./data";
 
 function VegMark({ veg }: { veg: boolean }) {
   return (
@@ -107,7 +107,7 @@ export function Menu() {
                   <p className="mt-1 line-clamp-2 text-sm text-black/65">{m.desc}</p>
                   <div className="mt-auto flex items-center justify-between gap-2 pt-2">
                     <span className="flex items-center gap-2">
-                      <span className="font-dd text-lg text-[#B3261E]">{gbp(m.price)}</span>
+                      <span className="font-dd text-lg text-[#B3261E]">{inr(m.price)}</span>
                       {m.spice > 0 ? (
                         <span className="flex text-[#B3261E]" aria-label={`Spice level ${m.spice} of 3`} role="img">
                           {Array.from({ length: m.spice }).map((_, i) => <Flame key={i} className="size-3.5" aria-hidden />)}
@@ -146,7 +146,7 @@ export function Menu() {
             className="fixed right-6 bottom-20 z-40 hidden min-h-14 items-center gap-3 rounded-full bg-[#12372A] py-2 pr-6 pl-2 font-bold text-white shadow-2xl shadow-[#12372A]/40 md:inline-flex"
           >
             <span className="grid size-10 place-items-center rounded-full bg-[#E3A21A] text-[#1b1b1b]"><ShoppingBag className="size-5" aria-hidden /></span>
-            View order ({count}) · {gbp(total)}
+            View order ({count}) · {inr(total)}
           </motion.button>
         ) : null}
       </AnimatePresence>

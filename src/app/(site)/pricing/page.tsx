@@ -6,13 +6,13 @@ import { SectionHeading } from "@/components/site/Cards";
 import { FAQ } from "@/components/site/FAQ";
 import { PricingCards } from "@/components/site/PricingCards";
 import { pricingFaq } from "@/data/faq";
-import { addOns, carePlans, finePrint, packages, redesign } from "@/data/pricing";
+import { addOns, carePlans, customApp, finePrint, inr, packages, redesign } from "@/data/pricing";
 import { faqSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: "Pricing",
-  description: "Website packages tailored to your requirements: Landing Page, Business, Advanced and E-commerce websites, plus redesigns, add-ons and care plans. Contact me for a custom quote.",
+  title: `Website Design Price in Indore, from ${inr(packages[0].from)}`,
+  description: `Clear website prices for Indore and India: Landing Page from ${inr(packages[0].from)}, Business Website from ${inr(packages[1].from)}, E-commerce from ${inr(packages[3].from)}. Fixed quote, 50/50 payment, you own everything.`,
   path: "/pricing",
   image: "pricing",
 });
@@ -30,6 +30,7 @@ const rows: { label: string; values: (string | boolean)[] }[] = [
   { label: "Basic SEO setup", values: [true, true, true, true] },
   { label: "Revision rounds", values: ["2", "2", "3", "3"] },
   { label: "Typical delivery", values: packages.map((p) => p.timeline) },
+  { label: "Starting price", values: packages.map((p) => inr(p.from)) },
 ];
 
 function Cell({ v }: { v: string | boolean }) {
@@ -44,10 +45,10 @@ export default function PricingPage() {
       <section className="container-x py-12 sm:py-20">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <h1 className="font-display text-5xl leading-[1] font-semibold tracking-tight sm:text-6xl">Pricing tailored to you</h1>
+            <h1 className="font-display text-5xl leading-[1] font-semibold tracking-tight sm:text-6xl">Website pricing in Indore</h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-2">
-              Pricing is customised according to your requirements. Contact me to discuss your project. After a free 20-minute call
-              you get a fixed quote, so there are no surprises.
+              Clear starting prices for every package. After a free 20-minute call you get a fixed written quote, so the price we
+              agree is the price you pay. Pay 50% to start and 50% before launch.
             </p>
           </div>
         </div>
@@ -109,38 +110,63 @@ export default function PricingPage() {
         <div id="redesign" className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
           <h2 className="font-display text-2xl font-semibold">{redesign.name}</h2>
           <p className="mt-2 leading-relaxed text-ink-2">{redesign.description}</p>
-          <p className="mt-5 font-display text-2xl font-semibold">Custom quote</p>
+          <p className="mt-5 text-sm text-ink-3">Starting from</p>
+          <p className="font-display text-2xl font-semibold">{inr(redesign.from)}</p>
           <p className="mt-1 text-xs text-ink-3">{redesign.timeline}</p>
           <Link href="/contact?package=redesign" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper">
             Discuss a Redesign
           </Link>
         </div>
-        <div id="care" className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
-          <h2 className="font-display text-2xl font-semibold">Care plans</h2>
-          <p className="mt-2 leading-relaxed text-ink-2">Optional monthly support after launch, so your site stays updated, backed up and fresh.</p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
+          <h2 className="font-display text-2xl font-semibold">{customApp.name}</h2>
+          <p className="mt-2 leading-relaxed text-ink-2">{customApp.description}</p>
+          <p className="mt-5 font-display text-2xl font-semibold">{customApp.priceNote}</p>
+          <Link href="/contact" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper">
+            Request a quote
+          </Link>
+        </div>
+      </section>
+
+      <section id="care" className="border-y border-muted bg-alt py-16 sm:py-20" aria-labelledby="care-title">
+        <div className="container-x">
+          <SectionHeading
+            id="care-title"
+            title="Care plans"
+            intro="Optional monthly support after launch, so your site stays updated, backed up and keeps bringing in customers. Cancel any month."
+          />
+          <div className="grid gap-4 md:grid-cols-3">
             {carePlans.map((c) => (
-              <div key={c.id} className="rounded-xl bg-paper p-4">
-                <p className="font-semibold">{c.name}</p>
-                <p className="mt-1 text-sm text-ink-3">Monthly · quoted with your project</p>
-                <ul className="mt-3 space-y-1.5 text-sm text-ink-2">
+              <div
+                key={c.id}
+                className={`flex flex-col rounded-[22px] bg-surface p-6 ring-1 ${"featured" in c && c.featured ? "ring-2 ring-accent" : "ring-ink/10"}`}
+              >
+                <p className="font-display text-xl font-semibold">{c.name}</p>
+                <p className="mt-1 text-sm text-ink-3">{c.bestFor}</p>
+                <p className="mt-4">
+                  <span className="font-display text-3xl font-semibold">{inr(c.perMonth)}</span>
+                  <span className="text-sm text-ink-3"> / month</span>
+                </p>
+                <ul className="mt-4 space-y-2 border-t border-muted pt-4 text-sm text-ink-2">
                   {c.includes.map((i) => (
                     <li key={i} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden /> {i}</li>
                   ))}
                 </ul>
+                <Link href={`/contact?package=${c.id}`} className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-ink/15 text-sm font-semibold transition hover:border-ink/40">
+                  Choose {c.name}
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-x pb-16 sm:pb-20" aria-labelledby="addons-title">
+      <section className="container-x py-16 sm:py-20" aria-labelledby="addons-title">
         <SectionHeading id="addons-title" title="Add-ons" intro="Add any of these to a package. 3D viewers and video heroes are shown live on the What's possible page." />
         <ul className="divide-y divide-muted rounded-[14px] border border-muted bg-surface">
           {addOns.map((a) => (
             <li key={a.id} className="flex items-center justify-between gap-4 px-5 py-4">
               <span className="text-ink-2">{a.name}</span>
-              <span className="shrink-0 text-sm font-semibold">On request</span>
+              <span className="shrink-0 text-sm font-semibold">from {inr(a.from)}</span>
             </li>
           ))}
         </ul>
