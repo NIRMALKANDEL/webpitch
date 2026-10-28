@@ -26,7 +26,7 @@ export type Prospect = {
   /** Optional first name of the owner, for the greeting. Leave empty if you don't know it. */
   ownerFirstName?: string;
   kind: ProspectKind;
-  /** The matching full demo to link to: restaurant, salon, agency, home-services, dental, coaching, … */
+  /** The matching full demo to link to: restaurant, salon, brightloop, home-services, dental, coaching, … */
   demo: string;
   area: string;
   city: string;

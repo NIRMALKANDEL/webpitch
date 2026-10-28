@@ -61,8 +61,8 @@ export const industries: Industry[] = [
     blurb: "A studio site that shows your taste in the first second and turns visitors into briefs.",
     intro:
       "Clients judge an agency by its own website before they read a word. Yours should show the work fast, explain what you do in plain language, and make sending a brief the easiest thing on the page.",
-    image: "/previews/agency.jpg",
-    imageAlt: "A black, pink and chartreuse creative agency website",
+    image: "/previews/brightloop.jpg",
+    imageAlt: "A dark social media agency website with phone mockups",
     subtypes: ["Branding studios", "Web & digital agencies", "Motion & 3D studios", "Marketing agencies", "Freelance collectives", "Production houses"],
     needs: [
       { title: "Work first", text: "Case studies people can filter and open in a click.", icon: "LayoutGrid" },

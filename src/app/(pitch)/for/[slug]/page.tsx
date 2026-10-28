@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
-import { demoBySlug } from "@/data/demos";
+import { demoBySlug, demoLinkProps } from "@/data/demos";
 import { inr, packages } from "@/data/pricing";
 import { type Prospect, prospectBySlug, prospects } from "@/data/prospects";
 import { site } from "@/data/site";
@@ -211,7 +211,7 @@ async function ProspectPageBody({ params }: { params: PageProps<"/for/[slug]">["
                 <WhatsAppIcon className="size-5" /> Reply to Nirmal on WhatsApp
               </a>
               {demo ? (
-                <Link href={`/demos/${demo.slug}`} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/30 px-6 font-semibold">
+                <Link {...demoLinkProps(demo)} className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/30 px-6 font-semibold">
                   See a full demo <ArrowRight className="size-4" aria-hidden />
                 </Link>
               ) : null}

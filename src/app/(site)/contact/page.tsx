@@ -1,4 +1,4 @@
-import { Clock, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
@@ -52,9 +52,6 @@ export default function ContactPage() {
             <a href={`mailto:${site.email}`} className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 font-semibold">
               <Mail className="size-4" aria-hidden /> {site.email}
             </a>
-            <p className="mt-5 flex items-start gap-2 text-sm text-white/70">
-              <Clock className="mt-0.5 size-4 shrink-0" aria-hidden /> {site.timezoneNote}
-            </p>
           </div>
           <div className="rounded-[20px] border border-muted bg-surface p-6 sm:p-8">
             <h2 className="font-display text-xl font-semibold">What happens next</h2>

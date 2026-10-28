@@ -13,6 +13,11 @@ export type Demo = {
   /** Unsplash id used for cards until real screenshots exist */
   image: string;
   imageAlt: string;
+  /**
+   * Set for demos hosted as their own website. /demos/<slug> shows that site full-screen inside this one,
+   * so the demo bar (Exit demo, other demos, WhatsApp) stays available.
+   */
+  embedUrl?: string;
 };
 
 export const demos: Demo[] = [
@@ -47,19 +52,20 @@ export const demos: Demo[] = [
     imageAlt: "Salon interior with mirrors and black chairs",
   },
   {
-    slug: "agency",
+    slug: "brightloop",
     industry: "agencies",
-    brand: "Hotwire Studio",
+    brand: "Brightloop",
     city: "Indore",
     country: "India",
-    summary: "A multi-page creative and marketing agency site with a cursor-reactive 3D hero, filterable case studies, team, journal and a full project brief form.",
+    summary: "A social media and creative agency site with animated phone mockups, a swipeable reels strip, services, a 3-step process and a discovery-call booking flow.",
     tier: "Signature",
-    tags: ["Interactive 3D hero", "Case studies", "Brief form"],
-    sections: ["3D hero", "Services", "Work + case studies", "About", "Team", "Journal + articles", "Project brief", "Contact"],
-    palette: ["#000000", "#FF2E93", "#D8FF3C", "#F5F1F3"],
-    fonts: "Anybody & Schibsted Grotesk",
-    image: "/previews/agency.jpg",
-    imageAlt: "Hotwire Studio agency site with a glowing pink 3D wire",
+    tags: ["Animated reels hero", "Swipeable reels", "Discovery call"],
+    sections: ["Phone mockup hero", "Recent reels", "How it works", "Services", "Results", "Testimonials", "FAQ", "Book a call"],
+    palette: ["#140B0F", "#E8CF8B", "#E8467C", "#F5EFE9"],
+    fonts: "Syne & Manrope",
+    image: "/previews/brightloop.jpg",
+    imageAlt: "Brightloop social media agency site with two phone mockups",
+    embedUrl: "https://creativewebsite-ten.vercel.app/",
   },
   {
     slug: "home-services",
@@ -232,5 +238,33 @@ export const demos: Demo[] = [
 /** WebP screenshot (JPEG originals are kept alongside for social images). */
 export const demoPreview = (slug: string) => `/previews/${slug}.webp`;
 
-export const demoBySlug = (slug: string) => demos.find((d) => d.slug === slug);
+/**
+ * Demos that are no longer listed anywhere, but whose pages still exist under /demos/<slug>
+ * (so old links keep working). Hotwire Studio was replaced by Brightloop in October 2026.
+ */
+const retiredDemos: Demo[] = [
+  {
+    slug: "agency",
+    industry: "agencies",
+    brand: "Hotwire Studio",
+    city: "Indore",
+    country: "India",
+    summary: "A multi-page creative and marketing agency site with a cursor-reactive 3D hero, filterable case studies, team, journal and a full project brief form.",
+    tier: "Signature",
+    tags: ["Interactive 3D hero", "Case studies", "Brief form"],
+    sections: ["3D hero", "Services", "Work + case studies", "About", "Team", "Journal + articles", "Project brief", "Contact"],
+    palette: ["#000000", "#FF2E93", "#D8FF3C", "#F5F1F3"],
+    fonts: "Anybody & Schibsted Grotesk",
+    image: "/previews/agency.jpg",
+    imageAlt: "Hotwire Studio agency site with a glowing pink 3D wire",
+  },
+];
+
+export const demoBySlug = (slug: string) => demos.find((d) => d.slug === slug) ?? retiredDemos.find((d) => d.slug === slug);
+
+/** Where a demo card links. Every demo, embedded ones included, lives at /demos/<slug>. */
+export const demoHref = (d: Demo) => `/demos/${d.slug}`;
+
+/** Props for a link to a demo (kept as a helper so the link target can change in one place). */
+export const demoLinkProps = (d: Demo) => ({ href: demoHref(d) });
 export const demosForIndustry = (industry: string) => demos.filter((d) => d.industry === industry);

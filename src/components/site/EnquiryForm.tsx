@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
 import { useCurrency } from "@/components/shared/currency-store";
 import { WhatsAppIcon } from "@/components/shared/WhatsAppIcon";
-import { demoBySlug } from "@/data/demos";
+import { demoBySlug, demoHref } from "@/data/demos";
 import { industries, industryBySlug } from "@/data/industries";
 import { carePlans, inr, packages } from "@/data/pricing";
 import { site } from "@/data/site";
@@ -87,6 +87,8 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
   }));
   const [errors, setErrors] = useState<Errors<Field>>({});
   const [status, setStatus] = useState<Status>({ kind: "idle" });
+  // Phones: the two optional fields stay tucked away until asked for, to keep the form short.
+  const [more, setMore] = useState(false);
 
   // Pre-select the visitor's country from their currency, once known, if they haven't chosen one.
   const country = String(values.country) || (cur ? (CURRENCY_COUNTRY[cur] ?? "") : "");
@@ -185,7 +187,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
           Budget: full ? v.budget : "—",
           Timeline: full ? v.timeline : "—",
           "Current website": v.website || "—",
-          "Demo of interest": demo ? `${demo.brand} (/demos/${demo.slug})` : "—",
+          "Demo of interest": demo ? `${demo.brand} (${demoHref(demo)})` : "—",
           Package: prefill.package ?? "—",
           "Currency shown": cur ?? "—",
           Details: v.details || "—",
@@ -255,9 +257,9 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
   }
 
   const fieldErrorIds = Object.keys(errors).filter((k) => errors[k as Field]);
-  const label = "mb-1.5 block text-sm font-medium";
+  const label = "mb-1 block text-sm font-medium sm:mb-1.5";
   const input =
-    "w-full min-h-12 rounded-xl border bg-surface px-4 text-base text-ink transition placeholder:text-ink-3/70 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15";
+    "w-full min-h-11 rounded-xl border bg-surface px-3.5 text-base sm:min-h-12 sm:px-4 text-ink transition placeholder:text-ink-3/70 focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15";
   const cls = (k: Field) => `${input} ${errors[k] ? "border-danger" : "border-muted"}`;
   const err = (k: Field) =>
     errors[k] ? (
@@ -272,7 +274,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
   });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-5" aria-describedby={`${id}-req`}>
+    <form onSubmit={onSubmit} noValidate className="grid gap-4 sm:gap-5" aria-describedby={`${id}-req`}>
       {context && full ? (
         <div className="flex items-start justify-between gap-3 rounded-xl bg-accent-soft px-4 py-3 text-sm">
           <p>
@@ -311,11 +313,11 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
         </div>
       ) : null}
 
-      <p id={`${id}-req`} className="text-sm text-ink-3">
+      <p id={`${id}-req`} className="-mb-1 text-xs text-ink-3 sm:mb-0 sm:text-sm">
         Fields marked * are required.
       </p>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-3.5 sm:grid-cols-2 sm:gap-5">
         <div>
           <label htmlFor={`${id}-name`} className={label}>Your name *</label>
           <input {...a11y("name")} autoComplete="name" className={cls("name")} value={String(values.name)} onChange={(e) => set("name", e.target.value)} />
@@ -332,7 +334,8 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
           {err("phone")}
         </div>
         {full ? (
-          <div>
+          // Phones: country is prefilled, so it moves behind "More details" with the optional fields.
+          <div className={`${more || errors.country ? "" : "hidden"} sm:block`}>
             <label htmlFor={`${id}-country`} className={label}>Country *</label>
             <select {...a11y("country")} autoComplete="country-name" className={cls("country")} value={country} onChange={(e) => set("country", e.target.value)}>
               <option value="">Choose…</option>
@@ -355,12 +358,12 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
 
       {full ? (
         <>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
+          <div className="grid grid-cols-2 gap-x-3 gap-y-3.5 sm:gap-5">
+            <div className={`${more ? "" : "hidden"} col-span-2 sm:col-span-1 sm:block`}>
               <label htmlFor={`${id}-business`} className={label}>Business name</label>
               <input {...a11y("business")} autoComplete="organization" className={cls("business")} value={String(values.business)} onChange={(e) => set("business", e.target.value)} />
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <label htmlFor={`${id}-category`} className={label}>Business category *</label>
               <select {...a11y("category")} className={cls("category")} value={String(values.category)} onChange={(e) => set("category", e.target.value)}>
                 <option value="">Choose…</option>
@@ -369,7 +372,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
               </select>
               {err("category")}
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <label htmlFor={`${id}-websiteType`} className={label}>Website type *</label>
               <select {...a11y("websiteType")} className={cls("websiteType")} value={String(values.websiteType)} onChange={(e) => set("websiteType", e.target.value)}>
                 <option value="">Choose…</option>
@@ -377,29 +380,39 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
               </select>
               {err("websiteType")}
             </div>
-            <div>
-              <label htmlFor={`${id}-budget`} className={label}>Approximate budget *</label>
-              <select {...a11y("budget")} className={cls("budget")} value={String(values.budget)} onChange={(e) => set("budget", e.target.value)}>
+            <div className="min-w-0">
+              <label htmlFor={`${id}-budget`} className={label}>
+                <span className="sm:hidden">Budget *</span>
+                <span className="hidden sm:inline">Approximate budget *</span>
+              </label>
+              <select {...a11y("budget")} className={`${cls("budget")} max-sm:px-2.5 max-sm:text-sm`} value={String(values.budget)} onChange={(e) => set("budget", e.target.value)}>
                 <option value="">Choose…</option>
                 {BUDGETS.map((b) => <option key={b}>{b}</option>)}
-                <option>Not sure yet</option>
               </select>
               {err("budget")}
             </div>
-            <div>
-              <label htmlFor={`${id}-timeline`} className={label}>Expected timeline *</label>
-              <select {...a11y("timeline")} className={cls("timeline")} value={String(values.timeline)} onChange={(e) => set("timeline", e.target.value)}>
+            <div className="min-w-0">
+              <label htmlFor={`${id}-timeline`} className={label}>
+                <span className="sm:hidden">Timeline *</span>
+                <span className="hidden sm:inline">Expected timeline *</span>
+              </label>
+              <select {...a11y("timeline")} className={`${cls("timeline")} max-sm:px-2.5 max-sm:text-sm`} value={String(values.timeline)} onChange={(e) => set("timeline", e.target.value)}>
                 <option value="">Choose…</option>
                 {TIMELINES.map((t) => <option key={t}>{t}</option>)}
               </select>
               {err("timeline")}
             </div>
-            <div>
+            <div className={`${more || errors.website ? "" : "hidden"} col-span-2 sm:col-span-1 sm:block`}>
               <label htmlFor={`${id}-website`} className={label}>Current website <span className="font-normal text-ink-3">(if any)</span></label>
               <input {...a11y("website")} inputMode="url" placeholder="yourbusiness.in" className={cls("website")} value={String(values.website)} onChange={(e) => set("website", e.target.value)} />
               {err("website")}
             </div>
           </div>
+          {!more ? (
+            <button type="button" onClick={() => setMore(true)} className="-mt-1 justify-self-start text-left text-sm font-semibold text-accent underline-offset-4 hover:underline sm:hidden">
+              + More details: business name, website{country ? `, country (${country})` : ", country"}
+            </button>
+          ) : null}
         </>
       ) : null}
 
@@ -409,9 +422,9 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
         </label>
         <textarea
           {...a11y("details")}
-          rows={full ? 5 : 3}
+          rows={full ? 4 : 3}
           placeholder={full ? "What does your business do? Which features matter most? Anything you liked in the demos?" : "What do you do, and what should the website help with?"}
-          className={`${cls("details")} py-3`}
+          className={`${cls("details")} py-3 max-sm:h-24`}
           value={String(values.details)}
           onChange={(e) => set("details", e.target.value)}
         />
@@ -423,7 +436,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
 
       {full ? (
         <div>
-          <label className="flex items-start gap-3 text-sm text-ink-2">
+          <label className="flex items-start gap-3 text-xs text-ink-2 sm:text-sm">
             <input
               {...a11y("consent")}
               type="checkbox"
@@ -456,11 +469,11 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
         </div>
       ) : null}
 
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <button
           type="submit"
           disabled={status.kind === "sending"}
-          className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-7 font-semibold text-paper transition hover:bg-ink/85 disabled:opacity-60"
+          className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-ink px-7 sm:w-auto font-semibold text-paper transition hover:bg-ink/85 disabled:opacity-60"
         >
           {status.kind === "sending" ? (
             <>
@@ -472,7 +485,7 @@ export function EnquiryForm({ variant = "full", prefill = {} }: { variant?: "ful
             </>
           )}
         </button>
-        <p className="text-sm text-ink-3">Replies within 12 hours, usually sooner.</p>
+        <p className="text-xs text-ink-3 sm:text-sm">Replies within 12 hours, usually sooner.</p>
       </div>
     </form>
   );

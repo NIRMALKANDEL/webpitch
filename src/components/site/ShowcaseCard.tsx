@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Demo } from "@/data/demos";
+import { type Demo, demoLinkProps } from "@/data/demos";
 import { industryBySlug } from "@/data/industries";
 
 /** Tall full-page screenshot that scrolls inside the card on hover (falls back to the regular preview). */
@@ -39,7 +39,7 @@ export function ShowcaseCard({ demo, label, priority = false, wide = false }: { 
   return (
     <motion.div style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000 }} className="h-full">
       <Link
-        href={`/demos/${demo.slug}`}
+        {...demoLinkProps(demo)}
         onPointerMove={onMove}
         onPointerLeave={onLeave}
         aria-label={`Open the ${demo.brand} live demo (${label ?? industry.short})`}

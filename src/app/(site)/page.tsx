@@ -1,4 +1,4 @@
-import { ArrowRight, Gauge, Globe2, Inbox, KeyRound, Layers, MapPin, MessageCircle, Smartphone } from "lucide-react";
+import { ArrowRight, Gauge, Inbox, KeyRound, Layers, MapPin, MessageCircle, Smartphone } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/shared/JsonLd";
@@ -13,7 +13,7 @@ import { PricingCards } from "@/components/site/PricingCards";
 import { Process } from "@/components/site/Process";
 import { Testimonials } from "@/components/site/Testimonials";
 import { homeFaq } from "@/data/faq";
-import { customApp, finePrint, pricingHeadline } from "@/data/pricing";
+import { customApp, finePrint } from "@/data/pricing";
 import { industries } from "@/data/industries";
 import { site } from "@/data/site";
 import { faqSchema } from "@/lib/schema";
@@ -128,13 +128,6 @@ export default function HomePage() {
             title="Pick a plan that fits your business."
             intro="Starting prices in rupees, then a fixed written quote after a free call."
           />
-          <div className="-mt-2 mb-6 rounded-[14px] bg-accent-soft p-5 ring-1 ring-accent/20 sm:-mt-4 sm:mb-10 sm:p-6">
-            <p className="font-display text-2xl leading-tight font-semibold tracking-tight text-balance sm:text-3xl">
-              {pricingHeadline.intro}
-            </p>
-            <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2 sm:text-base">{pricingHeadline.outro}</p>
-            <p className="mt-3 text-sm leading-relaxed text-ink-3">{pricingHeadline.startingNote}</p>
-          </div>
           <PricingCards />
           <div className="mt-5 flex flex-col gap-4 rounded-[22px] bg-surface p-5 ring-1 ring-ink/10 sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <div className="flex gap-4">
@@ -144,7 +137,6 @@ export default function HomePage() {
               <div>
                 <h3 className="font-display text-lg font-semibold">{customApp.name}</h3>
                 <p className="mt-1 text-sm leading-relaxed text-ink-2">{customApp.description}</p>
-                <p className="mt-1 text-sm font-semibold text-ink">{customApp.priceNote}</p>
               </div>
             </div>
             <Link
@@ -173,9 +165,6 @@ export default function HomePage() {
           intro={`From first message to launch, usually in one to three weeks. In ${site.city} we can meet in person; everywhere else, WhatsApp and video calls.`}
         />
         <Process />
-        <p className="mt-6 flex items-center gap-2 text-sm text-ink-2">
-          <Globe2 className="size-4 text-accent" aria-hidden /> {site.timezoneNote}
-        </p>
       </section>
 
       <section className="container-x pb-12 sm:pb-24" aria-labelledby="local-title">

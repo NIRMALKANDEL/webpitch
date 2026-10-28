@@ -114,14 +114,6 @@ export const customApp = {
   id: "custom",
   name: "Custom Web Applications",
   description: "Portals, dashboards, booking systems and other web apps built around how your business works.",
-  priceNote: `From ${inr(75000)}, quoted on your requirements.`,
-};
-
-/** Headline shown above the package cards on the homepage. */
-export const pricingHeadline = {
-  intro: "Clear starting prices. A fixed quote before any work starts.",
-  outro: "Every website is quoted on the pages, features and content you need. The price we agree is the price you pay.",
-  startingNote: "Not sure which one you need? A free 20-minute call (or a chai, if you're in Indore) will sort it out.",
 };
 
 export const redesign = {

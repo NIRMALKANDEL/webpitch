@@ -10,7 +10,7 @@ import { BrowserFrame, IndustryCard, SectionHeading } from "@/components/site/Ca
 import { FAQ } from "@/components/site/FAQ";
 import { NeedIcon } from "@/components/site/NeedIcon";
 import { PricingCards } from "@/components/site/PricingCards";
-import { demoPreview, demosForIndustry } from "@/data/demos";
+import { demoLinkProps, demoPreview, demosForIndustry } from "@/data/demos";
 import { industries, industryBySlug } from "@/data/industries";
 import { industryContent } from "@/data/industry-content";
 import { site } from "@/data/site";
@@ -100,8 +100,8 @@ async function IndustryPageBody({ params }: { params: PageProps<"/industries/[sl
           <div className="grid gap-12">
             {list.map((d) => (
               <article key={d.slug} className="grid items-center gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-                <Link href={`/demos/${d.slug}`} className="group block" aria-label={`Open the ${d.brand} demo`}>
-                  <BrowserFrame url={`${d.brand.toLowerCase().replace(/[^a-z]+/g, "")}.com`}>
+                <Link {...demoLinkProps(d)} className="group block" aria-label={`Open the ${d.brand} demo`}>
+                  <BrowserFrame url={d.embedUrl ? new URL(d.embedUrl).host : `${d.brand.toLowerCase().replace(/[^a-z]+/g, "")}.com`}>
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image src={demoPreview(d.slug)} alt={`Screenshot of the ${d.brand} demo website`} fill sizes="(min-width:1024px) 55vw, 92vw" className="object-cover object-top transition duration-700 group-hover:scale-[1.02]" />
                     </div>
@@ -126,7 +126,7 @@ async function IndustryPageBody({ params }: { params: PageProps<"/industries/[sl
                     Designed with {d.fonts}
                   </div>
                   <div className="mt-7 flex flex-wrap gap-2">
-                    <Link href={`/demos/${d.slug}`} className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-sm font-semibold text-paper">
+                    <Link {...demoLinkProps(d)} className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-ink px-5 text-sm font-semibold text-paper">
                       View Live Website <ArrowUpRight className="size-4" aria-hidden />
                     </Link>
                     <Link href={`/contact?industry=${industry.slug}&demo=${d.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-ink/15 px-5 text-sm font-semibold">

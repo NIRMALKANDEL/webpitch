@@ -44,7 +44,7 @@ All demo businesses are fictional and set in India.
 |---|---|---|
 | [Tamarind & Smoke](/demos/restaurant) | restaurants (Indore) | 4K video hero, WhatsApp cart, Table booking |
 | [Velvet Rooms](/demos/salon) | salons (Indore) | 3-step booking, Price tabs, Offers |
-| [Hotwire Studio](/demos/agency) | agencies (Indore) | Interactive 3D hero, Case studies, Brief form |
+| [Brightloop](https://creativewebsite-ten.vercel.app/) (own site) | agencies (Indore) | Animated reels hero, Swipeable reels, Discovery call |
 | [FixRight Home Services](/demos/home-services) | home-services (Indore) | PIN code checker, Sticky call bar, Quote form |
 | [Pearl & Pine Dental](/demos/dental) | clinics (Bhopal) | Appointment scheduler, Dentist profiles, Treatment prices |
 | [Apex Academy](/demos/coaching) | coaching (Kota) | Course filters, Timetable, Admission form |

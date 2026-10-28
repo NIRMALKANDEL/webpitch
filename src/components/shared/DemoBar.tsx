@@ -4,7 +4,7 @@ import { ChevronDown, ChevronLeft, ChevronRight, Home, Layers, LogOut, Maximize2
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { demos } from "@/data/demos";
+import { demoLinkProps, demos } from "@/data/demos";
 import { industries } from "@/data/industries";
 import { waLink, waMessages } from "@/lib/whatsapp";
 import { useClientValue } from "./useClientValue";
@@ -141,7 +141,7 @@ export function DemoBar({ slug }: { slug: string }) {
               <span className="text-xs sm:hidden">Exit</span>
               <span className="hidden sm:inline">Exit demo</span>
             </Link>
-            <Link href={`/demos/${prev.slug}`} className="hidden size-11 shrink-0 place-items-center rounded-full text-white/85 hover:bg-white/10 sm:grid" aria-label={`Previous demo: ${prev.brand}`} title={prev.brand}>
+            <Link {...demoLinkProps(prev)} className="hidden size-11 shrink-0 place-items-center rounded-full text-white/85 hover:bg-white/10 sm:grid" aria-label={`Previous demo: ${prev.brand}`} title={prev.brand}>
               <ChevronLeft className="size-4" />
             </Link>
             <div className="relative" ref={menuRef}>
@@ -184,7 +184,7 @@ export function DemoBar({ slug }: { slug: string }) {
                         return (
                           <li key={d.slug}>
                             <Link
-                              href={`/demos/${d.slug}`}
+                              {...demoLinkProps(d)}
                               aria-current={current ? "page" : undefined}
                               className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm hover:bg-white/10 ${current ? "bg-white/10" : ""}`}
                               onClick={() => setMenu(false)}
@@ -213,7 +213,7 @@ export function DemoBar({ slug }: { slug: string }) {
                 ) : null}
               </AnimatePresence>
             </div>
-            <Link href={`/demos/${next.slug}`} className="hidden size-11 shrink-0 place-items-center rounded-full text-white/85 hover:bg-white/10 sm:grid" aria-label={`Next demo: ${next.brand}`} title={next.brand}>
+            <Link {...demoLinkProps(next)} className="hidden size-11 shrink-0 place-items-center rounded-full text-white/85 hover:bg-white/10 sm:grid" aria-label={`Next demo: ${next.brand}`} title={next.brand}>
               <ChevronRight className="size-4" />
             </Link>
             <Link

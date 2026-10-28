@@ -120,7 +120,6 @@ export default function PricingPage() {
         <div className="rounded-[14px] border border-muted bg-surface p-6 sm:p-8">
           <h2 className="font-display text-2xl font-semibold">{customApp.name}</h2>
           <p className="mt-2 leading-relaxed text-ink-2">{customApp.description}</p>
-          <p className="mt-5 font-display text-2xl font-semibold">{customApp.priceNote}</p>
           <Link href="/contact" className="mt-6 inline-flex min-h-11 items-center rounded-full bg-ink px-5 text-sm font-semibold text-paper">
             Request a quote
           </Link>

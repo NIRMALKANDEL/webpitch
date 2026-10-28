@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Scene3DGate } from "@/components/shared/Scene3DGate";
-import { demoPreview, demos } from "@/data/demos";
+import { demoHref, demoLinkProps, demoPreview, demos } from "@/data/demos";
 import { packages } from "@/data/pricing";
 import { site } from "@/data/site";
 
@@ -31,7 +31,7 @@ const who: Record<string, string> = {
   dental: "clinics",
   portfolio: "creators",
   "energy-drink": "product brands",
-  agency: "agencies",
+  brightloop: "agencies",
 };
 
 export function Hero() {
@@ -95,7 +95,7 @@ export function Hero() {
 
           {/* Phones/tablets: show a live demo right under the headline (the 3D carousel is desktop-only). */}
           <Link
-            href={`/demos/${demo.slug}`}
+            {...demoLinkProps(demo)}
             className="group relative mt-6 block overflow-hidden rounded-2xl ring-1 ring-ink/10 lg:hidden"
             aria-label={`Open the ${demo.brand} live demo`}
           >
@@ -165,7 +165,7 @@ export function Hero() {
           <Scene3DGate
             className="aspect-[16/11] w-full cursor-pointer"
             render={(onReady) => (
-              <div className="size-full" onClick={() => router.push(`/demos/${demo.slug}`)}>
+              <div className="size-full" onClick={() => router.push(demoHref(demo))}>
                 <HeroScene images={demos.map((d) => demoPreview(d.slug))} active={active} onReady={onReady} />
               </div>
             )}
@@ -183,7 +183,7 @@ export function Hero() {
             }
           />
           <Link
-            href={`/demos/${demo.slug}`}
+            {...demoLinkProps(demo)}
             className="mx-auto -mt-2 flex w-fit items-center gap-2 rounded-full border border-ink/10 bg-surface/80 py-1.5 pr-1.5 pl-4 text-sm backdrop-blur transition hover:border-ink/30"
           >
             <span className="text-ink-3">Now showing</span>
