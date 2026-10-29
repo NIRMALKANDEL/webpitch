@@ -4,7 +4,7 @@ import { ChevronDown, ChevronLeft, ChevronRight, Home, Layers, LogOut, Maximize2
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { demoLinkProps, demos } from "@/data/demos";
+import { demoBySlug, demoLinkProps, demos } from "@/data/demos";
 import { industries } from "@/data/industries";
 import { waLink, waMessages } from "@/lib/whatsapp";
 import { useClientValue } from "./useClientValue";
@@ -17,7 +17,7 @@ const KEY = "demobar-collapsed";
  * WhatsApp. Top-centre on desktop, bottom on mobile. Collapses to a small tab.
  */
 export function DemoBar({ slug }: { slug: string }) {
-  const demo = demos.find((d) => d.slug === slug)!;
+  const demo = demoBySlug(slug)!;
   const industry = industries.find((i) => i.slug === demo.industry)!;
   const stored = useClientValue(() => {
     try {
@@ -101,7 +101,7 @@ export function DemoBar({ slug }: { slug: string }) {
     <>
     <nav
       aria-label="Demo navigation"
-      className="pointer-events-none fixed inset-x-0 bottom-3 z-[90] flex justify-center px-3 font-sans text-white [padding-bottom:env(safe-area-inset-bottom)]"
+      className="pointer-events-none fixed inset-x-0 bottom-3 z-90 flex justify-center px-3 font-sans text-white pb-[env(safe-area-inset-bottom)]"
       style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" }}
     >
       <AnimatePresence mode="wait" initial={false}>
